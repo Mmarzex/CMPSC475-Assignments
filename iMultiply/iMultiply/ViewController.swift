@@ -16,9 +16,19 @@ class ViewController: UIViewController {
     
     @IBOutlet var answerChoicesSegmentedControl: UISegmentedControl!
     
+    @IBOutlet var nextButton: UIButton!
+    
     let maxRandomNumber: UInt32 = 15
     let numberOfAnswerChoices: Int = 4
     
+    let maxDifferenceBetweenAnswerAndChoices: Int = 5
+    
+    let numberOfProblems = 10
+    
+    var correctAnswers = 0
+    var incorrectAnswers = 0
+    
+    var correctAnswerSegmentIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +54,28 @@ class ViewController: UIViewController {
         multiplicandLabel.text = String(randomMultiplicand)
         resultLabel.text = String(correctResult)
         
+        resultLabel.hidden = true
+        
+        nextButton.hidden = true
+        
         var answerChoices = [UInt32](count: numberOfAnswerChoices, repeatedValue: 0)
         
         answerChoices[0] = correctResult
+        
+        var differenceBetweenAnswerAndChoicesMin : Int = 0
+        
+        if Int(correctResult) - maxDifferenceBetweenAnswerAndChoices <= 0 {
+            differenceBetweenAnswerAndChoicesMin = maxDifferenceBetweenAnswerAndChoices - Int(correctResult)
+        } else {
+            differenceBetweenAnswerAndChoicesMin = maxDifferenceBetweenAnswerAndChoices
+        }
         
         for var i = 1; i < answerChoices.count; i++ {
             var newChoice = answerChoices[i - 1]
             while contains(answerChoices, newChoice) {
 //                newChoice = arc4random_uniform(UInt32(correctResult))
                 newChoice = correctResult
-                newChoice = arc4random_uniform(2) == 1 ? newChoice + arc4random_uniform(UInt32(5)) + 1 : newChoice - (arc4random_uniform(UInt32(5)) + 1)
+                newChoice = arc4random_uniform(2) == 1 ? newChoice + arc4random_uniform(UInt32(maxDifferenceBetweenAnswerAndChoices)) + 1 : newChoice - (arc4random_uniform(UInt32(differenceBetweenAnswerAndChoicesMin)) + 1)
             }
             answerChoices[i] = newChoice
         }
@@ -64,6 +86,10 @@ class ViewController: UIViewController {
         
         for (index, choice) in enumerate(answerChoices) {
             answerChoicesSegmentedControl.insertSegmentWithTitle(String(choice), atIndex: index, animated: false)
+            
+            if choice == correctResult {
+                correctAnswerSegmentIndex = index
+            }
         }
         
     }
@@ -83,7 +109,35 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func answerChoiceSelected(sender: AnyObject) {
+        
+        if answerChoicesSegmentedControl.selectedSegmentIndex == correctAnswerSegmentIndex {
+            correctAnswers++
+        } else {
+            incorrectAnswers++
+        }
+        
+        resultLabel.hidden = false
+        
+        if correctAnswers + incorrectAnswers == numberOfProblems {
+            nextButton.setTitle("Reset", forState: UIControlState.Normal)
+        }
+        
+        nextButton.hidden = false
+    }
+    
     @IBAction func nextButtonAction(sender: AnyObject) {
+        
+        
+        if nextButton.titleForState(UIControlState.Normal) == "Reset" {
+            correctAnswers = 0
+            incorrectAnswers = 0
+        }
+        
+        correctAnswerSegmentIndex = -1
+        answerChoicesSegmentedControl.selectedSegmentIndex = -1
+        createNewMultiplicationProblem()
+        
     }
 }
 
