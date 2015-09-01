@@ -73,14 +73,17 @@ class ViewController: UIViewController {
         for var i = 1; i < answerChoices.count; i++ {
             var newChoice = answerChoices[i - 1]
             while contains(answerChoices, newChoice) {
-//                newChoice = arc4random_uniform(UInt32(correctResult))
                 newChoice = correctResult
                 newChoice = arc4random_uniform(2) == 1 ? newChoice + arc4random_uniform(UInt32(maxDifferenceBetweenAnswerAndChoices)) + 1 : newChoice - (arc4random_uniform(UInt32(differenceBetweenAnswerAndChoicesMin)) + 1)
             }
             answerChoices[i] = newChoice
         }
         
-        shuffle(&answerChoices)
+        let randomIndex: Int = Int(arc4random_uniform(UInt32(numberOfAnswerChoices - 1)) + 1)
+        
+        swap(&answerChoices[randomIndex], &answerChoices[0])
+        
+//        shuffle(&answerChoices)
         
         answerChoicesSegmentedControl.removeAllSegments()
         
