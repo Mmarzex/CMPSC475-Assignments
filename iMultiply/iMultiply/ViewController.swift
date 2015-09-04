@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var answerChoicesSegmentedControl: UISegmentedControl!
     
-    @IBOutlet var nextButton: UIButton!
+    @IBOutlet var changeStateButton: UIButton!
     
     let maxRandomNumber: UInt32 = 15
     let numberOfAnswerChoices: Int = 4
@@ -41,14 +41,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         setInitialState()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    private func setChangeStateButtonTitle(state : IMultiplyButtonState) {
+        changeStateButton.setTitle(state.rawValue, forState: .Normal)
     }
     
     private func setInitialState() {
@@ -57,14 +58,13 @@ class ViewController: UIViewController {
         multiplicandLabel.hidden = true
         answerChoicesSegmentedControl.hidden = true
         answerCounterLabel.hidden = true
-        nextButton.setTitle(IMultiplyButtonState.Start.rawValue, forState: .Normal)
-
+        setChangeStateButtonTitle(.Start)
     }
     
     private func setDefaultStateOfView() {
 
         resultLabel.hidden = true
-        nextButton.hidden = true
+        changeStateButton.hidden = true
         multiplierLabel.hidden = false
         multiplicandLabel.hidden = false
         answerChoicesSegmentedControl.hidden = false
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         
         answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(currentQuestion)
         
-        nextButton.setTitle("Next", forState: .Normal)
+        setChangeStateButtonTitle(.Next)
     }
 
     private func createNewMultiplicationProblem() {
@@ -136,19 +136,19 @@ class ViewController: UIViewController {
         resultLabel.hidden = false
         
         if correctAnswers + incorrectAnswers == numberOfProblems {
-            nextButton.setTitle("Reset", forState: .Normal)
+            setChangeStateButtonTitle(.Reset)
             answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(currentQuestion)
         }
         
-        nextButton.hidden = false
+        changeStateButton.hidden = false
     }
     
     /* Change the title of this function */
-    @IBAction func nextButtonAction(sender: AnyObject) {
+    @IBAction func changeStateButtonAction(sender: AnyObject) {
         
-        if nextButton.titleForState(.Normal) == IMultiplyButtonState.Start.rawValue {
+        if changeStateButton.titleForState(.Normal) == IMultiplyButtonState.Start.rawValue {
             createNewMultiplicationProblem()
-        } else if nextButton.titleForState(.Normal) == IMultiplyButtonState.Reset.rawValue {
+        } else if changeStateButton.titleForState(.Normal) == IMultiplyButtonState.Reset.rawValue {
             correctAnswers = 0
             incorrectAnswers = 0
             currentQuestion = 1
