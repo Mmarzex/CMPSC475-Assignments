@@ -32,8 +32,6 @@ class ViewController: UIViewController {
     
     let numberOfProblems = 10
     
-    var currentQuestion = 1
-    
     var correctAnswers = 0
     var incorrectAnswers = 0
     
@@ -48,7 +46,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    private func setChangeStateButtonTitle(state : IMultiplyButtonState) {
+    private func setChangeStateButtonTitle(#state : IMultiplyButtonState) {
         changeStateButton.setTitle(state.rawValue, forState: .Normal)
     }
     
@@ -58,7 +56,7 @@ class ViewController: UIViewController {
         multiplicandLabel.hidden = true
         answerChoicesSegmentedControl.hidden = true
         answerCounterLabel.hidden = true
-        setChangeStateButtonTitle(.Start)
+        setChangeStateButtonTitle(state: .Start)
     }
     
     private func setDefaultStateOfView() {
@@ -72,15 +70,20 @@ class ViewController: UIViewController {
         
         answerChoicesSegmentedControl.removeAllSegments()
         
-        answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(currentQuestion)
+        answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(numberOfProblems)
         
-        setChangeStateButtonTitle(.Next)
+        setChangeStateButtonTitle(state: .Next)
     }
 
     private func createNewMultiplicationProblem() {
         
-        let randomMultiplier = arc4random_uniform(maxRandomNumber) + 1
-        let randomMultiplicand = arc4random_uniform(maxRandomNumber) + 1
+        var randomMultiplier = arc4random_uniform(maxRandomNumber) + 1
+        var randomMultiplicand = arc4random_uniform(maxRandomNumber) + 1
+        
+        // Just want larger number on top so it looks prettier
+        if randomMultiplicand > randomMultiplier {
+            swap(&randomMultiplier, &randomMultiplicand)
+        }
         
         let correctResult = randomMultiplicand * randomMultiplier
         
@@ -113,6 +116,7 @@ class ViewController: UIViewController {
         
         let randomIndex: Int = Int(arc4random_uniform(UInt32(numberOfAnswerChoices - 1)) + 1)
         
+        // Place the answer in a random index
         swap(&answerChoices[randomIndex], &answerChoices[0])
         
         for (index, choice) in enumerate(answerChoices) {
@@ -136,10 +140,9 @@ class ViewController: UIViewController {
         resultLabel.hidden = false
         
         if correctAnswers + incorrectAnswers == numberOfProblems {
-            setChangeStateButtonTitle(.Reset)
-            answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(currentQuestion)
+            setChangeStateButtonTitle(state: .Reset)
         }
-        
+        answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(numberOfProblems)
         changeStateButton.hidden = false
     }
     
@@ -150,12 +153,8 @@ class ViewController: UIViewController {
         } else if changeStateButton.titleForState(.Normal) == IMultiplyButtonState.Reset.rawValue {
             correctAnswers = 0
             incorrectAnswers = 0
-            currentQuestion = 1
             setInitialState()
         } else {
-            currentQuestion++
-            answerCounterLabel.text = "Correct Answers " + String(correctAnswers) +  "/" + String(currentQuestion)
-            
             correctAnswerSegmentIndex = -1
             answerChoicesSegmentedControl.selectedSegmentIndex = -1
             createNewMultiplicationProblem()

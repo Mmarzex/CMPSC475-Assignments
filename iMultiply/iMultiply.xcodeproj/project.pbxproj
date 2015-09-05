@@ -14,6 +14,7 @@
 		12082CE41B94D62C00F7E0A6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12082CE21B94D62C00F7E0A6 /* LaunchScreen.xib */; };
 		12082CF01B94D62C00F7E0A6 /* iMultiplyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12082CEF1B94D62C00F7E0A6 /* iMultiplyTests.swift */; };
 		12132A921B9AAE8D005C5B75 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 12132A911B9AAE8D005C5B75 /* icon.png */; };
+		127987C11B9B31AE00FFC69E /* multiSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 127987C01B9B31AE00FFC69E /* multiSymbol.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		12082CEE1B94D62C00F7E0A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12082CEF1B94D62C00F7E0A6 /* iMultiplyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMultiplyTests.swift; sourceTree = "<group>"; };
 		12132A911B9AAE8D005C5B75 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		127987C01B9B31AE00FFC69E /* multiSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = multiSymbol.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		12082CD61B94D62C00F7E0A6 /* iMultiply */ = {
 			isa = PBXGroup;
 			children = (
+				127987C01B9B31AE00FFC69E /* multiSymbol.png */,
 				12132A911B9AAE8D005C5B75 /* icon.png */,
 				12082CD91B94D62C00F7E0A6 /* AppDelegate.swift */,
 				12082CDB1B94D62C00F7E0A6 /* ViewController.swift */,
@@ -197,6 +200,7 @@
 			files = (
 				12132A921B9AAE8D005C5B75 /* icon.png in Resources */,
 				12082CDF1B94D62C00F7E0A6 /* Main.storyboard in Resources */,
+				127987C11B9B31AE00FFC69E /* multiSymbol.png in Resources */,
 				12082CE41B94D62C00F7E0A6 /* LaunchScreen.xib in Resources */,
 				12082CE11B94D62C00F7E0A6 /* Images.xcassets in Resources */,
 			);
