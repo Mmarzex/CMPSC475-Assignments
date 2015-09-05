@@ -143,7 +143,6 @@ class ViewController: UIViewController {
         changeStateButton.hidden = false
     }
     
-    /* Change the title of this function */
     @IBAction func changeStateButtonAction(sender: AnyObject) {
         
         if changeStateButton.titleForState(.Normal) == IMultiplyButtonState.Start.rawValue {
