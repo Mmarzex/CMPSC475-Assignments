@@ -167,7 +167,6 @@
 				TargetAttributes = {
 					12082CD31B94D62C00F7E0A6 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = L38GWSMVUV;
 					};
 					12082CE81B94D62C00F7E0A6 = {
 						CreatedOnToolsVersion = 6.4;
