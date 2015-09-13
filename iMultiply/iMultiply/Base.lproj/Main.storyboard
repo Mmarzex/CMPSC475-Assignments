@@ -61,25 +61,12 @@
                                 </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="anW-ig-yOt">
-                                <rect key="frame" x="32" y="432" width="552" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="LNM-kp-fgg"/>
-                                </constraints>
+                                <rect key="frame" x="32" y="462" width="552" height="29"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="LNM-kp-fgg"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="LNM-kp-fgg"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <action selector="answerChoiceSelected:" destination="vXZ-lx-hvc" eventType="valueChanged" id="y6m-WO-GRs"/>
                                 </connections>
@@ -219,7 +206,7 @@
                             <constraint firstItem="XIw-Sm-Ymd" firstAttribute="leading" secondItem="9ay-fh-8DG" secondAttribute="trailing" constant="54.5" id="DcQ-7j-7L7"/>
                             <constraint firstItem="4Vt-Oo-8X4" firstAttribute="top" secondItem="Vdw-wk-7ca" secondAttribute="bottom" constant="79" id="DuK-LT-Qk9"/>
                             <constraint firstItem="b3b-9F-Kli" firstAttribute="top" secondItem="lEh-Fe-l8V" secondAttribute="bottom" constant="141" id="FtN-qG-UUn"/>
-                            <constraint firstItem="XIw-Sm-Ymd" firstAttribute="top" secondItem="anW-ig-yOt" secondAttribute="bottom" constant="40" id="Fue-6e-ig8"/>
+                            <constraint firstItem="XIw-Sm-Ymd" firstAttribute="top" secondItem="anW-ig-yOt" secondAttribute="bottom" constant="10" id="Fue-6e-ig8"/>
                             <constraint firstItem="lEh-Fe-l8V" firstAttribute="top" secondItem="4Vt-Oo-8X4" secondAttribute="bottom" constant="-8" id="GTH-2M-9Ci"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WCu-WD-cIw" secondAttribute="trailing" constant="216" id="GlU-RV-XLh"/>
                             <constraint firstItem="Vdw-wk-7ca" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Gtq-6c-4iG"/>
