@@ -14,7 +14,8 @@ public class PentominoesModel {
     private let tileLetters = ["F", "I", "L", "N", "P", "T", "U", "V", "W", "X", "Y", "Z"]
     private let numberOfButtons = 5
     private var boardImages = [UIImage]()
-    private var tileImages = [UIImage]()
+//    private var tileImages = [UIImage]()
+    private var tileImages = [String : UIImage]()
     private var solutions : Array<Dictionary<String, Dictionary<String, Int>>>
     
     public init() {
@@ -42,7 +43,8 @@ public class PentominoesModel {
             let fileName = "tile\(i).png"
             let image = UIImage(named: fileName)
             if let unwrappedImage = image {
-                tileImages.append(unwrappedImage)
+//                tileImages.append(unwrappedImage)
+                tileImages.updateValue(unwrappedImage, forKey: i)
             }
         }
     }
@@ -51,7 +53,11 @@ public class PentominoesModel {
         return boardImages[index]
     }
     
-    public func getTileImages() -> [UIImage] {
+    public func getTileImages() -> [String : UIImage] {
         return tileImages
+    }
+    
+    public func getSolutionForBoard(#number : Int) -> [String : Dictionary<String, Int>] {
+        return solutions[number]
     }
 }

@@ -39,6 +39,7 @@
 		12257E481BA5F6DD00A6A2B9 /* tileY@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12257E2F1BA5F6DD00A6A2B9 /* tileY@2x.png */; };
 		12257E491BA5F6DD00A6A2B9 /* tileZ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12257E301BA5F6DD00A6A2B9 /* tileZ@2x.png */; };
 		127318E71BA7866F003C4E35 /* PentominoesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127318E61BA7866F003C4E35 /* PentominoesModel.swift */; };
+		127318E91BA7D9BB003C4E35 /* Pentominoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127318E81BA7D9BB003C4E35 /* Pentominoe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		12257E2F1BA5F6DD00A6A2B9 /* tileY@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileY@2x.png"; sourceTree = "<group>"; };
 		12257E301BA5F6DD00A6A2B9 /* tileZ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileZ@2x.png"; sourceTree = "<group>"; };
 		127318E61BA7866F003C4E35 /* PentominoesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PentominoesModel.swift; sourceTree = "<group>"; };
+		127318E81BA7D9BB003C4E35 /* Pentominoe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pentominoe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				12257E001BA5F6C600A6A2B9 /* LaunchScreen.xib */,
 				12257DF51BA5F6C600A6A2B9 /* Supporting Files */,
 				127318E61BA7866F003C4E35 /* PentominoesModel.swift */,
+				127318E81BA7D9BB003C4E35 /* Pentominoe.swift */,
 			);
 			path = ShapeShifter;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12257DFA1BA5F6C600A6A2B9 /* ViewController.swift in Sources */,
+				127318E91BA7D9BB003C4E35 /* Pentominoe.swift in Sources */,
 				127318E71BA7866F003C4E35 /* PentominoesModel.swift in Sources */,
 				12257DF81BA5F6C600A6A2B9 /* AppDelegate.swift in Sources */,
 			);
