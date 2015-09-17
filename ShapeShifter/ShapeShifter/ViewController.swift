@@ -27,11 +27,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
         var tempX = 15.0
         var tempY = 15.0
         let tileImages = pentominoesModel.getTileImages()
@@ -67,33 +62,12 @@ class ViewController: UIViewController {
             tileHolderView.addSubview(imageView)
             count++
         }
+        
     }
     
-//    override func viewDidLayoutSubviews() {
-//        
-//        var tempX = 15.0
-//        var tempY = 15.0
-//        let tileImages = pentominoesModel.getTileImages()
-//        let numberInRow = tileImages.count / numberOfTileRows
-//        
-//        for (index, tileImage) in enumerate(tileImages) {
-//            let imageView = UIImageView(image: tileImage)
-//            
-//            if index % numberInRow == 0 && index != 0 {
-//                tempY += Double(15.0)
-//                tempY += Double(tileImages[0].size.height)
-//                tempX = 15.0
-//            }
-//            
-//            imageView.frame = CGRect(x: CGFloat(tempX), y: CGFloat(tempY), width: tileImage.size.width, height: tileImage.size.height)
-//            tempX += 15.0
-//            tempX += Double(tileImage.size.width)
-//            
-//            tileImageViews.append(imageView)
-//            tileHolderView.addSubview(imageView)
-//        }
-//        println()
-//    }
+    override func viewDidLayoutSubviews() {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -114,31 +88,105 @@ class ViewController: UIViewController {
         }
         
         let solutionForBoard = pentominoesModel.getSolutionForBoard(number: currentBoardNumber - 1)
+        let solutionProperties = ["x", "y", "rotations", "flips"]
         for(tileLetter, solutionList) in solutionForBoard {
             let temporaryPentominoe = self.pentominoes[tileLetter]
             let x = solutionList["x"]!
             let y = solutionList["y"]!
-            let width = self.tileImageViews[tileLetter]!.frame.width
-            let height = self.tileImageViews[tileLetter]!.frame.height
-            var tempView = self.tileImageViews[tileLetter]!
-            tempView.frame.origin = tempView.convertPoint(tempView.frame.origin, toView: tileHolderView)
-            tempView.frame = CGRect(x: CGFloat(x * 30), y: CGFloat(y * 30), width: width, height: height)
-            self.boardImageView.addSubview(self.tileImageViews[tileLetter]!)
-        }
-        for(tileLetter, solutionList) in solutionForBoard {
-            let temporaryPentominoe = self.pentominoes[tileLetter]
             let rotations = solutionList["rotations"]!
-            let rotationAngleInRadians = Double(-1) * Double(rotations) * (M_PI/2)
-            println(rotationAngleInRadians)
-            self.tileImageViews[tileLetter]!.transform = CGAffineTransformMakeRotation(CGFloat(rotationAngleInRadians))
-        }
-        for(tileLetter, solutionList) in solutionForBoard {
-            let temporaryPentominoe = self.pentominoes[tileLetter]
             let flips = solutionList["flips"]!
-            let rotations = solutionList["rotations"]!
-            self.tileImageViews[tileLetter]!.transform = rotations % 2 == 0 ? CGAffineTransformMakeScale(1.0, -1.0) : CGAffineTransformMakeScale(-1.0, 1.0)
-        }
+            println("Transforming, \(tileLetter) with \(rotations) rotations and \(flips) flips")
+            
+            
+            UIView.animateWithDuration(1.0,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: { () -> Void in
+                    if rotations > 0 {
+                        let rotationAngleInRadians = CGFloat(Double(rotations) * (M_PI_2))
+                        self.tileImageViews[tileLetter]!.transform = CGAffineTransformMakeRotation(rotationAngleInRadians)
+                    }
+                }, completion: {(finished:Bool) -> Void in
+                    println("Finished Rotation")
+                    UIView.animateWithDuration(1.0,
+                        delay: 0.0,
+                        options: UIViewAnimationOptions.CurveEaseInOut,
+                        animations: { () -> Void in
+                            if flips > 0 {
+                                self.tileImageViews[tileLetter]!.transform = CGAffineTransformScale(self.tileImageViews[tileLetter]!.transform, CGFloat(-1.0), CGFloat(1.0))
+                            }
+                        }, completion: { (finished:Bool) -> Void in
+                            
+                            println("Finished flip")
+                            UIView.animateWithDuration(1.0,
+                                delay: 0.0,
+                                options: UIViewAnimationOptions.CurveEaseIn,
+                                animations: { () -> Void in
+                                    let newX = CGFloat(x * 30)
+                                    let newY = CGFloat(y * 30)
+                                    
+                                    self.boardImageView.addSubview(self.tileImageViews[tileLetter]!)
+                                    let width = self.tileImageViews[tileLetter]!.frame.width
+                                    let height = self.tileImageViews[tileLetter]!.frame.height
+                                    //            let width = rotations % 2 == 0 ? self.tileImageViews[tileLetter]!.frame.width : self.tileImageViews[tileLetter]!.frame.height
+                                    //            let height = rotations % 2 == 0 ? self.tileImageViews[tileLetter]!.frame.height : self.tileImageViews[tileLetter]!.frame.width
+                                    
+                                    self.tileImageViews[tileLetter]!.frame = CGRect(x: newX, y: newY, width: width, height: height)
 
+                                }, completion: { (finished:Bool) -> Void in
+                                    println("Finished moving")
+                                    
+                                })
+                        })
+                })
+            
+            
+            
+            
+            
+        }
+        
+//        for(tileLetter, solutionList) in solutionForBoard {
+//            let temporaryPentominoe = self.pentominoes[tileLetter]
+//            let x = solutionList["x"]!
+//            let y = solutionList["y"]!
+//            let width = self.tileImageViews[tileLetter]!.frame.width
+//            let height = self.tileImageViews[tileLetter]!.frame.height
+//            var tempView = self.tileImageViews[tileLetter]!
+//            
+//            /*tempView.frame.origin = */
+//            var point = CGPoint(x: x * 30, y: y * 30)
+//            self.boardImageView.addSubview(self.tileImageViews[tileLetter]!)
+//            tempView.frame = CGRect(x: point.x, y: point.y, width: width, height: height)
+//        }
+//        
+//        for(tileLetter, solutionList) in solutionForBoard {
+//            let temporaryPentominoe = self.pentominoes[tileLetter]
+//            let rotations = solutionList["rotations"]!
+//            if rotations > 0 {
+//                let rotationAngleInRadians = Double(rotations) * (M_PI/2)
+//                println(CGFloat(rotationAngleInRadians))
+//                self.tileImageViews[tileLetter]!.transform = CGAffineTransformMakeRotation(CGFloat(rotationAngleInRadians))
+////                if rotations % 2 != 0 {
+////                    let newHeight = self.tileImageViews[tileLetter]!.frame.width
+////                    let newWidth = self.tileImageViews[tileLetter]!.frame.height
+////                    let x = self.tileImageViews[tileLetter]!.frame.origin.x
+////                    let y = self.tileImageViews[tileLetter]!.frame.origin.y
+////                    self.tileImageViews[tileLetter]!.frame = CGRect(x: x, y: y, width: newWidth, height: newHeight)
+////                }
+//            }
+//            
+//        }
+//        
+//        for(tileLetter, solutionList) in solutionForBoard {
+//            let temporaryPentominoe = self.pentominoes[tileLetter]
+//            let flips = solutionList["flips"]!
+//            let rotations = solutionList["rotations"]!
+//            if flips > 0 {
+//                self.tileImageViews[tileLetter]!.transform = rotations % 2 == 0 ? CGAffineTransformMakeScale(-1.0, 1.0) : CGAffineTransformMakeScale(1.0, -1.0)
+//            }
+//            
+//        }
 //        UIView.animateWithDuration(1.0,
 //            delay: 0.0,
 //            options: UIViewAnimationOptions.CurveEaseInOut,
