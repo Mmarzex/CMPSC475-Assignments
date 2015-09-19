@@ -210,7 +210,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.81651521830716289" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.75901878145616064" green="1" blue="0.9746985095211137" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h0F-yc-PC6" firstAttribute="top" secondItem="5K9-3L-QRq" secondAttribute="bottom" constant="47" id="0Ar-Xc-rh0"/>
                             <constraint firstAttribute="centerX" secondItem="5K9-3L-QRq" secondAttribute="centerX" id="0oI-rO-Kew"/>
@@ -218,9 +218,9 @@
                             <constraint firstItem="5IN-Zy-TjJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="2zb-PR-Rvh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h0F-yc-PC6" secondAttribute="bottom" constant="45" id="3Sy-Yl-pIX"/>
                             <constraint firstItem="h0F-yc-PC6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3lv-CQ-oUg"/>
+                            <constraint firstItem="5K9-3L-QRq" firstAttribute="leading" secondItem="lul-8m-BDp" secondAttribute="trailing" constant="114" id="6QS-3i-Zg2"/>
+                            <constraint firstItem="OkE-bg-w0I" firstAttribute="leading" secondItem="5K9-3L-QRq" secondAttribute="trailing" constant="98" id="6WY-4O-5Yf"/>
                             <constraint firstItem="mTb-1I-eVN" firstAttribute="leading" secondItem="5K9-3L-QRq" secondAttribute="trailing" constant="69" id="9pw-v3-eCg"/>
-                            <constraint firstItem="lul-8m-BDp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="22" id="F6e-QL-1ZY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OkE-bg-w0I" secondAttribute="trailing" constant="36" id="G1C-y9-cr5"/>
                             <constraint firstItem="5K9-3L-QRq" firstAttribute="leading" secondItem="NHc-6V-YXc" secondAttribute="trailing" constant="69" id="Kwh-VV-lfv"/>
                             <constraint firstItem="Jvw-Hm-FJH" firstAttribute="top" secondItem="NHc-6V-YXc" secondAttribute="bottom" constant="39" id="MeC-6a-gUt"/>
                             <constraint firstItem="fjc-Tt-4Dl" firstAttribute="leading" secondItem="5K9-3L-QRq" secondAttribute="trailing" constant="69" id="PQ8-9p-VIN"/>
@@ -249,11 +249,11 @@
                                 <exclude reference="OkE-bg-w0I"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="G1C-y9-cr5"/>
+                                <exclude reference="6WY-4O-5Yf"/>
                                 <exclude reference="haE-T9-HTO"/>
-                                <exclude reference="F6e-QL-1ZY"/>
                                 <exclude reference="rfN-pB-XRY"/>
                                 <exclude reference="0oI-rO-Kew"/>
+                                <exclude reference="6QS-3i-Zg2"/>
                                 <exclude reference="Kwh-VV-lfv"/>
                                 <exclude reference="ZM3-6k-SQJ"/>
                                 <exclude reference="hbC-Tn-8DE"/>
@@ -287,11 +287,11 @@
                                 <include reference="OkE-bg-w0I"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="G1C-y9-cr5"/>
+                                <include reference="6WY-4O-5Yf"/>
                                 <include reference="haE-T9-HTO"/>
-                                <include reference="F6e-QL-1ZY"/>
                                 <include reference="rfN-pB-XRY"/>
                                 <include reference="0oI-rO-Kew"/>
+                                <include reference="6QS-3i-Zg2"/>
                                 <include reference="Kwh-VV-lfv"/>
                                 <include reference="ZM3-6k-SQJ"/>
                                 <include reference="hbC-Tn-8DE"/>

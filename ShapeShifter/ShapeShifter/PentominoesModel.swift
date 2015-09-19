@@ -16,6 +16,7 @@ public class PentominoesModel {
     private var boardImages = [UIImage]()
     private var tileImages = [String : UIImage]()
     private var solutions : Array<Dictionary<String, Dictionary<String, Int>>>
+    private var pentominoes = [String : Pentominoe]()
     
     public init() {
         
@@ -25,8 +26,6 @@ public class PentominoesModel {
         } else {
             solutions = [Dictionary<String, Dictionary<String, Int>>]()
         }
-        
-        var test = solutions[0]["F"]!["x"]
         
         for i in 0...numberOfButtons {
             
@@ -43,6 +42,8 @@ public class PentominoesModel {
             let image = UIImage(named: fileName)
             if let unwrappedImage = image {
                 tileImages.updateValue(unwrappedImage, forKey: i)
+                
+                pentominoes.updateValue(Pentominoe(), forKey: i)
             }
         }
     }
@@ -57,5 +58,20 @@ public class PentominoesModel {
     
     public func getSolutionForBoard(#number : Int) -> [String : Dictionary<String, Int>] {
         return solutions[number]
+    }
+    
+    public func setRotationsForPentominoe(tileLetter letter : String, numberOfRotations rotations : Int) {
+        pentominoes[letter]!.numberOfRotations = rotations
+    }
+    
+    public func setFlipsForPentominoe(tileLetter letter : String, numberOfFlips flips : Int) {
+        pentominoes[letter]!.numberOfFlips = flips
+    }
+    
+    public func resetPentominoesData() {
+        for letter in tileLetters {
+            pentominoes[letter]!.numberOfFlips = 0
+            pentominoes[letter]!.numberOfRotations = 0
+        }
     }
 }

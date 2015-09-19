@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     
     var tileImageViews = [String : UIImageView]()
     
-    var pentominoes = [String : Pentominoe]()
-    
     let pentominoesModel = PentominoesModel()
     
     let numberOfTileRowsPortrait = 3
@@ -32,9 +30,9 @@ class ViewController: UIViewController {
     
     let paddingHeightInLandscape = 15.0
     
-    let paddingToEdgeInPortrait = 50.0
-    
     let paddingToEdgeInLandscape = 20.0
+    
+    let blockSize = 30
     
     var currentBoardNumber = 0
     
@@ -50,8 +48,6 @@ class ViewController: UIViewController {
             
             tileImageViews.updateValue(imageView, forKey: tileLetter)
             
-            var pentominoe = Pentominoe(tileLetter: tileLetter)
-            pentominoes.updateValue(pentominoe, forKey: tileLetter)
             tileHolderView.addSubview(imageView)
         }
         
@@ -59,7 +55,6 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         layoutPentominoes()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +65,7 @@ class ViewController: UIViewController {
     func layoutPentominoes() {
         let deviceIsLandscape = UIDevice.currentDevice().orientation.isLandscape
         
-        let numberInRow = deviceIsLandscape ? pentominoes.count / numberOfTileRowsLandscape : pentominoes.count / numberOfTileRowsPortrait
+        let numberInRow = deviceIsLandscape ? tileImageViews.count / numberOfTileRowsLandscape : tileImageViews.count / numberOfTileRowsPortrait
         let maxX = deviceIsLandscape ? paddingWidthInLandscape : paddingWidthInPortrait
         let maxY = deviceIsLandscape ? paddingHeightInLandscape : paddingHeightInPortrait
         
@@ -84,7 +79,6 @@ class ViewController: UIViewController {
         for(tileLetter, imageView) in tileImageViews {
             
             if imageView.isDescendantOfView(tileHolderView) {
-                println(tileLetter)
                 if count % numberInRow == 0 {
                     tempY += Double(maxY)
                     tempY += Double(maxHeightInRow)
@@ -93,11 +87,8 @@ class ViewController: UIViewController {
                 }
                 
                 if imageView.image!.size.height > maxHeightInRow {
-                    maxHeightInRow = tileImageViews[tileLetter]!.image!.size.height
+                    maxHeightInRow = imageView.image!.size.height
                 }
-                
-                var temp = 150 - Double(imageView.image!.size.height)
-                var newY = tempY + temp
                 
                 let initialFrame = CGRect(x: CGFloat(tempX), y: CGFloat(tempY), width: imageView.image!.size.width, height: imageView.image!.size.height)
                 
@@ -112,13 +103,18 @@ class ViewController: UIViewController {
     }
     
     func resetPentominoesOnBoard() {
-        for (tileLetter, imageView) in tileImageViews {
-            tileHolderView.addSubview(imageView)
-            imageView.transform = CGAffineTransformIdentity
-            imageView.frame = CGRectZero
-        }
         
-        layoutPentominoes()
+        pentominoesModel.resetPentominoesData()
+        
+        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {() -> Void in
+            for (tileLetter, imageView) in self.tileImageViews {
+                self.tileHolderView.addSubview(imageView)
+                imageView.transform = CGAffineTransformIdentity
+            }
+            
+            self.layoutPentominoes()
+        }, completion: nil)
+        
     }
 
     @IBAction func changeBoardImageButton(sender: AnyObject) {
@@ -130,63 +126,70 @@ class ViewController: UIViewController {
     @IBAction func solvePentominoesAction(sender: AnyObject) {
         
         if currentBoardNumber == 0 {
-            // implement alert later
-            println("No solution for 0")
+            var alert = UIAlertController(title: title, message: "Board One has no solution!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
             return
         }
         
         let solutionForBoard = pentominoesModel.getSolutionForBoard(number: currentBoardNumber - 1)
-        let solutionProperties = ["x", "y", "rotations", "flips"]
+        resetPentominoesOnBoard()
+        
         for(tileLetter, solutionList) in solutionForBoard {
-            let temporaryPentominoe = self.pentominoes[tileLetter]
             let x = solutionList["x"]!
             let y = solutionList["y"]!
             let rotations = solutionList["rotations"]!
             let flips = solutionList["flips"]!
-            println("Transforming, \(tileLetter) with \(rotations) rotations and \(flips) flips")
             
+            let tileImageView = tileImageViews[tileLetter]!
+            
+            pentominoesModel.setRotationsForPentominoe(tileLetter: tileLetter, numberOfRotations: rotations)
+            pentominoesModel.setFlipsForPentominoe(tileLetter: tileLetter, numberOfFlips: flips)
+            
+            let rotationAnimationBlock = { () -> Void in
+                if rotations > 0 {
+                    let rotationAngleInRadians = CGFloat(Double(rotations) * (M_PI_2))
+                    tileImageView.transform = CGAffineTransformMakeRotation(rotationAngleInRadians)
+                }
+            }
+            
+            let flipAnimationBlock = { () -> Void in
+                if flips > 0 {
+                    tileImageView.transform = CGAffineTransformScale(tileImageView.transform, CGFloat(-1.0), CGFloat(1.0))
+                }
+            }
+            
+            let movePieceAnimationBlock = { () -> Void in
+                let newX = CGFloat(x * self.blockSize)
+                let newY = CGFloat(y * self.blockSize)
+                
+                self.boardImageView.addSubview(self.tileImageViews[tileLetter]!)
+                let width = tileImageView.frame.width
+                let height = tileImageView.frame.height
+                
+                tileImageView.frame = CGRect(x: newX, y: newY, width: width, height: height)
+                
+            }
+            
+            let flipCompleteBlock =  { (finished:Bool) -> Void in
+                
+                UIView.animateWithDuration(1.0,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.CurveEaseIn,
+                    animations: movePieceAnimationBlock, completion: nil)
+            }
+            
+            let rotationCompleteBlock = {(finished:Bool) -> Void in
+                UIView.animateWithDuration(1.0,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions.CurveEaseInOut,
+                    animations: flipAnimationBlock, completion: flipCompleteBlock)
+            }
             
             UIView.animateWithDuration(1.0,
                 delay: 0.0,
                 options: UIViewAnimationOptions.CurveEaseInOut,
-                animations: { () -> Void in
-                    if rotations > 0 {
-                        let rotationAngleInRadians = CGFloat(Double(rotations) * (M_PI_2))
-                        self.tileImageViews[tileLetter]!.transform = CGAffineTransformMakeRotation(rotationAngleInRadians)
-                    }
-                }, completion: {(finished:Bool) -> Void in
-                    println("Finished Rotation")
-                    UIView.animateWithDuration(1.0,
-                        delay: 0.0,
-                        options: UIViewAnimationOptions.CurveEaseInOut,
-                        animations: { () -> Void in
-                            if flips > 0 {
-                                self.tileImageViews[tileLetter]!.transform = CGAffineTransformScale(self.tileImageViews[tileLetter]!.transform, CGFloat(-1.0), CGFloat(1.0))
-                            }
-                        }, completion: { (finished:Bool) -> Void in
-                            
-                            println("Finished flip")
-                            UIView.animateWithDuration(1.0,
-                                delay: 0.0,
-                                options: UIViewAnimationOptions.CurveEaseIn,
-                                animations: { () -> Void in
-                                    let newX = CGFloat(x * 30)
-                                    let newY = CGFloat(y * 30)
-                                    
-                                    self.boardImageView.addSubview(self.tileImageViews[tileLetter]!)
-                                    let width = self.tileImageViews[tileLetter]!.frame.width
-                                    let height = self.tileImageViews[tileLetter]!.frame.height
-                                    //let width = rotations % 2 == 0 ? self.tileImageViews[tileLetter]!.frame.width : self.tileImageViews[tileLetter]!.frame.height
-                                    //let height = rotations % 2 == 0 ? self.tileImageViews[tileLetter]!.frame.height : self.tileImageViews[tileLetter]!.frame.width
-                                    
-                                    self.tileImageViews[tileLetter]!.frame = CGRect(x: newX, y: newY, width: width, height: height)
-
-                                }, completion: { (finished:Bool) -> Void in
-                                    println("Finished moving")
-                                    
-                                })
-                        })
-                })
+                animations: rotationAnimationBlock, completion: rotationCompleteBlock)
         }
     }
     

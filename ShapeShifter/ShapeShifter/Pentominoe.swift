@@ -9,34 +9,7 @@
 import Foundation
 import UIKit
 
-public class Pentominoe {
-    
-    private let tileLetter : String
-    private var numberOfFlips = 0
-    private var numberofRotations = 0
-
-    public init(tileLetter letter: String) {
-        tileLetter = letter
-    }
-    
-    public func getTileLetter() -> String {
-        return tileLetter
-    }
-    
-    public func getNumberOfFlips() -> Int {
-        return numberOfFlips
-    }
-    
-    public func getNumberOfRotations() -> Int {
-        return numberofRotations
-    }
-    
-    public func incrementNumberOfRotations() {
-        numberofRotations++
-    }
-    
-    public func incrementNumberOfFlips() {
-        numberOfFlips++
-    }
-    
+struct Pentominoe {
+    var numberOfFlips = 0
+    var numberOfRotations = 0
 }
