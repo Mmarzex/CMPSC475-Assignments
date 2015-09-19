@@ -12,22 +12,15 @@ import UIKit
 public class Pentominoe {
     
     private let tileLetter : String
-    private let initialPosition : CGRect
     private var numberOfFlips = 0
     private var numberofRotations = 0
-    private var currentPosition : CGRect
-    public init(tileLetter letter: String, initialPosition rect : CGRect) {
+
+    public init(tileLetter letter: String) {
         tileLetter = letter
-        initialPosition = rect
-        currentPosition = initialPosition
     }
     
     public func getTileLetter() -> String {
         return tileLetter
-    }
-    
-    public func getInitialPosition() -> CGRect {
-        return initialPosition
     }
     
     public func getNumberOfFlips() -> Int {
