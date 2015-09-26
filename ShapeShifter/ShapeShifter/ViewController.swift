@@ -85,7 +85,6 @@ class ViewController: UIViewController {
         
         if segue.identifier == "hintSegue" {
             var hintModalController = segue.destinationViewController as! HintModalViewController
-            hintModalController.test = "Big booty"
         }
     }
     
@@ -101,8 +100,6 @@ class ViewController: UIViewController {
             }
             
             UIView.animateWithDuration(1.0,
-                delay: 0.0,
-                options: UIViewAnimationOptions.CurveEaseInOut,
                 animations: rotationAnimationBlock, completion: nil)
         }
         
@@ -120,8 +117,6 @@ class ViewController: UIViewController {
             }
             
             UIView.animateWithDuration(1.0,
-                delay: 0.0,
-                options: UIViewAnimationOptions.CurveEaseInOut,
                 animations: flipAnimationBlock, completion: nil)
 
         }
@@ -130,27 +125,45 @@ class ViewController: UIViewController {
 
     func handlePanGesture(recognizer: UIPanGestureRecognizer) {
         if let tileView = recognizer.view {
-            if recognizer.state == .Began {
-                tileView.frame = tileView.convertRect(tileView.frame, toView: self.view)
-                self.view.addSubview(tileView)
-            }
+            
+            let offsetFromView = recognizer.locationInView(self.view)
             
             if recognizer.state == .Changed {
-                let point = recognizer.locationInView(self.boardImageView)
-                tileView.center = point
-            }
-            
-            if recognizer.state == .Ended {
-                if CGRectContainsPoint(boardImageView.frame, tileView.center) {
-                    tileView.frame = tileView.convertRect(tileView.frame, toView: self.boardImageView)
+                if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
                     boardImageView.addSubview(tileView)
-                } else {
+                    
+                } else if CGRectContainsPoint(tileHolderView.frame, offsetFromView) {
                     tileHolderView.addSubview(tileView)
                 }
-                layoutPentominoes()
+                
+                let newPoint = recognizer.locationInView(tileView.superview)
+                tileView.center = newPoint
             }
         }
     }
+//    func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+//        if let tileView = recognizer.view {
+//            if recognizer.state == .Began {
+//                tileView.frame = tileView.convertRect(tileView.frame, toView: self.view)
+//                self.view.addSubview(tileView)
+//            }
+//            
+//            if recognizer.state == .Changed {
+//                let point = recognizer.locationInView(self.boardImageView)
+//                tileView.center = point
+//            }
+//            
+//            if recognizer.state == .Ended {
+//                if CGRectContainsPoint(boardImageView.frame, tileView.center) {
+//                    tileView.frame = tileView.convertRect(tileView.frame, toView: self.boardImageView)
+//                    boardImageView.addSubview(tileView)
+//                } else {
+//                    tileHolderView.addSubview(tileView)
+//                }
+//                layoutPentominoes()
+//            }
+//        }
+//    }
     
     func findTileImageViewKeyFor(#tileImageView : UIImageView) -> String {
         for (tileLetter, imageView) in tileImageViews {

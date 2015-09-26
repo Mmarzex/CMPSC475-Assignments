@@ -11,10 +11,9 @@ import UIKit
 
 class HintModalViewController : UIViewController {
     
-    var test : String!
+    var pentominoeModel : PentominoesModel!
     
     override func viewDidLoad() {
-        println(test)
     }
     
     @IBAction func dismissHintModalAction(sender: AnyObject) {
