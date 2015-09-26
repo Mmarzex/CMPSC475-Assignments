@@ -380,7 +380,7 @@
                                     <action selector="dismissHintModalAction:" destination="0bT-5R-RVL" eventType="touchUpInside" id="dgg-QF-tZs"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Board0.png" translatesAutoresizingMaskIntoConstraints="NO" id="txt-fQ-iOp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Board0.png" translatesAutoresizingMaskIntoConstraints="NO" id="txt-fQ-iOp">
                                 <rect key="frame" x="90" y="44" width="420" height="420"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="420" id="9u2-bG-4iy"/>
@@ -399,12 +399,36 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Board0.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Zd-yS-wkQ">
+                                <rect key="frame" x="90" y="39" width="420" height="420"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="420" id="BYX-2v-E8v"/>
+                                    <constraint firstAttribute="width" constant="420" id="QPO-pj-OnC"/>
+                                    <constraint firstAttribute="width" constant="420" id="nfy-UH-kES"/>
+                                    <constraint firstAttribute="height" constant="420" id="njM-dH-kfo"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="QPO-pj-OnC"/>
+                                        <exclude reference="njM-dH-kfo"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="QPO-pj-OnC"/>
+                                        <include reference="njM-dH-kfo"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="krd-zq-8Kn" firstAttribute="top" secondItem="txt-fQ-iOp" secondAttribute="bottom" constant="226" id="4xI-ys-5UK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Zd-yS-wkQ" secondAttribute="trailing" constant="74" id="Ej0-Ov-6Az"/>
+                            <constraint firstItem="3Zd-yS-wkQ" firstAttribute="leading" secondItem="A5S-aG-vy4" secondAttribute="leadingMargin" constant="74" id="Hhf-NS-Ukm"/>
                             <constraint firstItem="txt-fQ-iOp" firstAttribute="centerX" secondItem="krd-zq-8Kn" secondAttribute="centerX" id="Zc9-6f-LXy"/>
                             <constraint firstItem="txt-fQ-iOp" firstAttribute="top" secondItem="PRw-Do-w5g" secondAttribute="bottom" constant="8" id="byF-If-5xd"/>
+                            <constraint firstItem="3Zd-yS-wkQ" firstAttribute="top" secondItem="PRw-Do-w5g" secondAttribute="bottom" constant="39" id="mM5-EH-iY4"/>
                             <constraint firstItem="txt-fQ-iOp" firstAttribute="centerX" secondItem="A5S-aG-vy4" secondAttribute="centerX" id="ujI-C9-LCG"/>
                         </constraints>
                         <variation key="default">
@@ -413,10 +437,10 @@
                                 <exclude reference="txt-fQ-iOp"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="4xI-ys-5UK"/>
                                 <exclude reference="Zc9-6f-LXy"/>
                                 <exclude reference="byF-If-5xd"/>
                                 <exclude reference="ujI-C9-LCG"/>
-                                <exclude reference="4xI-ys-5UK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -425,10 +449,10 @@
                                 <include reference="txt-fQ-iOp"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="4xI-ys-5UK"/>
                                 <include reference="Zc9-6f-LXy"/>
                                 <include reference="byF-If-5xd"/>
                                 <include reference="ujI-C9-LCG"/>
-                                <include reference="4xI-ys-5UK"/>
                             </mask>
                         </variation>
                     </view>
