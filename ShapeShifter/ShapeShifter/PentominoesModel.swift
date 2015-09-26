@@ -64,6 +64,10 @@ public class PentominoesModel {
         pentominoes[letter]!.numberOfRotations = rotations
     }
     
+    public func incrementRotationsForPentominoeWith(tileLetter letter : String) {
+        pentominoes[letter]!.numberOfRotations++
+    }
+    
     public func setFlipsForPentominoe(tileLetter letter : String, numberOfFlips flips : Int) {
         pentominoes[letter]!.numberOfFlips = flips
     }

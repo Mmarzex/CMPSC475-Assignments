@@ -38,6 +38,7 @@
 		12257E471BA5F6DD00A6A2B9 /* tileX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12257E2E1BA5F6DD00A6A2B9 /* tileX@2x.png */; };
 		12257E481BA5F6DD00A6A2B9 /* tileY@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12257E2F1BA5F6DD00A6A2B9 /* tileY@2x.png */; };
 		12257E491BA5F6DD00A6A2B9 /* tileZ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12257E301BA5F6DD00A6A2B9 /* tileZ@2x.png */; };
+		126401D81BB61FEF00F7DBC4 /* HintModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126401D71BB61FEF00F7DBC4 /* HintModalViewController.swift */; };
 		127318E71BA7866F003C4E35 /* PentominoesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127318E61BA7866F003C4E35 /* PentominoesModel.swift */; };
 		127318E91BA7D9BB003C4E35 /* Pentominoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127318E81BA7D9BB003C4E35 /* Pentominoe.swift */; };
 		12A1D7981BAE26AC001D1370 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 12A1D78D1BAE26AC001D1370 /* Icon-40.png */; };
@@ -99,6 +100,7 @@
 		12257E2E1BA5F6DD00A6A2B9 /* tileX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileX@2x.png"; sourceTree = "<group>"; };
 		12257E2F1BA5F6DD00A6A2B9 /* tileY@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileY@2x.png"; sourceTree = "<group>"; };
 		12257E301BA5F6DD00A6A2B9 /* tileZ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileZ@2x.png"; sourceTree = "<group>"; };
+		126401D71BB61FEF00F7DBC4 /* HintModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HintModalViewController.swift; sourceTree = "<group>"; };
 		127318E61BA7866F003C4E35 /* PentominoesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PentominoesModel.swift; sourceTree = "<group>"; };
 		127318E81BA7D9BB003C4E35 /* Pentominoe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pentominoe.swift; sourceTree = "<group>"; };
 		12A1D78D1BAE26AC001D1370 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-40.png"; path = "Images.xcassets/AppIcon.appiconset/Icon-40.png"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				12257E171BA5F6DD00A6A2B9 /* Pentominoes Assets */,
 				12257DF91BA5F6C600A6A2B9 /* ViewController.swift */,
 				12257DFB1BA5F6C600A6A2B9 /* Main.storyboard */,
+				126401D71BB61FEF00F7DBC4 /* HintModalViewController.swift */,
 				12257DFE1BA5F6C600A6A2B9 /* Images.xcassets */,
 				12257E001BA5F6C600A6A2B9 /* LaunchScreen.xib */,
 				12257DF51BA5F6C600A6A2B9 /* Supporting Files */,
@@ -373,6 +376,7 @@
 				12257DFA1BA5F6C600A6A2B9 /* ViewController.swift in Sources */,
 				127318E91BA7D9BB003C4E35 /* Pentominoe.swift in Sources */,
 				127318E71BA7866F003C4E35 /* PentominoesModel.swift in Sources */,
+				126401D81BB61FEF00F7DBC4 /* HintModalViewController.swift in Sources */,
 				12257DF81BA5F6C600A6A2B9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -36,6 +36,10 @@ class ViewController: UIViewController {
     
     var currentBoardNumber = 0
     
+    class PentominoeGestureRecognizer : UIGestureRecognizer {
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,11 +49,24 @@ class ViewController: UIViewController {
             let imageView = UIImageView(image: tileImage)
             
             imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            imageView.userInteractionEnabled = true
+            
+            // subclass UIGestureRecognizer
+            var singleTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+            var doubleTapGesture = UITapGestureRecognizer(target: self, action: Selector("handleDoubleTap:"))
+            var panGesture = UIPanGestureRecognizer(target: self, action: Selector("handlePanGesture:"))
+            doubleTapGesture.numberOfTapsRequired = 2
+            singleTapGesture.requireGestureRecognizerToFail(doubleTapGesture)
             
             tileImageViews.updateValue(imageView, forKey: tileLetter)
             
             tileHolderView.addSubview(imageView)
+            imageView.addGestureRecognizer(singleTapGesture)
+            imageView.addGestureRecognizer(doubleTapGesture)
+            imageView.addGestureRecognizer(panGesture)
         }
+        boardImageView.userInteractionEnabled = true
+        println("Board:  \(boardImageView.userInteractionEnabled)")
         
     }
     
@@ -60,6 +77,89 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        println("Preparing For Seque")
+        
+        if segue.identifier == "hintSegue" {
+            var hintModalController = segue.destinationViewController as! HintModalViewController
+            hintModalController.test = "Big booty"
+        }
+    }
+    
+    func handleSingleTap(sender: AnyObject) {
+        let tempView = sender.view as! UIImageView
+        if tempView.isDescendantOfView(boardImageView) {
+            var tileLetterForSender : String = findTileImageViewKeyFor(tileImageView: tempView)
+            
+            
+            let rotationAnimationBlock = { () -> Void in
+                let rotationAngleInRadians = CGFloat(M_PI_2)
+                tempView.transform = CGAffineTransformRotate(tempView.transform, rotationAngleInRadians)
+            }
+            
+            UIView.animateWithDuration(1.0,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: rotationAnimationBlock, completion: nil)
+        }
+        
+        
+        println("SINGLE TAP")
+    }
+    
+    func handleDoubleTap(sender: AnyObject) {
+        let tempView = sender.view as! UIImageView
+        if tempView.isDescendantOfView(boardImageView) {
+            var tileLetterForSender : String = findTileImageViewKeyFor(tileImageView: tempView)
+            
+            let flipAnimationBlock = { () -> Void in
+                tempView.transform = CGAffineTransformScale(tempView.transform, CGFloat(-1.0), CGFloat(1.0))
+            }
+            
+            UIView.animateWithDuration(1.0,
+                delay: 0.0,
+                options: UIViewAnimationOptions.CurveEaseInOut,
+                animations: flipAnimationBlock, completion: nil)
+
+        }
+        println("DOUBLE TAP")
+    }
+
+    func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+        if let tileView = recognizer.view {
+            if recognizer.state == .Began {
+                tileView.frame = tileView.convertRect(tileView.frame, toView: self.view)
+                self.view.addSubview(tileView)
+            }
+            
+            if recognizer.state == .Changed {
+                let point = recognizer.locationInView(self.boardImageView)
+                tileView.center = point
+            }
+            
+            if recognizer.state == .Ended {
+                if CGRectContainsPoint(boardImageView.frame, tileView.center) {
+                    tileView.frame = tileView.convertRect(tileView.frame, toView: self.boardImageView)
+                    boardImageView.addSubview(tileView)
+                } else {
+                    tileHolderView.addSubview(tileView)
+                }
+                layoutPentominoes()
+            }
+        }
+    }
+    
+    func findTileImageViewKeyFor(#tileImageView : UIImageView) -> String {
+        for (tileLetter, imageView) in tileImageViews {
+            if imageView == tileImageView {
+                println("Found at \(tileLetter)")
+                return tileLetter
+            }
+        }
+        return ""
     }
     
     func layoutPentominoes() {
@@ -121,6 +221,7 @@ class ViewController: UIViewController {
         currentBoardNumber = sender.tag!
         resetPentominoesOnBoard()
         boardImageView.image = pentominoesModel.getBoard(numbered: sender.tag!)
+        println("Board:  \(boardImageView.userInteractionEnabled)")
     }
 
     @IBAction func solvePentominoesAction(sender: AnyObject) {
@@ -136,8 +237,8 @@ class ViewController: UIViewController {
         resetPentominoesOnBoard()
         
         for(tileLetter, solutionList) in solutionForBoard {
-            let x = solutionList["x"]!
-            let y = solutionList["y"]!
+            let x = solutionList["x"]! * blockSize
+            let y = solutionList["y"]! * blockSize
             let rotations = solutionList["rotations"]!
             let flips = solutionList["flips"]!
             
@@ -146,51 +247,31 @@ class ViewController: UIViewController {
             pentominoesModel.setRotationsForPentominoe(tileLetter: tileLetter, numberOfRotations: rotations)
             pentominoesModel.setFlipsForPentominoe(tileLetter: tileLetter, numberOfFlips: flips)
             
-            let rotationAnimationBlock = { () -> Void in
+            let solutionOrigin = CGPoint(x: x, y: y)
+            
+            UIView.animateWithDuration(2.0, animations: {() -> Void in
+                
                 if rotations > 0 {
-                    let rotationAngleInRadians = CGFloat(Double(rotations) * (M_PI_2))
-                    tileImageView.transform = CGAffineTransformMakeRotation(rotationAngleInRadians)
+                    tileImageView.transform = CGAffineTransformRotate(tileImageView.transform, CGFloat(Double(rotations) * M_PI_2))
                 }
-            }
-            
-            let flipAnimationBlock = { () -> Void in
+                
                 if flips > 0 {
-                    tileImageView.transform = CGAffineTransformScale(tileImageView.transform, CGFloat(-1.0), CGFloat(1.0))
+                    tileImageView.transform = CGAffineTransformScale(tileImageView.transform, -1.0, 1.0)
                 }
-            }
-            
-            let movePieceAnimationBlock = { () -> Void in
-                let newX = CGFloat(x * self.blockSize)
-                let newY = CGFloat(y * self.blockSize)
                 
-                self.boardImageView.addSubview(self.tileImageViews[tileLetter]!)
-                let width = tileImageView.frame.width
-                let height = tileImageView.frame.height
+                let convertedTileOrigin = self.boardImageView.convertPoint(solutionOrigin, toView: self.tileHolderView)
                 
-                tileImageView.frame = CGRect(x: newX, y: newY, width: width, height: height)
+                tileImageView.frame = CGRect(origin: convertedTileOrigin, size: tileImageView.frame.size)
                 
-            }
-            
-            let flipCompleteBlock =  { (finished:Bool) -> Void in
-                
-                UIView.animateWithDuration(1.0,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.CurveEaseIn,
-                    animations: movePieceAnimationBlock, completion: nil)
-            }
-            
-            let rotationCompleteBlock = {(finished:Bool) -> Void in
-                UIView.animateWithDuration(1.0,
-                    delay: 0.0,
-                    options: UIViewAnimationOptions.CurveEaseInOut,
-                    animations: flipAnimationBlock, completion: flipCompleteBlock)
-            }
-            
-            UIView.animateWithDuration(1.0,
-                delay: 0.0,
-                options: UIViewAnimationOptions.CurveEaseInOut,
-                animations: rotationAnimationBlock, completion: rotationCompleteBlock)
+                }, completion: {finished in
+                    self.boardImageView.addSubview(tileImageView)
+                    tileImageView.frame = CGRect(origin: solutionOrigin, size: tileImageView.frame.size)
+            })
         }
+    }
+    
+    @IBAction func displayHintModalButton(sender: AnyObject) {
+        performSegueWithIdentifier("hintSegue", sender: self)
     }
     
     @IBAction func resetBoardAction(sender: AnyObject) {
