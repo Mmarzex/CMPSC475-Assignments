@@ -74,6 +74,7 @@ class ViewController: UIViewController {
             imageView.addGestureRecognizer(singleTapGesture)
             imageView.addGestureRecognizer(doubleTapGesture)
             imageView.addGestureRecognizer(panGesture)
+            imageView.letter = tileLetter
         }
         boardImageView.userInteractionEnabled = true
         
@@ -90,19 +91,18 @@ class ViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        println("Preparing For Seque")
-        
         if segue.identifier == "hintSegue" {
             var hintModalController = segue.destinationViewController as! HintModalViewController
             hintModalController.pentominoeModel = pentominoesModel
+            hintModalController.currentBoard = currentBoardNumber
         }
     }
     
     func handleSingleTap(sender: AnyObject) {
         let tempView = sender.view as! UIImageView
         if tempView.isDescendantOfView(boardImageView) {
-            var tileLetterForSender : String = findTileImageViewKeyFor(tileImageView: tempView)
             
+            pentominoesModel.pentominoes[tempView.letter]!.numberOfRotations++
             
             let rotationAnimationBlock = { () -> Void in
                 let rotationAngleInRadians = CGFloat(M_PI_2)
@@ -117,7 +117,8 @@ class ViewController: UIViewController {
     func handleDoubleTap(sender: AnyObject) {
         let tempView = sender.view as! UIImageView
         if tempView.isDescendantOfView(boardImageView) {
-            var tileLetterForSender : String = findTileImageViewKeyFor(tileImageView: tempView)
+            
+            pentominoesModel.pentominoes[tempView.letter]!.numberOfFlips++
             
             let flipAnimationBlock = { () -> Void in
                 tempView.transform = CGAffineTransformScale(tempView.transform, CGFloat(-1.0), CGFloat(1.0))
@@ -134,7 +135,11 @@ class ViewController: UIViewController {
             
             let offsetFromView = recognizer.locationInView(self.view)
             
-            if recognizer.state == .Changed {
+            if recognizer.state == .Began {
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    tileView.transform = CGAffineTransformScale(tileView.transform, 1.1, 1.1)
+                })
+            } else if recognizer.state == .Changed {
                 if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
                     boardImageView.addSubview(tileView)
                     
@@ -151,6 +156,9 @@ class ViewController: UIViewController {
                 let newPoint = recognizer.locationInView(tileView.superview)
                 tileView.center = newPoint
             } else if recognizer.state == .Ended {
+                UIView.animateWithDuration(0.25, animations: {() -> Void in
+                    tileView.transform = CGAffineTransformIdentity
+                })
                 if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
                     
                     let currentPosition = tileView.frame.origin
@@ -165,6 +173,8 @@ class ViewController: UIViewController {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         tileView.frame = CGRect(x: snapX, y: snapY, width: tileView.frame.size.width, height: tileView.frame.size.height)
                     })
+                    
+                    pentominoesModel.pentominoes[tileView.letter]!.isInTileHolder = false
                 }
             }
         }
@@ -223,6 +233,7 @@ class ViewController: UIViewController {
     func resetPentominoesOnBoard() {
         
         pentominoesModel.resetPentominoesData()
+        pentominoesModel.resetHintFlags()
         
         UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {() -> Void in
             for (tileLetter, imageView) in self.tileImageViews {
@@ -239,7 +250,7 @@ class ViewController: UIViewController {
         currentBoardNumber = sender.tag!
         resetPentominoesOnBoard()
         boardImageView.image = pentominoesModel.getBoard(numbered: sender.tag!)
-        println("Board:  \(boardImageView.userInteractionEnabled)")
+        pentominoesModel.resetHintFlags()
     }
 
     @IBAction func solvePentominoesAction(sender: AnyObject) {
@@ -289,7 +300,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func displayHintModalButton(sender: AnyObject) {
-        performSegueWithIdentifier("hintSegue", sender: self)
+        if currentBoardNumber > 0 {
+            performSegueWithIdentifier("hintSegue", sender: self)
+        }
     }
     
     @IBAction func resetBoardAction(sender: AnyObject) {

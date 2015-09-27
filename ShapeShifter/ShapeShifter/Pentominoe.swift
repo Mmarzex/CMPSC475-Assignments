@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
-struct Pentominoe {
+public struct Pentominoe {
     var numberOfFlips = 0
     var numberOfRotations = 0
+    var isInTileHolder = true
+    var isAHint = false
+    var hintPlaced = false
 }

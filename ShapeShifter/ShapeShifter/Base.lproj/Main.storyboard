@@ -396,6 +396,9 @@
                             <constraint firstItem="tcD-19-pdN" firstAttribute="top" secondItem="3Zd-yS-wkQ" secondAttribute="bottom" constant="40" id="vSz-3F-7hW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="boardImageView" destination="3Zd-yS-wkQ" id="yLQ-52-FHR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ka6-gG-tDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

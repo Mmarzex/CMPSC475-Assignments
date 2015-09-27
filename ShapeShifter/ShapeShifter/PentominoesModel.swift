@@ -11,14 +11,14 @@ import UIKit
 
 public class PentominoesModel {
     
-    private let tileLetters = ["F", "I", "L", "N", "P", "T", "U", "V", "W", "X", "Y", "Z"]
+    public let tileLetters = ["F", "I", "L", "N", "P", "T", "U", "V", "W", "X", "Y", "Z"]
     private let numberOfButtons = 5
     private var boardImages = [UIImage]()
     private var tileImages = [String : UIImage]()
     private var solutions : Array<Dictionary<String, Dictionary<String, Int>>>
-    private var pentominoes = [String : Pentominoe]()
+    public var pentominoes = [String : Pentominoe]()
     public var currentHint = 0
-    
+    public var currentBoard = 0
     public init() {
         
         let filePath = NSBundle.mainBundle().pathForResource("Solutions", ofType: "plist")
@@ -77,6 +77,16 @@ public class PentominoesModel {
         for letter in tileLetters {
             pentominoes[letter]!.numberOfFlips = 0
             pentominoes[letter]!.numberOfRotations = 0
+            pentominoes[letter]!.isInTileHolder = true
         }
     }
+    
+    public func resetHintFlags() {
+        currentHint = 0
+        for letter in tileLetters {
+            pentominoes[letter]!.isAHint = false
+            pentominoes[letter]!.hintPlaced = false
+        }
+    }
+    
 }
