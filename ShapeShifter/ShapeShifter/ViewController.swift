@@ -8,6 +8,18 @@
 
 import UIKit
 
+extension UIView {
+    var letter : String {
+        get {
+            return String(UnicodeScalar(tag))
+        }
+        set(newLetter) {
+            let s : NSString = newLetter
+            tag = Int(s.characterAtIndex(0))
+        }
+    }
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet var boardImageView: UIImageView!
@@ -34,11 +46,9 @@ class ViewController: UIViewController {
     
     let blockSize = 30
     
+    let blockSizeCGFloat : CGFloat = 30.0
+    
     var currentBoardNumber = 0
-    
-    class PentominoeGestureRecognizer : UIGestureRecognizer {
-    
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +76,6 @@ class ViewController: UIViewController {
             imageView.addGestureRecognizer(panGesture)
         }
         boardImageView.userInteractionEnabled = true
-        println("Board:  \(boardImageView.userInteractionEnabled)")
         
     }
     
@@ -85,6 +94,7 @@ class ViewController: UIViewController {
         
         if segue.identifier == "hintSegue" {
             var hintModalController = segue.destinationViewController as! HintModalViewController
+            hintModalController.pentominoeModel = pentominoesModel
         }
     }
     
@@ -102,9 +112,6 @@ class ViewController: UIViewController {
             UIView.animateWithDuration(1.0,
                 animations: rotationAnimationBlock, completion: nil)
         }
-        
-        
-        println("SINGLE TAP")
     }
     
     func handleDoubleTap(sender: AnyObject) {
@@ -120,7 +127,6 @@ class ViewController: UIViewController {
                 animations: flipAnimationBlock, completion: nil)
 
         }
-        println("DOUBLE TAP")
     }
 
     func handlePanGesture(recognizer: UIPanGestureRecognizer) {
@@ -132,38 +138,37 @@ class ViewController: UIViewController {
                 if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
                     boardImageView.addSubview(tileView)
                     
+                    let snapX = CGFloat(Int(tileView.frame.origin.x))
+                    let snapY = CGFloat(Int(tileView.frame.origin.y))
+                    let newOrigin = CGPoint(x: snapX, y: snapY)
+                    UIView.animateWithDuration(1.0, animations: { () -> Void in
+                        tileView.frame = CGRect(origin: newOrigin, size: tileView.frame.size)
+                    })
                 } else if CGRectContainsPoint(tileHolderView.frame, offsetFromView) {
                     tileHolderView.addSubview(tileView)
                 }
                 
                 let newPoint = recognizer.locationInView(tileView.superview)
                 tileView.center = newPoint
+            } else if recognizer.state == .Ended {
+                if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
+                    
+                    let currentPosition = tileView.frame.origin
+                    
+                    let originXInBlockSize = CGFloat(Int(currentPosition.x / blockSizeCGFloat))
+                    let originYInBlockSize = CGFloat(Int(currentPosition.y / blockSizeCGFloat))
+                    
+                    let snapX = currentPosition.x - (originXInBlockSize * blockSizeCGFloat) <= (blockSizeCGFloat / 2) ? originXInBlockSize * blockSizeCGFloat : (originXInBlockSize + 1) * blockSizeCGFloat
+                    
+                    let snapY = currentPosition.y - (originYInBlockSize * blockSizeCGFloat) <= (blockSizeCGFloat / 2) ? originYInBlockSize * blockSizeCGFloat : (originYInBlockSize + 1) * blockSizeCGFloat
+                    
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        tileView.frame = CGRect(x: snapX, y: snapY, width: tileView.frame.size.width, height: tileView.frame.size.height)
+                    })
+                }
             }
         }
     }
-//    func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-//        if let tileView = recognizer.view {
-//            if recognizer.state == .Began {
-//                tileView.frame = tileView.convertRect(tileView.frame, toView: self.view)
-//                self.view.addSubview(tileView)
-//            }
-//            
-//            if recognizer.state == .Changed {
-//                let point = recognizer.locationInView(self.boardImageView)
-//                tileView.center = point
-//            }
-//            
-//            if recognizer.state == .Ended {
-//                if CGRectContainsPoint(boardImageView.frame, tileView.center) {
-//                    tileView.frame = tileView.convertRect(tileView.frame, toView: self.boardImageView)
-//                    boardImageView.addSubview(tileView)
-//                } else {
-//                    tileHolderView.addSubview(tileView)
-//                }
-//                layoutPentominoes()
-//            }
-//        }
-//    }
     
     func findTileImageViewKeyFor(#tileImageView : UIImageView) -> String {
         for (tileLetter, imageView) in tileImageViews {
