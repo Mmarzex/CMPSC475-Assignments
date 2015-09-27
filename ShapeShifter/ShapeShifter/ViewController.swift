@@ -121,7 +121,11 @@ class ViewController: UIViewController {
             pentominoesModel.pentominoes[tempView.letter]!.numberOfFlips++
             
             let flipAnimationBlock = { () -> Void in
-                tempView.transform = CGAffineTransformScale(tempView.transform, CGFloat(-1.0), CGFloat(1.0))
+                if self.pentominoesModel.pentominoes[tempView.letter]!.numberOfRotations % 2 == 0 {
+                    tempView.transform = CGAffineTransformScale(tempView.transform, CGFloat(-1.0), CGFloat(1.0))
+                } else {
+                    tempView.transform = CGAffineTransformScale(tempView.transform, CGFloat(1.0), CGFloat(-1.0))
+                }
             }
             
             UIView.animateWithDuration(1.0,
@@ -137,7 +141,7 @@ class ViewController: UIViewController {
             
             if recognizer.state == .Began {
                 UIView.animateWithDuration(0.25, animations: { () -> Void in
-                    tileView.transform = CGAffineTransformScale(tileView.transform, 1.1, 1.1)
+                    tileView.frame.size = CGSize(width: tileView.frame.size.width * 1.1, height: tileView.frame.size.height * 1.1)
                 })
             } else if recognizer.state == .Changed {
                 if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
@@ -157,7 +161,7 @@ class ViewController: UIViewController {
                 tileView.center = newPoint
             } else if recognizer.state == .Ended {
                 UIView.animateWithDuration(0.25, animations: {() -> Void in
-                    tileView.transform = CGAffineTransformIdentity
+                    tileView.frame.size = CGSize(width: tileView.frame.size.width / 1.1, height: tileView.frame.size.height / 1.1)
                 })
                 if CGRectContainsPoint(boardImageView.frame, offsetFromView) {
                     
@@ -178,16 +182,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    func findTileImageViewKeyFor(#tileImageView : UIImageView) -> String {
-        for (tileLetter, imageView) in tileImageViews {
-            if imageView == tileImageView {
-                println("Found at \(tileLetter)")
-                return tileLetter
-            }
-        }
-        return ""
     }
     
     func layoutPentominoes() {
@@ -272,7 +266,7 @@ class ViewController: UIViewController {
             let flips = solutionList["flips"]!
             
             let tileImageView = tileImageViews[tileLetter]!
-            println(" Letter: \(tileLetter) X: \(x) and Y: \(y)")
+
             pentominoesModel.setRotationsForPentominoe(tileLetter: tileLetter, numberOfRotations: rotations)
             pentominoesModel.setFlipsForPentominoe(tileLetter: tileLetter, numberOfFlips: flips)
             
