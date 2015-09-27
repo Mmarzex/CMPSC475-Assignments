@@ -272,7 +272,7 @@ class ViewController: UIViewController {
             let flips = solutionList["flips"]!
             
             let tileImageView = tileImageViews[tileLetter]!
-            
+            println(" Letter: \(tileLetter) X: \(x) and Y: \(y)")
             pentominoesModel.setRotationsForPentominoe(tileLetter: tileLetter, numberOfRotations: rotations)
             pentominoesModel.setFlipsForPentominoe(tileLetter: tileLetter, numberOfFlips: flips)
             

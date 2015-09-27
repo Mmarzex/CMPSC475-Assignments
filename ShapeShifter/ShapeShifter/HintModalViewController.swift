@@ -20,7 +20,6 @@ class HintModalViewController : UIViewController {
     
     override func viewDidLoad() {
         
-        println(pentominoeModel.currentHint)
         let tileLetters = pentominoeModel.tileLetters
         
         boardImageView.image = pentominoeModel.getBoard(numbered: currentBoard)
@@ -32,15 +31,17 @@ class HintModalViewController : UIViewController {
         for i in 0...pentominoeModel.currentHint {
             var hintPlaced = false
             for j in 0...tileLetters.count - 1 {
-                println(j)
                 let letter = tileLetters[j]
                 if ((pentominoeModel.pentominoes[letter]!.isInTileHolder) || pentominoeModel.pentominoes[letter]!.isAHint) && !hintPlaced && !pentominoeModel.pentominoes[letter]!.hintPlaced {
                     pentominoeModel.pentominoes[letter]!.isAHint = true
                     
                     let x = solution[letter]!["x"]! * blockSize
                     let y = solution[letter]!["y"]! * blockSize
+                    
                     let rotations = solution[letter]!["rotations"]!
                     let flips = solution[letter]!["flips"]!
+                    
+                    println(" Letter: \(letter) X: \(x) and Y: \(y)")
                     
                     let image = pentominoeModel.getTileImages()[letter]
                     
