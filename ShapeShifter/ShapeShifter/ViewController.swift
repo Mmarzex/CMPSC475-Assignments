@@ -179,6 +179,7 @@ class ViewController: UIViewController {
                     })
                     
                     pentominoesModel.pentominoes[tileView.letter]!.isInTileHolder = false
+                    layoutPentominoes()
                 }
             }
         }
