@@ -14,6 +14,8 @@ class HintModalViewController : UIViewController {
     var pentominoeModel : PentominoesModel!
     
     override func viewDidLoad() {
+        pentominoeModel.currentHint++
+        println(pentominoeModel.currentHint)
     }
     
     @IBAction func dismissHintModalAction(sender: AnyObject) {

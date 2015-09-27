@@ -17,6 +17,7 @@ public class PentominoesModel {
     private var tileImages = [String : UIImage]()
     private var solutions : Array<Dictionary<String, Dictionary<String, Int>>>
     private var pentominoes = [String : Pentominoe]()
+    public var currentHint = 0
     
     public init() {
         
