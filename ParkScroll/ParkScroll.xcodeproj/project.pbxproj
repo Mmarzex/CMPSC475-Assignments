@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95341BB9B72E00CACE61 /* AppDelegate.swift */; };
+		12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95361BB9B72E00CACE61 /* ViewController.swift */; };
+		12CF953A1BB9B72E00CACE61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95381BB9B72E00CACE61 /* Main.storyboard */; };
+		12CF953C1BB9B72E00CACE61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CF953B1BB9B72E00CACE61 /* Assets.xcassets */; };
+		12CF953F1BB9B72E00CACE61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF953D1BB9B72E00CACE61 /* LaunchScreen.storyboard */; };
+		12CF954A1BB9B72E00CACE61 /* ParkScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95491BB9B72E00CACE61 /* ParkScrollTests.swift */; };
+		12CF95551BB9B72E00CACE61 /* ParkScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95541BB9B72E00CACE61 /* ParkScrollUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12CF95461BB9B72E00CACE61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12CF95291BB9B72E00CACE61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12CF95301BB9B72E00CACE61;
+			remoteInfo = ParkScroll;
+		};
+		12CF95511BB9B72E00CACE61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12CF95291BB9B72E00CACE61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12CF95301BB9B72E00CACE61;
+			remoteInfo = ParkScroll;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12CF95311BB9B72E00CACE61 /* ParkScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12CF95341BB9B72E00CACE61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		12CF95361BB9B72E00CACE61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		12CF95391BB9B72E00CACE61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		12CF953B1BB9B72E00CACE61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12CF953E1BB9B72E00CACE61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		12CF95401BB9B72E00CACE61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12CF95451BB9B72E00CACE61 /* ParkScrollTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkScrollTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12CF95491BB9B72E00CACE61 /* ParkScrollTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkScrollTests.swift; sourceTree = "<group>"; };
+		12CF954B1BB9B72E00CACE61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12CF95501BB9B72E00CACE61 /* ParkScrollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkScrollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12CF95541BB9B72E00CACE61 /* ParkScrollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkScrollUITests.swift; sourceTree = "<group>"; };
+		12CF95561BB9B72E00CACE61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12CF952E1BB9B72E00CACE61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CF95421BB9B72E00CACE61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CF954D1BB9B72E00CACE61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12CF95281BB9B72E00CACE61 = {
+			isa = PBXGroup;
+			children = (
+				12CF95331BB9B72E00CACE61 /* ParkScroll */,
+				12CF95481BB9B72E00CACE61 /* ParkScrollTests */,
+				12CF95531BB9B72E00CACE61 /* ParkScrollUITests */,
+				12CF95321BB9B72E00CACE61 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		12CF95321BB9B72E00CACE61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12CF95311BB9B72E00CACE61 /* ParkScroll.app */,
+				12CF95451BB9B72E00CACE61 /* ParkScrollTests.xctest */,
+				12CF95501BB9B72E00CACE61 /* ParkScrollUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12CF95331BB9B72E00CACE61 /* ParkScroll */ = {
+			isa = PBXGroup;
+			children = (
+				12CF95341BB9B72E00CACE61 /* AppDelegate.swift */,
+				12CF95361BB9B72E00CACE61 /* ViewController.swift */,
+				12CF95381BB9B72E00CACE61 /* Main.storyboard */,
+				12CF953B1BB9B72E00CACE61 /* Assets.xcassets */,
+				12CF953D1BB9B72E00CACE61 /* LaunchScreen.storyboard */,
+				12CF95401BB9B72E00CACE61 /* Info.plist */,
+			);
+			path = ParkScroll;
+			sourceTree = "<group>";
+		};
+		12CF95481BB9B72E00CACE61 /* ParkScrollTests */ = {
+			isa = PBXGroup;
+			children = (
+				12CF95491BB9B72E00CACE61 /* ParkScrollTests.swift */,
+				12CF954B1BB9B72E00CACE61 /* Info.plist */,
+			);
+			path = ParkScrollTests;
+			sourceTree = "<group>";
+		};
+		12CF95531BB9B72E00CACE61 /* ParkScrollUITests */ = {
+			isa = PBXGroup;
+			children = (
+				12CF95541BB9B72E00CACE61 /* ParkScrollUITests.swift */,
+				12CF95561BB9B72E00CACE61 /* Info.plist */,
+			);
+			path = ParkScrollUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12CF95301BB9B72E00CACE61 /* ParkScroll */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12CF95591BB9B72E00CACE61 /* Build configuration list for PBXNativeTarget "ParkScroll" */;
+			buildPhases = (
+				12CF952D1BB9B72E00CACE61 /* Sources */,
+				12CF952E1BB9B72E00CACE61 /* Frameworks */,
+				12CF952F1BB9B72E00CACE61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParkScroll;
+			productName = ParkScroll;
+			productReference = 12CF95311BB9B72E00CACE61 /* ParkScroll.app */;
+			productType = "com.apple.product-type.application";
+		};
+		12CF95441BB9B72E00CACE61 /* ParkScrollTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12CF955C1BB9B72E00CACE61 /* Build configuration list for PBXNativeTarget "ParkScrollTests" */;
+			buildPhases = (
+				12CF95411BB9B72E00CACE61 /* Sources */,
+				12CF95421BB9B72E00CACE61 /* Frameworks */,
+				12CF95431BB9B72E00CACE61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12CF95471BB9B72E00CACE61 /* PBXTargetDependency */,
+			);
+			name = ParkScrollTests;
+			productName = ParkScrollTests;
+			productReference = 12CF95451BB9B72E00CACE61 /* ParkScrollTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		12CF954F1BB9B72E00CACE61 /* ParkScrollUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12CF955F1BB9B72E00CACE61 /* Build configuration list for PBXNativeTarget "ParkScrollUITests" */;
+			buildPhases = (
+				12CF954C1BB9B72E00CACE61 /* Sources */,
+				12CF954D1BB9B72E00CACE61 /* Frameworks */,
+				12CF954E1BB9B72E00CACE61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12CF95521BB9B72E00CACE61 /* PBXTargetDependency */,
+			);
+			name = ParkScrollUITests;
+			productName = ParkScrollUITests;
+			productReference = 12CF95501BB9B72E00CACE61 /* ParkScrollUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12CF95291BB9B72E00CACE61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Max Marze";
+				TargetAttributes = {
+					12CF95301BB9B72E00CACE61 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					12CF95441BB9B72E00CACE61 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 12CF95301BB9B72E00CACE61;
+					};
+					12CF954F1BB9B72E00CACE61 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 12CF95301BB9B72E00CACE61;
+					};
+				};
+			};
+			buildConfigurationList = 12CF952C1BB9B72E00CACE61 /* Build configuration list for PBXProject "ParkScroll" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 12CF95281BB9B72E00CACE61;
+			productRefGroup = 12CF95321BB9B72E00CACE61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12CF95301BB9B72E00CACE61 /* ParkScroll */,
+				12CF95441BB9B72E00CACE61 /* ParkScrollTests */,
+				12CF954F1BB9B72E00CACE61 /* ParkScrollUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12CF952F1BB9B72E00CACE61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12CF953F1BB9B72E00CACE61 /* LaunchScreen.storyboard in Resources */,
+				12CF953C1BB9B72E00CACE61 /* Assets.xcassets in Resources */,
+				12CF953A1BB9B72E00CACE61 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CF95431BB9B72E00CACE61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CF954E1BB9B72E00CACE61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12CF952D1BB9B72E00CACE61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */,
+				12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CF95411BB9B72E00CACE61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12CF954A1BB9B72E00CACE61 /* ParkScrollTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12CF954C1BB9B72E00CACE61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12CF95551BB9B72E00CACE61 /* ParkScrollUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12CF95471BB9B72E00CACE61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12CF95301BB9B72E00CACE61 /* ParkScroll */;
+			targetProxy = 12CF95461BB9B72E00CACE61 /* PBXContainerItemProxy */;
+		};
+		12CF95521BB9B72E00CACE61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12CF95301BB9B72E00CACE61 /* ParkScroll */;
+			targetProxy = 12CF95511BB9B72E00CACE61 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		12CF95381BB9B72E00CACE61 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12CF95391BB9B72E00CACE61 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		12CF953D1BB9B72E00CACE61 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12CF953E1BB9B72E00CACE61 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		12CF95571BB9B72E00CACE61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		12CF95581BB9B72E00CACE61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		12CF955A1BB9B72E00CACE61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ParkScroll/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScroll;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		12CF955B1BB9B72E00CACE61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ParkScroll/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScroll;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		12CF955D1BB9B72E00CACE61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ParkScrollTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScrollTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParkScroll.app/ParkScroll";
+			};
+			name = Debug;
+		};
+		12CF955E1BB9B72E00CACE61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ParkScrollTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScrollTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParkScroll.app/ParkScroll";
+			};
+			name = Release;
+		};
+		12CF95601BB9B72E00CACE61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ParkScrollUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScrollUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ParkScroll;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		12CF95611BB9B72E00CACE61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ParkScrollUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScrollUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ParkScroll;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12CF952C1BB9B72E00CACE61 /* Build configuration list for PBXProject "ParkScroll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12CF95571BB9B72E00CACE61 /* Debug */,
+				12CF95581BB9B72E00CACE61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12CF95591BB9B72E00CACE61 /* Build configuration list for PBXNativeTarget "ParkScroll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12CF955A1BB9B72E00CACE61 /* Debug */,
+				12CF955B1BB9B72E00CACE61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		12CF955C1BB9B72E00CACE61 /* Build configuration list for PBXNativeTarget "ParkScrollTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12CF955D1BB9B72E00CACE61 /* Debug */,
+				12CF955E1BB9B72E00CACE61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		12CF955F1BB9B72E00CACE61 /* Build configuration list for PBXNativeTarget "ParkScrollUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12CF95601BB9B72E00CACE61 /* Debug */,
+				12CF95611BB9B72E00CACE61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12CF95291BB9B72E00CACE61 /* Project object */;
+}
