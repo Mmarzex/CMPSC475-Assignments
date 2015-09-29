@@ -15,11 +15,26 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qlk-to-LWc">
+                                <rect key="frame" x="0.0" y="28" width="600" height="544"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qlk-to-LWc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2sb-mJ-Eq1"/>
+                            <constraint firstItem="Qlk-to-LWc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EDE-J0-mz8"/>
+                            <constraint firstItem="Qlk-to-LWc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fqG-gp-WmE"/>
+                            <constraint firstItem="Qlk-to-LWc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="px7-nN-qxY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageScrollView" destination="Qlk-to-LWc" id="SRW-a2-pPu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="429"/>
         </scene>
     </scenes>
 </document>
