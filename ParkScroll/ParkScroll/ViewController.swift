@@ -16,8 +16,15 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var currentPage = 0
     
+    var currentRow = 0
+    
+    var currentXOffset : CGFloat = 0.0
+    
+    var lastOffset = CGPoint(x: 0, y: 0)
+    
     @IBOutlet var imageScrollView: UIScrollView!
     
+    @IBOutlet var rightArrow: UIImageView!
     struct ColumnData {
         var root : UIImageView
         var children :[UIImageView]
@@ -25,6 +32,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     var columnViews = [ColumnData]()
+    
+    enum ScrollDirection {
+        case None, Horizontal, Vertical, Diagonal
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +74,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         configureScrollView()
+        imageScrollView.bringSubviewToFront(rightArrow)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,6 +90,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let newXPosition = imageScrollView.frame.size.width * CGFloat(currentPage)
         
         tempImageView.frame.origin = CGPoint(x: newXPosition, y: tempImageView.frame.origin.y)
+
         
         let newContentSize = CGSize(width: imageScrollView.frame.width * CGFloat(numberOfColumns), height: imageScrollView.frame.height * CGFloat(columnViews[currentPage].children.count + 1))
         imageScrollView.contentSize = newContentSize
@@ -88,15 +102,63 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             imageView.frame.size = imageScrollView.frame.size
             imageScrollView.addSubview(imageView)
         }
+        imageScrollView.directionalLockEnabled = true
+        currentXOffset = imageScrollView.contentOffset.x
+    }
+    
+    func determineScrollDirection(offset: CGPoint) -> ScrollDirection {
+        if offset.x != lastOffset.x && offset.y != lastOffset.y {
+            return .Diagonal
+        } else if offset.x != lastOffset.x {
+            return .Horizontal
+        } else if offset.y != lastOffset.y {
+            return .Vertical
+        }
         
+        return .None
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // Load the pages that are now on screen
 //        loadVisiblePages()
-        let pageWidth = imageScrollView.frame.size.width
-        let page = Int(floor((imageScrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
+        
+//        if scrollView.contentOffset.y != 0 {
+        
+        var direction = determineScrollDirection(scrollView.contentOffset)
+        
+        switch direction {
+        case .Diagonal:
+            print("Diagonal")
+            scrollView.contentOffset.x = currentXOffset
+        case .Horizontal:
+            print("Horizontal")
+        case .Vertical:
+            print("Vertical")
+        case .None:
+            print("None")
+        default:
+            print("???")
+        }
+        
+        if currentRow > 0 {
+            scrollView.contentOffset.x = currentXOffset
+        }
+        
+//        if lastOffset.x < scrollView.contentOffset.x && lastOffset.y < scrollView.contentOffset.y {
+//            print("DAMN")
+//            scrollView.contentOffset.x = currentXOffset
+//        }
+        
+        let pageWidth = scrollView.frame.size.width
+        let pageHeight = scrollView.frame.size.height
+        let page = Int(floor((scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
+
+        let row = Int(floor((scrollView.contentOffset.y * 2.0 + pageHeight) / (pageHeight * 2.0)))
         currentPage = page
+        currentRow = row
+        
+        lastOffset = scrollView.contentOffset
+        
         configureScrollView()
     }
     
