@@ -46,7 +46,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     struct ColumnData {
         var root : UIImageView
         var children :[UIImageView]
-        var currentRow : Int
     }
     
     var columnViews = [ColumnData]()
@@ -60,6 +59,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var upArrow : UIButton? = nil
     var downArrow : UIButton? = nil
     
+    var parkNameLabel : UILabel? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,7 +70,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         imageScrollView.frame = self.view.frame
         
         for x in parkModel.photoEntries {
-            var newColumnData = ColumnData(root: UIImageView(image: x.photoImages[0]), children: [UIImageView](), currentRow: 0)
+            var newColumnData = ColumnData(root: UIImageView(image: x.photoImages[0]), children: [UIImageView]())
             newColumnData.root.contentMode = .ScaleAspectFit
             
             for i in 1...x.photoImages.count - 1 {
@@ -85,6 +86,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         upArrow = UIButton()
         downArrow = UIButton()
         
+        parkNameLabel = UILabel()
+        
         let rightImage = UIImage(named: "arrowRight.png")
         let leftImage = UIImage(named: "arrowLeft.png")
         let upImage = UIImage(named: "arrowUp.png")
@@ -92,33 +95,44 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         rightArrow!.setImage(rightImage!, forState: UIControlState.Normal)
         rightArrow!.frame.size = rightImage!.size
+        rightArrow!.transform = CGAffineTransformScale(rightArrow!.transform, 0.5, 0.5)
         rightArrow!.center = CGPoint(x: view.frame.width - (rightImage!.size.width / 2.0), y: view.frame.height / 2.0)
         rightArrow!.direction = .right
         rightArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
         
         leftArrow!.setImage(leftImage!, forState: .Normal)
         leftArrow!.frame.size = leftImage!.size
+        leftArrow!.transform = CGAffineTransformScale(leftArrow!.transform, 0.5, 0.5)
         leftArrow!.center = CGPoint(x: leftImage!.size.width / 2.0, y: view.frame.height / 2.0)
         leftArrow!.direction = .left
         leftArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
         
         upArrow!.setImage(upImage!, forState: .Normal)
         upArrow!.frame.size = upImage!.size
+        upArrow!.transform = CGAffineTransformScale(upArrow!.transform, 0.5, 0.5)
         upArrow!.center = CGPoint(x: view.frame.width / 2.0, y: upImage!.size.height)
         upArrow!.direction = .up
         upArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
         
         downArrow!.setImage(downImage!, forState: .Normal)
         downArrow!.frame.size = downImage!.size
+        downArrow!.transform = CGAffineTransformScale(downArrow!.transform, 0.5, 0.5)
         downArrow!.center = CGPoint(x: view.frame.width / 2.0, y: view.frame.height - downImage!.size.height)
         downArrow!.direction = .down
         downArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
         
+        parkNameLabel!.center = CGPointZero
+//        parkNameLabel!.text = "ASDFADGHJK"
+//        parkNameLabel!.sizeToFit()
         
         view.addSubview(rightArrow!)
         view.addSubview(leftArrow!)
         view.addSubview(upArrow!)
         view.addSubview(downArrow!)
+        view.addSubview(parkNameLabel!)
+        
+        
+//        view.addSubview(parkNameLabel!)
 //        imageScrollView.delegate = self
 //        imageScrollView.minimumZoomScale = 0.1
 //        imageScrollView.maximumZoomScale = 4.0
@@ -217,12 +231,23 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         let newXPosition = imageScrollView.frame.size.width * CGFloat(currentPage)
         tempImageView.frame.origin = CGPoint(x: newXPosition, y: tempImageView.frame.origin.y)
-
         
         let newContentSize = CGSize(width: imageScrollView.frame.width * CGFloat(numberOfColumns), height: imageScrollView.frame.height * CGFloat(columnViews[currentPage].children.count + 1))
         imageScrollView.contentSize = newContentSize
         
         imageScrollView.addSubview(tempImageView)
+        
+        
+        if currentRow == 0 {
+            parkNameLabel!.hidden = false
+            parkNameLabel!.text = parkModel.photoEntries[currentPage].name
+            parkNameLabel!.sizeToFit()
+            parkNameLabel!.center = CGPoint(x: view.frame.width / 2.0, y: parkNameLabel!.frame.size.height * 2.0)
+            
+        } else {
+            parkNameLabel!.hidden = true
+        }
+//        parkNameLabel!.center = CGPoint(x: view.frame.width / 2.0, y: view.frame.height / 4.0)
         
         for (index, imageView) in columnViews[currentPage].children.enumerate() {
             imageView.frame.origin = CGPoint(x: newXPosition, y: imageScrollView.frame.height * CGFloat(index + 1))
@@ -250,6 +275,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
 
         let direction = determineScrollDirection(scrollView.contentOffset)
+        
+        imageScrollView.directionalLockEnabled = true
         
         switch direction {
         case .Diagonal:
