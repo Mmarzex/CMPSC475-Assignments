@@ -8,6 +8,25 @@
 
 import UIKit
 
+enum ButtonDirection : Int {
+    case up  = 1
+    case down = 2
+    case right = 3
+    case left = 4
+}
+
+
+extension UIButton {
+    var direction : ButtonDirection {
+        get {
+            return ButtonDirection.init(rawValue: tag)!
+        }
+        set(newDirection) {
+            tag = newDirection.rawValue
+        }
+    }
+}
+
 class ViewController: UIViewController, UIScrollViewDelegate {
 
     var numberOfColumns = 0
@@ -24,7 +43,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var imageScrollView: UIScrollView!
     
-    @IBOutlet var rightArrow: UIImageView!
     struct ColumnData {
         var root : UIImageView
         var children :[UIImageView]
@@ -36,6 +54,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     enum ScrollDirection {
         case None, Horizontal, Vertical, Diagonal
     }
+    
+    var rightArrow : UIButton? = nil
+    var leftArrow : UIButton? = nil
+    var upArrow : UIButton? = nil
+    var downArrow : UIButton? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +80,45 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             columnViews.append(newColumnData)
         }
 
+        rightArrow = UIButton()
+        leftArrow = UIButton()
+        upArrow = UIButton()
+        downArrow = UIButton()
         
+        let rightImage = UIImage(named: "arrowRight.png")
+        let leftImage = UIImage(named: "arrowLeft.png")
+        let upImage = UIImage(named: "arrowUp.png")
+        let downImage = UIImage(named: "arrowDown.png")
+        
+        rightArrow!.setImage(rightImage!, forState: UIControlState.Normal)
+        rightArrow!.frame.size = rightImage!.size
+        rightArrow!.center = CGPoint(x: view.frame.width - (rightImage!.size.width / 2.0), y: view.frame.height / 2.0)
+        rightArrow!.direction = .right
+        rightArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
+        
+        leftArrow!.setImage(leftImage!, forState: .Normal)
+        leftArrow!.frame.size = leftImage!.size
+        leftArrow!.center = CGPoint(x: leftImage!.size.width / 2.0, y: view.frame.height / 2.0)
+        leftArrow!.direction = .left
+        leftArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
+        
+        upArrow!.setImage(upImage!, forState: .Normal)
+        upArrow!.frame.size = upImage!.size
+        upArrow!.center = CGPoint(x: view.frame.width / 2.0, y: upImage!.size.height)
+        upArrow!.direction = .up
+        upArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
+        
+        downArrow!.setImage(downImage!, forState: .Normal)
+        downArrow!.frame.size = downImage!.size
+        downArrow!.center = CGPoint(x: view.frame.width / 2.0, y: view.frame.height - downImage!.size.height)
+        downArrow!.direction = .down
+        downArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
+        
+        
+        view.addSubview(rightArrow!)
+        view.addSubview(leftArrow!)
+        view.addSubview(upArrow!)
+        view.addSubview(downArrow!)
 //        imageScrollView.delegate = self
 //        imageScrollView.minimumZoomScale = 0.1
 //        imageScrollView.maximumZoomScale = 4.0
@@ -74,7 +135,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         configureScrollView()
-        imageScrollView.bringSubviewToFront(rightArrow)
+        view.bringSubviewToFront(rightArrow!)
         
     }
     
@@ -83,12 +144,78 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func pressedPageArrow(sender: UIButton!) {
+        
+        switch sender.direction {
+        case .up:
+            if currentRow > 0 {
+                currentRow--
+                let newOffset = CGPoint(x: currentXOffset, y: imageScrollView.frame.height * CGFloat(currentRow))
+                imageScrollView.setContentOffset(newOffset, animated: false)
+            }
+        case .down:
+            if currentRow < columnViews[currentPage].children.count {
+                print("Down")
+                currentRow++
+                let newOffset = CGPoint(x: currentXOffset, y: imageScrollView.frame.height * CGFloat(currentRow))
+                imageScrollView.setContentOffset(newOffset, animated: false)
+            }
+        case .left:
+            if currentPage > 0 {
+                currentPage--
+                let newOffset = CGPoint(x: imageScrollView.frame.width * CGFloat(currentPage), y: imageScrollView.contentOffset.y)
+                imageScrollView.setContentOffset(newOffset, animated: false)
+            }
+        case .right:
+            if currentPage < numberOfColumns - 1 {
+                currentPage++
+                let newOffset = CGPoint(x: imageScrollView.frame.width * CGFloat(currentPage), y: imageScrollView.contentOffset.y)
+                imageScrollView.setContentOffset(newOffset, animated: false)
+            }
+        }
+        
+        configureScrollView()
+    }
+    
+    func changePageButtonVisibilities() {
+        
+        if currentRow == 0 {
+            leftArrow!.hidden = false
+            rightArrow!.hidden = false
+            upArrow!.hidden = true
+        }
+        
+        if currentRow == columnViews[currentPage].children.count {
+            downArrow!.hidden = true
+        } else {
+            downArrow!.hidden = false
+        }
+        
+        if currentPage == 0 {
+            leftArrow!.hidden = true
+        } else {
+            leftArrow!.hidden = false
+        }
+        
+        if currentPage == numberOfColumns - 1 {
+            rightArrow!.hidden = true
+        } else {
+            rightArrow!.hidden = false
+        }
+        
+        if currentRow > 0 {
+            leftArrow!.hidden = true
+            rightArrow!.hidden = true
+            upArrow!.hidden = false
+        }
+        
+    }
+    
     func configureScrollView() {
         let tempImageView = columnViews[currentPage].root
         tempImageView.frame.size = imageScrollView.frame.size
         
         let newXPosition = imageScrollView.frame.size.width * CGFloat(currentPage)
-        
         tempImageView.frame.origin = CGPoint(x: newXPosition, y: tempImageView.frame.origin.y)
 
         
@@ -104,6 +231,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
         imageScrollView.directionalLockEnabled = true
         currentXOffset = imageScrollView.contentOffset.x
+        
+        changePageButtonVisibilities()
     }
     
     func determineScrollDirection(offset: CGPoint) -> ScrollDirection {
@@ -119,12 +248,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        // Load the pages that are now on screen
-//        loadVisiblePages()
-        
-//        if scrollView.contentOffset.y != 0 {
-        
-        var direction = determineScrollDirection(scrollView.contentOffset)
+
+        let direction = determineScrollDirection(scrollView.contentOffset)
         
         switch direction {
         case .Diagonal:
@@ -136,18 +261,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             print("Vertical")
         case .None:
             print("None")
-        default:
-            print("???")
         }
         
         if currentRow > 0 {
             scrollView.contentOffset.x = currentXOffset
         }
-        
-//        if lastOffset.x < scrollView.contentOffset.x && lastOffset.y < scrollView.contentOffset.y {
-//            print("DAMN")
-//            scrollView.contentOffset.x = currentXOffset
-//        }
         
         let pageWidth = scrollView.frame.size.width
         let pageHeight = scrollView.frame.size.height
