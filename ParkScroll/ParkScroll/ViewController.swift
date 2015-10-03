@@ -178,7 +178,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
         } else if recognizer.state == .Changed {
             if recognizer.scale <= maxScale && recognizer.scale >= minScale {
-                print(recognizer.scale)
                 zoomScrollView!.setZoomScale(recognizer.scale, animated: true)
                 zoomScrollView!.contentSize = zoomImageView!.frame.size
             }

@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123AEA361BC0218F00E171F2 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA2B1BC0218F00E171F2 /* Contents.json */; settings = {ASSET_TAGS = (); }; };
+		123AEA4B1BC0223300E171F2 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA411BC0223300E171F2 /* Icon-40.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA4C1BC0223300E171F2 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA421BC0223300E171F2 /* Icon-40@2x.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA4D1BC0223300E171F2 /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA431BC0223300E171F2 /* Icon-40@3x.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA4E1BC0223300E171F2 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA441BC0223300E171F2 /* Icon-60@2x.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA4F1BC0223300E171F2 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA451BC0223300E171F2 /* Icon-60@3x.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA501BC0223300E171F2 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA461BC0223300E171F2 /* Icon-76.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA511BC0223300E171F2 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA471BC0223300E171F2 /* Icon-76@2x.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA521BC0223300E171F2 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA481BC0223300E171F2 /* Icon-Small.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA531BC0223300E171F2 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA491BC0223300E171F2 /* Icon-Small@2x.png */; settings = {ASSET_TAGS = (); }; };
+		123AEA541BC0223300E171F2 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA4A1BC0223300E171F2 /* Icon-Small@3x.png */; settings = {ASSET_TAGS = (); }; };
 		12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95341BB9B72E00CACE61 /* AppDelegate.swift */; };
 		12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95361BB9B72E00CACE61 /* ViewController.swift */; };
 		12CF953A1BB9B72E00CACE61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95381BB9B72E00CACE61 /* Main.storyboard */; };
@@ -69,6 +80,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		123AEA2B1BC0218F00E171F2 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		123AEA411BC0223300E171F2 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		123AEA421BC0223300E171F2 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		123AEA431BC0223300E171F2 /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		123AEA441BC0223300E171F2 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		123AEA451BC0223300E171F2 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		123AEA461BC0223300E171F2 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		123AEA471BC0223300E171F2 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		123AEA481BC0223300E171F2 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		123AEA491BC0223300E171F2 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		123AEA4A1BC0223300E171F2 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
 		12CF95311BB9B72E00CACE61 /* ParkScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CF95341BB9B72E00CACE61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CF95361BB9B72E00CACE61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +165,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		123AEA2A1BC0218F00E171F2 /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				123AEA2B1BC0218F00E171F2 /* Contents.json */,
+			);
+			name = AppIcon.appiconset;
+			path = "ParkScroll Assets/AppIcon.appiconset";
+			sourceTree = SOURCE_ROOT;
+		};
 		12CF95281BB9B72E00CACE61 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +200,7 @@
 				12CF95341BB9B72E00CACE61 /* AppDelegate.swift */,
 				12CF95361BB9B72E00CACE61 /* ViewController.swift */,
 				12CF95381BB9B72E00CACE61 /* Main.storyboard */,
+				123AEA2A1BC0218F00E171F2 /* AppIcon.appiconset */,
 				12CF953B1BB9B72E00CACE61 /* Assets.xcassets */,
 				12CF953D1BB9B72E00CACE61 /* LaunchScreen.storyboard */,
 				12CF95401BB9B72E00CACE61 /* Info.plist */,
@@ -189,6 +221,16 @@
 		12CF95621BB9B80200CACE61 /* ParkScroll Assets */ = {
 			isa = PBXGroup;
 			children = (
+				123AEA411BC0223300E171F2 /* Icon-40.png */,
+				123AEA421BC0223300E171F2 /* Icon-40@2x.png */,
+				123AEA431BC0223300E171F2 /* Icon-40@3x.png */,
+				123AEA441BC0223300E171F2 /* Icon-60@2x.png */,
+				123AEA451BC0223300E171F2 /* Icon-60@3x.png */,
+				123AEA461BC0223300E171F2 /* Icon-76.png */,
+				123AEA471BC0223300E171F2 /* Icon-76@2x.png */,
+				123AEA481BC0223300E171F2 /* Icon-Small.png */,
+				123AEA491BC0223300E171F2 /* Icon-Small@2x.png */,
+				123AEA4A1BC0223300E171F2 /* Icon-Small@3x.png */,
 				12CF95631BB9B80200CACE61 /* arrowDown.png */,
 				12CF95641BB9B80200CACE61 /* arrowLeft.png */,
 				12CF95651BB9B80200CACE61 /* arrowRight.png */,
@@ -340,34 +382,45 @@
 				12CF95951BB9B80200CACE61 /* Glacier03.jpg in Resources */,
 				12CF95A61BB9B80200CACE61 /* Zion01.jpg in Resources */,
 				12CF95981BB9B80200CACE61 /* GrandTeton02.jpg in Resources */,
+				123AEA4C1BC0223300E171F2 /* Icon-40@2x.png in Resources */,
 				12CF958F1BB9B80200CACE61 /* Carlsbad03.jpg in Resources */,
 				12CF95921BB9B80200CACE61 /* Everglades02.jpg in Resources */,
+				123AEA541BC0223300E171F2 /* Icon-Small@3x.png in Resources */,
 				12CF958C1BB9B80200CACE61 /* BryceCanyon03.jpg in Resources */,
 				12CF95931BB9B80200CACE61 /* Glacier01.jpg in Resources */,
 				12CF959B1BB9B80200CACE61 /* Photos.plist in Resources */,
 				12CF95A01BB9B80200CACE61 /* Yosemite01.jpg in Resources */,
 				12CF95871BB9B80200CACE61 /* arrowLeft.png in Resources */,
+				123AEA501BC0223300E171F2 /* Icon-76.png in Resources */,
 				12CF953C1BB9B72E00CACE61 /* Assets.xcassets in Resources */,
 				12CF95A21BB9B80200CACE61 /* Yosemite03.jpg in Resources */,
+				123AEA4E1BC0223300E171F2 /* Icon-60@2x.png in Resources */,
+				123AEA521BC0223300E171F2 /* Icon-Small.png in Resources */,
 				12CF958B1BB9B80200CACE61 /* BryceCanyon02.jpg in Resources */,
 				12CF95901BB9B80200CACE61 /* Carlsbad04.jpg in Resources */,
+				123AEA361BC0218F00E171F2 /* Contents.json in Resources */,
 				12CF95961BB9B80200CACE61 /* Glacier04.jpg in Resources */,
 				12CF95A71BB9B80200CACE61 /* Zion02.jpg in Resources */,
 				12CF959E1BB9B80200CACE61 /* Yellowstone03.jpg in Resources */,
+				123AEA4B1BC0223300E171F2 /* Icon-40.png in Resources */,
 				12CF959F1BB9B80200CACE61 /* Yellowstone04.jpg in Resources */,
 				12CF959A1BB9B80200CACE61 /* NPSbw.png in Resources */,
 				12CF958D1BB9B80200CACE61 /* Carlsbad01.jpg in Resources */,
 				12CF959D1BB9B80200CACE61 /* Yellowstone02.jpg in Resources */,
 				12CF95941BB9B80200CACE61 /* Glacier02.jpg in Resources */,
+				123AEA4F1BC0223300E171F2 /* Icon-60@3x.png in Resources */,
 				12CF95A41BB9B80200CACE61 /* Yosemite05.jpg in Resources */,
 				12CF953A1BB9B72E00CACE61 /* Main.storyboard in Resources */,
 				12CF95891BB9B80200CACE61 /* arrowUp.png in Resources */,
 				12CF958A1BB9B80200CACE61 /* BryceCanyon01.jpg in Resources */,
 				12CF95971BB9B80200CACE61 /* GrandTeton01.jpg in Resources */,
 				12CF95A31BB9B80200CACE61 /* Yosemite04.jpg in Resources */,
+				123AEA511BC0223300E171F2 /* Icon-76@2x.png in Resources */,
 				12CF95A51BB9B80200CACE61 /* Yosemite06.jpg in Resources */,
 				12CF95861BB9B80200CACE61 /* arrowDown.png in Resources */,
 				12CF95911BB9B80200CACE61 /* Everglades01.jpg in Resources */,
+				123AEA531BC0223300E171F2 /* Icon-Small@2x.png in Resources */,
+				123AEA4D1BC0223300E171F2 /* Icon-40@3x.png in Resources */,
 				12CF958E1BB9B80200CACE61 /* Carlsbad02.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
