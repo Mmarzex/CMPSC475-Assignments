@@ -181,22 +181,28 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 zoomScrollView!.setZoomScale(recognizer.scale, animated: true)
                 zoomScrollView!.contentSize = zoomImageView!.frame.size
             }
+        } else if recognizer.state == .Ended && zoomScrollView!.zoomScale <= minScale {
+            endScrolling()
         }
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         if scrollView.zoomScale <= minScale && scrollView.pinchGestureRecognizer!.state == .Ended {
-            isZooming = false
-            zoomScrollView!.removeFromSuperview()
-            view.addSubview(imageScrollView)
-            view.bringSubviewToFront(imageScrollView)
-            zoomImageView = nil
-            configureScrollView()
-            view.bringSubviewToFront(upArrow!)
-            view.bringSubviewToFront(downArrow!)
-            view.bringSubviewToFront(leftArrow!)
-            view.bringSubviewToFront(rightArrow!)
+            endScrolling()
         }
+    }
+    
+    func endScrolling() {
+        isZooming = false
+        zoomScrollView!.removeFromSuperview()
+        view.addSubview(imageScrollView)
+        view.bringSubviewToFront(imageScrollView)
+        zoomImageView = nil
+        configureScrollView()
+        view.bringSubviewToFront(upArrow!)
+        view.bringSubviewToFront(downArrow!)
+        view.bringSubviewToFront(leftArrow!)
+        view.bringSubviewToFront(rightArrow!)
     }
     
     func pressedPageArrow(sender: UIButton!) {
