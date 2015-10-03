@@ -85,6 +85,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         zoomScrollView!.delegate = self
         zoomScrollView!.frame = view.frame
+        zoomScrollView!.minimumZoomScale = minScale
+        zoomScrollView!.maximumZoomScale = maxScale
+        zoomScrollView!.pinchGestureRecognizer!.enabled = false
         
         for x in parkModel.photoEntries {
             var newColumnData = ColumnData(root: UIImageView(image: x.photoImages[0]), children: [UIImageView]())
@@ -139,37 +142,16 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         downArrow!.addTarget(self, action: "pressedPageArrow:", forControlEvents: .TouchUpInside)
         
         parkNameLabel!.center = CGPointZero
-//        parkNameLabel!.text = "ASDFADGHJK"
-//        parkNameLabel!.sizeToFit()
         
         view.addSubview(rightArrow!)
         view.addSubview(leftArrow!)
         view.addSubview(upArrow!)
         view.addSubview(downArrow!)
         view.addSubview(parkNameLabel!)
-        
-        
-//        view.addSubview(parkNameLabel!)
-//        imageScrollView.delegate = self
-//        imageScrollView.minimumZoomScale = 0.1
-//        imageScrollView.maximumZoomScale = 4.0
-//        imageScrollView.zoomScale = 1.0
-        // Do any additional setup after loading the view, typically from a nib.
-//        for x in parkModel.photoEntries {
-//            for y in x.photoImages {
-//                let imageView = UIImageView(image: y)
-//                imageView.contentMode = UIViewContentMode.ScaleAspectFit
-//                imageScrollView.addSubview(imageView)
-//            }
-//        }
     }
     
     override func viewDidLayoutSubviews() {
         configureScrollView()
-    }
-    
-    override func viewWillLayoutSubviews() {
-//        setZoomScale()
     }
     
     override func didReceiveMemoryWarning() {
@@ -178,39 +160,44 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func handlePinch(recognizer : UIPinchGestureRecognizer) {
-        
+
         if recognizer.state == UIGestureRecognizerState.Began {
-            print("PINCH")
-            let imageToZoom = currentRow == 0 ? columnViews[currentPage].root : columnViews[currentPage].children[currentRow - 1]
             
+            let imageToZoom = currentRow == 0 ? columnViews[currentPage].root : columnViews[currentPage].children[currentRow - 1]
             zoomScrollView!.contentSize = imageToZoom.frame.size
             zoomScrollView!.addSubview(imageToZoom)
             let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
             imageToZoom.frame = newImageFrame
-//            setZoomScale()
             view.addSubview(zoomScrollView!)
-            imageScrollView.removeFromSuperview()
             zoomScrollView!.addSubview(imageToZoom)
             view.bringSubviewToFront(zoomScrollView!)
             zoomImageView = imageToZoom
             zoomScrollView!.frame.origin = CGPoint(x: 0, y: 0)
             isZooming = true
+            zoomScrollView!.setZoomScale(recognizer.scale, animated: true)
+            
         } else if recognizer.state == .Changed {
-            if recognizer.scale <= 4.0 && recognizer.scale >= minScale {
-                print("CHANGE")
+            if recognizer.scale <= maxScale && recognizer.scale >= minScale {
                 print(recognizer.scale)
-
-                zoomImageView!.transform = CGAffineTransformScale(zoomImageView!.transform, recognizer.scale, recognizer.scale)
+                zoomScrollView!.setZoomScale(recognizer.scale, animated: true)
                 zoomScrollView!.contentSize = zoomImageView!.frame.size
             }
-            
-            
         }
-        
-        if recognizer.state == .Ended && recognizer.scale == 1.0 {
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        if scrollView.zoomScale <= minScale && scrollView.pinchGestureRecognizer!.state == .Ended {
+            isZooming = false
+            zoomScrollView!.removeFromSuperview()
+            view.addSubview(imageScrollView)
+            view.bringSubviewToFront(imageScrollView)
+            zoomImageView = nil
+            configureScrollView()
+            view.bringSubviewToFront(upArrow!)
+            view.bringSubviewToFront(downArrow!)
+            view.bringSubviewToFront(leftArrow!)
+            view.bringSubviewToFront(rightArrow!)
         }
-        
-
     }
     
     func pressedPageArrow(sender: UIButton!) {
@@ -224,7 +211,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             }
         case .down:
             if currentRow < columnViews[currentPage].children.count {
-                print("Down")
                 currentRow++
                 let newOffset = CGPoint(x: currentXOffset, y: imageScrollView.frame.height * CGFloat(currentRow))
                 imageScrollView.setContentOffset(newOffset, animated: false)
@@ -252,6 +238,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             leftArrow!.hidden = false
             rightArrow!.hidden = false
             upArrow!.hidden = true
+            
         }
         
         if currentRow == columnViews[currentPage].children.count {
@@ -293,7 +280,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             imageScrollView.addSubview(tempImageView)
             
-            
             if currentRow == 0 {
                 parkNameLabel!.hidden = false
                 parkNameLabel!.text = parkModel.photoEntries[currentPage].name
@@ -303,7 +289,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             } else {
                 parkNameLabel!.hidden = true
             }
-            //        parkNameLabel!.center = CGPoint(x: view.frame.width / 2.0, y: view.frame.height / 4.0)
             
             for (index, imageView) in columnViews[currentPage].children.enumerate() {
                 imageView.frame.origin = CGPoint(x: newXPosition, y: imageScrollView.frame.height * CGFloat(index + 1))
@@ -338,16 +323,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             imageScrollView.directionalLockEnabled = true
             
-            switch direction {
-            case .Diagonal:
-                print("Diagonal")
+            if direction == .Diagonal {
                 scrollView.contentOffset.x = currentXOffset
-            case .Horizontal:
-                print("Horizontal")
-            case .Vertical:
-                print("Vertical")
-            case .None:
-                print("None")
             }
             
             if currentRow > 0 {
@@ -373,34 +350,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         if scrollView == zoomScrollView! {
-            print("dddd")
             if let image = zoomImageView {
                 return image
-            } else {
-                return nil
             }
-        } else {
-            print("ffff")
-            return nil
         }
+        
+        return nil
     }
-    
-    func scrollViewDidZoom(scrollView: UIScrollView) {
-        print("zOOM")
-    }
-    
-//    func setZoomScale() {
-//        if let imageView = zoomImageView {
-//            let imageViewSize = imageView.bounds.size
-//            let scrollViewSize = zoomScrollView!.bounds.size
-//            let widthScale = scrollViewSize.width / imageViewSize.width
-//            let heightScale = scrollViewSize.height / imageViewSize.height
-//            
-//            zoomScrollView!.minimumZoomScale = min(widthScale, heightScale)
-//            zoomScrollView!.zoomScale = 1.0
-//        }
-//        
-//    }
 
 }
 
