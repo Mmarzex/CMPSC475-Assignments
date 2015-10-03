@@ -282,6 +282,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             if currentRow == 0 {
                 parkNameLabel!.hidden = false
                 parkNameLabel!.text = parkModel.photoEntries[currentPage].name
+                
+                if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                    parkNameLabel!.font = UIFont(name: parkNameLabel!.font.fontName, size: 36)
+                }
+                
                 parkNameLabel!.sizeToFit()
                 parkNameLabel!.center = CGPoint(x: view.frame.width / 2.0, y: parkNameLabel!.frame.size.height * 2.0)
                 

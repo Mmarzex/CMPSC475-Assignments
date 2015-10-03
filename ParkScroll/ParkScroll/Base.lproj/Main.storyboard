@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="544"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.64571836025837792" green="0.99389198793011568" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Qlk-to-LWc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2sb-mJ-Eq1"/>
                             <constraint firstItem="Qlk-to-LWc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EDE-J0-mz8"/>
