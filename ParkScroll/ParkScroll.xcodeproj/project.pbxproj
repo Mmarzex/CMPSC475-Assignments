@@ -60,6 +60,8 @@
 		12CF95A71BB9B80200CACE61 /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95841BB9B80200CACE61 /* Zion02.jpg */; settings = {ASSET_TAGS = (); }; };
 		12CF95A81BB9B80200CACE61 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95851BB9B80200CACE61 /* Zion03.jpg */; settings = {ASSET_TAGS = (); }; };
 		12CF95AA1BB9B84C00CACE61 /* ParkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95A91BB9B84C00CACE61 /* ParkModel.swift */; settings = {ASSET_TAGS = (); }; };
+		12EB927F1BC0D848009BCBCF /* ParkScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EB927E1BC0D848009BCBCF /* ParkScrollUITests.swift */; settings = {ASSET_TAGS = (); }; };
+		12F955211BC0D5B700BCA8D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F9551F1BC0D5B700BCA8D2 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,8 @@
 		12CF95841BB9B80200CACE61 /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
 		12CF95851BB9B80200CACE61 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
 		12CF95A91BB9B84C00CACE61 /* ParkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkModel.swift; sourceTree = "<group>"; };
+		12EB927E1BC0D848009BCBCF /* ParkScrollUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkScrollUITests.swift; sourceTree = "<group>"; };
+		12F9551F1BC0D5B700BCA8D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 		12CF95281BB9B72E00CACE61 = {
 			isa = PBXGroup;
 			children = (
+				12F9551E1BC0D5B700BCA8D2 /* ParkScrollUITests */,
 				12CF95331BB9B72E00CACE61 /* ParkScroll */,
 				12CF95621BB9B80200CACE61 /* ParkScroll Assets */,
 				12CF95481BB9B72E00CACE61 /* ParkScrollTests */,
@@ -270,6 +275,15 @@
 			path = "ParkScroll Assets";
 			sourceTree = SOURCE_ROOT;
 		};
+		12F9551E1BC0D5B700BCA8D2 /* ParkScrollUITests */ = {
+			isa = PBXGroup;
+			children = (
+				12EB927E1BC0D848009BCBCF /* ParkScrollUITests.swift */,
+				12F9551F1BC0D5B700BCA8D2 /* Info.plist */,
+			);
+			path = ParkScrollUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -332,6 +346,7 @@
 		12CF95291BB9B72E00CACE61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Max Marze";
 				TargetAttributes = {
@@ -421,6 +436,7 @@
 				12CF95911BB9B80200CACE61 /* Everglades01.jpg in Resources */,
 				123AEA531BC0223300E171F2 /* Icon-Small@2x.png in Resources */,
 				123AEA4D1BC0223300E171F2 /* Icon-40@3x.png in Resources */,
+				12F955211BC0D5B700BCA8D2 /* Info.plist in Resources */,
 				12CF958E1BB9B80200CACE61 /* Carlsbad02.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12EB927F1BC0D848009BCBCF /* ParkScrollUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,10 +651,13 @@
 		12CF95601BB9B72E00CACE61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ParkScrollUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScrollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParkScrollUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = ParkScroll;
 				USES_XCTRUNNER = YES;
 			};
@@ -646,10 +666,12 @@
 		12CF95611BB9B72E00CACE61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ParkScrollUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.mom5606.ParkScrollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParkScrollUITests-Bridging-Header.h";
 				TEST_TARGET_NAME = ParkScroll;
 				USES_XCTRUNNER = YES;
 			};

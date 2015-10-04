@@ -37,6 +37,11 @@
                BlueprintName = "ParkScrollTests"
                ReferencedContainer = "container:ParkScroll.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ParkScrollUITests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
