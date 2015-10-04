@@ -29,14 +29,26 @@ extension UIButton {
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
-    var numberOfColumns = 0
+    enum ScrollDirection {
+        case None, Horizontal, Vertical, Diagonal
+    }
+    
+    struct ColumnData {
+        var root : UIImageView
+        var children :[UIImageView]
+    }
+    
     
     let parkModel = ParkModel()
+    
+    var columnViews = [ColumnData]()
     
     let maxScale : CGFloat = 10.0
     
     let minScale : CGFloat = 1.0
     
+    var numberOfColumns = 0
+
     var currentPage = 0
     
     var currentRow = 0
@@ -46,17 +58,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var lastOffset = CGPoint(x: 0, y: 0)
     
     @IBOutlet var imageScrollView: UIScrollView!
-    
-    struct ColumnData {
-        var root : UIImageView
-        var children :[UIImageView]
-    }
-    
-    var columnViews = [ColumnData]()
-    
-    enum ScrollDirection {
-        case None, Horizontal, Vertical, Diagonal
-    }
     
     var rightArrow : UIButton? = nil
     var leftArrow : UIButton? = nil
