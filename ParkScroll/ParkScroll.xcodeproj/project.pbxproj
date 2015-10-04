@@ -141,6 +141,7 @@
 		12CF95851BB9B80200CACE61 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
 		12CF95A91BB9B84C00CACE61 /* ParkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkModel.swift; sourceTree = "<group>"; };
 		12EB927E1BC0D848009BCBCF /* ParkScrollUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkScrollUITests.swift; sourceTree = "<group>"; };
+		12EB92801BC0D9F6009BCBCF /* ParkScrollUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParkScrollUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		12F9551F1BC0D5B700BCA8D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +182,7 @@
 		12CF95281BB9B72E00CACE61 = {
 			isa = PBXGroup;
 			children = (
+				12EB92801BC0D9F6009BCBCF /* ParkScrollUITests-Bridging-Header.h */,
 				12F9551E1BC0D5B700BCA8D2 /* ParkScrollUITests */,
 				12CF95331BB9B72E00CACE61 /* ParkScroll */,
 				12CF95621BB9B80200CACE61 /* ParkScroll Assets */,
