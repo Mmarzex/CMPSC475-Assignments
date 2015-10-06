@@ -39,7 +39,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    let parkModel = ParkModel()
+    let parkModel = ParkModel.sharedInstance
     
     var columnViews = [ColumnData]()
     
