@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ParkTableViewController: UITableViewController {
+class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegate {
 
     let parkModel = ParkModel.sharedInstance
+    
+    var sectionIsCollapsed = [Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,12 @@ class ParkTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.contentInset = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 0.0, right: 0.0)
+        
+        for _ in 0...parkModel.numberOfSections() - 1 {
+            sectionIsCollapsed.append(false)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,21 +44,24 @@ class ParkTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return parkModel.numberOfPhotosInSection(section)
+        if !sectionIsCollapsed[section] {
+            return parkModel.numberOfPhotosInSection(section)
+        } else {
+            return 0
+        }
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ParkCell", forIndexPath: indexPath) as! ParkTableViewCell
 
-        cell.parkCellCaption.text = parkModel.captionAtIndexPath(indexPath)
-        cell.parkCellCaption.sizeToFit()
+        if !sectionIsCollapsed[indexPath.section] {
+            cell.parkCellCaption.text = parkModel.captionAtIndexPath(indexPath)
+            cell.parkCellCaption.sizeToFit()
+            
+            cell.parkCellImage!.image = parkModel.imageAtIndexPath(indexPath)
+        }
         
-        cell.parkCellImage!.image = parkModel.imageAtIndexPath(indexPath)
-        
-//        cell.imageView!.image = parkModel.imageAtIndexPath(indexPath)
-        // Configure the cell...
-
         return cell
     }
 
@@ -60,6 +71,40 @@ class ParkTableViewController: UITableViewController {
 
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         return parkModel.indexTitles()
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableCellWithIdentifier("ParkHeader") as! ParkTableHeaderCell
+        header.delegate = self
+        header.tag = section
+        let headerName = self.tableView(tableView, titleForHeaderInSection: section)!
+        
+        header.headerButton.setTitle(headerName, forState: .Normal)
+        
+        return header
+        
+    }
+    
+    func didSelectParkTableHeaderCell(selected: Bool, parkHeader: ParkTableHeaderCell) {
+        let name = parkHeader.headerButton.titleForState(.Normal)!
+        print("selected header with name, \(name), section: \(parkHeader.tag)")
+        
+        let indexPath = NSIndexPath(forRow: 0, inSection: parkHeader.tag)
+        
+        sectionIsCollapsed[parkHeader.tag] = !sectionIsCollapsed[parkHeader.tag]
+        
+        let range = NSMakeRange(indexPath.section, 1)
+        let sectionToReload = NSIndexSet(indexesInRange: range)
+        
+        self.tableView.reloadSections(sectionToReload, withRowAnimation: .Fade)
+        
+    }
+    func tapSectionHeader(recognizer : UITapGestureRecognizer) {
+        print("TAP SECTION HEADER")
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
     /*
