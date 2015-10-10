@@ -13,10 +13,30 @@ private let reuseIdentifier = "ParkCollectionCell"
 class ParkCollectionViewController: UICollectionViewController {
     
     let parkModel = ParkModel.sharedInstance
+    
+    let maxScale : CGFloat = 10.0
+    
+    let minScale : CGFloat = 1.0
+    
+    var zoomScrollView : UIScrollView?
+    
+    var zoomImageView : UIImageView?
+    
+    var isZooming = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        zoomScrollView = UIScrollView()
+        
+        zoomScrollView!.delegate = self
+        zoomScrollView!.frame = view.frame
+        zoomScrollView!.minimumZoomScale = minScale
+        zoomScrollView!.maximumZoomScale = maxScale
+        
+        let zoomScrollTapGesture = UITapGestureRecognizer(target: self, action: "zoomImageTapped:")
+        zoomScrollView!.addGestureRecognizer(zoomScrollTapGesture)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -80,7 +100,53 @@ class ParkCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("Selected Cell")
+        
+        if !isZooming {
+            print("Selected Cell")
+            
+            let image = parkModel.imageAtIndexPath(indexPath)
+            
+            let imageToZoom = UIImageView(image: image)
+            imageToZoom.contentMode = .ScaleAspectFit
+            imageToZoom.frame = zoomScrollView!.frame
+            
+            zoomScrollView!.contentSize = imageToZoom.frame.size
+            zoomScrollView!.addSubview(imageToZoom)
+            
+            let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
+            
+            imageToZoom.frame = newImageFrame
+            
+            view.addSubview(zoomScrollView!)
+            zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: 0.0)
+            
+            view.bringSubviewToFront(zoomScrollView!)
+            zoomImageView = imageToZoom
+            
+            isZooming = true
+            
+        }
+        
+        
+    }
+    
+    override func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return zoomImageView
+    }
+    
+    func zoomImageTapped(recognizer: UITapGestureRecognizer) {
+        
+        let scrollView = recognizer.view as! UIScrollView
+        if scrollView.zoomScale == 1.0 {
+            print("TAAAAP")
+            
+            zoomImageView!.removeFromSuperview()
+            zoomScrollView!.removeFromSuperview()
+            
+            zoomImageView = nil
+            
+            isZooming = false
+        }
     }
     
     /*

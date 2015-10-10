@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegate {
+class ParkTableViewController: UITableViewController {
 
     let parkModel = ParkModel.sharedInstance
     
@@ -139,21 +139,6 @@ class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegat
         }
     }
     
-    func didSelectParkTableHeaderCell(selected: Bool, parkHeader: ParkTableHeaderCell) {
-        let name = parkHeader.headerButton.titleForState(.Normal)!
-        print("selected header with name, \(name), section: \(parkHeader.tag)")
-        
-        let indexPath = NSIndexPath(forRow: 0, inSection: parkHeader.tag)
-        
-        sectionIsCollapsed[parkHeader.tag] = !sectionIsCollapsed[parkHeader.tag]
-        
-        let range = NSMakeRange(indexPath.section, 1)
-        let sectionToReload = NSIndexSet(indexesInRange: range)
-        
-        self.tableView.reloadSections(sectionToReload, withRowAnimation: .Fade)
-        
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !isZooming {
             print("Section : \(indexPath.section), row: \(indexPath.row) tapped")
@@ -186,11 +171,6 @@ class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegat
         return zoomImageView
     }
     
-    override func scrollViewDidZoom(scrollView: UIScrollView) {
-//        if scrollView.zoomScale <= minScale && scrollView.pinchGestureRecognizer!.state == .Ended {
-//            endScrolling()
-//        }
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
