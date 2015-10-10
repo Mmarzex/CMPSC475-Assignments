@@ -18,6 +18,9 @@
 		123AEA521BC0223300E171F2 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA481BC0223300E171F2 /* Icon-Small.png */; settings = {ASSET_TAGS = (); }; };
 		123AEA531BC0223300E171F2 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA491BC0223300E171F2 /* Icon-Small@2x.png */; settings = {ASSET_TAGS = (); }; };
 		123AEA541BC0223300E171F2 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123AEA4A1BC0223300E171F2 /* Icon-Small@3x.png */; settings = {ASSET_TAGS = (); }; };
+		12446E581BC965CE00B0EA31 /* ParkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446E571BC965CE00B0EA31 /* ParkCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		12446E5A1BC965F300B0EA31 /* ParkCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		12446E5C1BC9671D00B0EA31 /* ParkCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446E5B1BC9671D00B0EA31 /* ParkCollectionReusableView.swift */; settings = {ASSET_TAGS = (); }; };
 		127573E61BC3712C0022AA39 /* tabBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127573E41BC3712C0022AA39 /* tabBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127573E91BC37BA70022AA39 /* ParkTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1278F0791BC464C0002BFAF0 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -97,6 +100,9 @@
 		123AEA481BC0223300E171F2 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		123AEA491BC0223300E171F2 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		123AEA4A1BC0223300E171F2 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		12446E571BC965CE00B0EA31 /* ParkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkCollectionViewCell.swift; sourceTree = "<group>"; };
+		12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkCollectionViewController.swift; sourceTree = "<group>"; };
+		12446E5B1BC9671D00B0EA31 /* ParkCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkCollectionReusableView.swift; sourceTree = "<group>"; };
 		127573E51BC3712C0022AA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/tabBoard.storyboard; sourceTree = "<group>"; };
 		127573E91BC37BA70022AA39 /* ParkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
 		1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 			children = (
 				12CF95361BB9B72E00CACE61 /* ViewController.swift */,
 				127573E91BC37BA70022AA39 /* ParkTableViewController.swift */,
+				12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -211,6 +218,8 @@
 			children = (
 				1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */,
 				12B4D0011BC4BEB200328E17 /* ParkTableHeaderCell.swift */,
+				12446E571BC965CE00B0EA31 /* ParkCollectionViewCell.swift */,
+				12446E5B1BC9671D00B0EA31 /* ParkCollectionReusableView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -501,11 +510,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12446E5C1BC9671D00B0EA31 /* ParkCollectionReusableView.swift in Sources */,
 				127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */,
 				12B4D0021BC4BEB200328E17 /* ParkTableHeaderCell.swift in Sources */,
 				12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */,
 				1278F0791BC464C0002BFAF0 /* ParkTableViewCell.swift in Sources */,
+				12446E581BC965CE00B0EA31 /* ParkCollectionViewCell.swift in Sources */,
 				12CF95AA1BB9B84C00CACE61 /* ParkModel.swift in Sources */,
+				12446E5A1BC965F300B0EA31 /* ParkCollectionViewController.swift in Sources */,
 				12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

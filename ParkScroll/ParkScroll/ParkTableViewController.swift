@@ -12,7 +12,17 @@ class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegat
 
     let parkModel = ParkModel.sharedInstance
     
+    let maxScale : CGFloat = 10.0
+    
+    let minScale : CGFloat = 1.0
+    
     var sectionIsCollapsed = [Bool]()
+    
+    var zoomScrollView : UIScrollView?
+    
+    var zoomImageView : UIImageView?
+    
+    var isZooming = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +37,16 @@ class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegat
         for _ in 0...parkModel.numberOfSections() - 1 {
             sectionIsCollapsed.append(false)
         }
+        
+        zoomScrollView = UIScrollView()
+        
+        zoomScrollView!.delegate = self
+        zoomScrollView!.frame = view.frame
+        zoomScrollView!.minimumZoomScale = minScale
+        zoomScrollView!.maximumZoomScale = maxScale
+        
+        let zoomScrollTapGesture = UITapGestureRecognizer (target: self, action:"zoomImageTapped:")
+        zoomScrollView!.addGestureRecognizer(zoomScrollTapGesture)
         
     }
 
@@ -72,17 +92,51 @@ class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegat
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         return parkModel.indexTitles()
     }
-    
+
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableCellWithIdentifier("ParkHeader") as! ParkTableHeaderCell
-        header.delegate = self
-        header.tag = section
-        let headerName = self.tableView(tableView, titleForHeaderInSection: section)!
         
-        header.headerButton.setTitle(headerName, forState: .Normal)
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 60))
+        headerView.backgroundColor = UIColor.grayColor()
+        headerView.tag = section
         
-        return header
+        let headerString = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width-10, height: 30)) as UILabel
+        headerString.text = self.tableView(tableView, titleForHeaderInSection: section)
+        headerView.addSubview(headerString)
         
+        let headerTapped = UITapGestureRecognizer (target: self, action:"sectionHeaderTapped:")
+        headerView.addGestureRecognizer(headerTapped)
+        
+        return headerView
+    }
+    
+    func sectionHeaderTapped(recognizer: UITapGestureRecognizer) {
+        
+        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(recognizer.view?.tag as Int!)!)
+        if (indexPath.row == 0) {
+            
+            sectionIsCollapsed[recognizer.view!.tag] = !sectionIsCollapsed[recognizer.view!.tag]
+            
+            let range = NSMakeRange(indexPath.section, 1)
+            let sectionToReload = NSIndexSet(indexesInRange: range)
+            
+            self.tableView.reloadSections(sectionToReload, withRowAnimation: .Fade)
+        }
+        
+    }
+    
+    func zoomImageTapped(recognizer: UITapGestureRecognizer) {
+        
+        let scrollView = recognizer.view as! UIScrollView
+        if scrollView.zoomScale == 1.0 {
+            print("TAAAAAP")
+            
+            zoomImageView!.removeFromSuperview()
+            zoomScrollView!.removeFromSuperview()
+            
+            zoomImageView = nil
+            
+            isZooming = false
+        }
     }
     
     func didSelectParkTableHeaderCell(selected: Bool, parkHeader: ParkTableHeaderCell) {
@@ -99,14 +153,44 @@ class ParkTableViewController: UITableViewController, ParkTableHeaderCellDelegat
         self.tableView.reloadSections(sectionToReload, withRowAnimation: .Fade)
         
     }
-    func tapSectionHeader(recognizer : UITapGestureRecognizer) {
-        print("TAP SECTION HEADER")
-    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if !isZooming {
+            print("Section : \(indexPath.section), row: \(indexPath.row) tapped")
+            
+            zoomScrollView!.frame = view.bounds
+            
+            let image = parkModel.imageAtIndexPath(indexPath)
+            let imageToZoom = UIImageView(image: image)
+            imageToZoom.contentMode = .ScaleAspectFit
+            imageToZoom.frame = zoomScrollView!.frame
+            print("Main View: width: \(view.frame.width), height: \(view.frame.height)")
+            print("scroll View: width: \(zoomScrollView!.frame.width), height: \(zoomScrollView!.frame.height)")
+            zoomScrollView!.contentSize = imageToZoom.frame.size
+            zoomScrollView!.addSubview(imageToZoom)
+            print("image View: width: \(imageToZoom.frame.width), height: \(imageToZoom.frame.height)")
+            let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
+            print("NewImage frame: width: \(newImageFrame.width), height: \(newImageFrame.height)")
+            imageToZoom.frame = newImageFrame
+            
+            view.addSubview(zoomScrollView!)
+            zoomScrollView!.frame.origin = CGPoint(x: self.tableView.bounds.origin.x, y: self.tableView.bounds.origin.y)
+            view.bringSubviewToFront(zoomScrollView!)
+            zoomImageView = imageToZoom
+            
+            isZooming = true
+        }
     }
     
+    override func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return zoomImageView
+    }
+    
+    override func scrollViewDidZoom(scrollView: UIScrollView) {
+//        if scrollView.zoomScale <= minScale && scrollView.pinchGestureRecognizer!.state == .Ended {
+//            endScrolling()
+//        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
