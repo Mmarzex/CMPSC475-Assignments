@@ -21,6 +21,8 @@
 		12446E581BC965CE00B0EA31 /* ParkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446E571BC965CE00B0EA31 /* ParkCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		12446E5A1BC965F300B0EA31 /* ParkCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		12446E5C1BC9671D00B0EA31 /* ParkCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12446E5B1BC9671D00B0EA31 /* ParkCollectionReusableView.swift */; settings = {ASSET_TAGS = (); }; };
+		126CB6D01BCA153D002F140A /* table.png in Resources */ = {isa = PBXBuildFile; fileRef = 126CB6CE1BCA153D002F140A /* table.png */; settings = {ASSET_TAGS = (); }; };
+		126CB6D11BCA153D002F140A /* collection.png in Resources */ = {isa = PBXBuildFile; fileRef = 126CB6CF1BCA153D002F140A /* collection.png */; settings = {ASSET_TAGS = (); }; };
 		127573E61BC3712C0022AA39 /* tabBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127573E41BC3712C0022AA39 /* tabBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127573E91BC37BA70022AA39 /* ParkTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1278F0791BC464C0002BFAF0 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -102,6 +104,8 @@
 		12446E571BC965CE00B0EA31 /* ParkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkCollectionViewCell.swift; sourceTree = "<group>"; };
 		12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkCollectionViewController.swift; sourceTree = "<group>"; };
 		12446E5B1BC9671D00B0EA31 /* ParkCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkCollectionReusableView.swift; sourceTree = "<group>"; };
+		126CB6CE1BCA153D002F140A /* table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table.png; sourceTree = "<group>"; };
+		126CB6CF1BCA153D002F140A /* collection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collection.png; sourceTree = "<group>"; };
 		127573E51BC3712C0022AA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/tabBoard.storyboard; sourceTree = "<group>"; };
 		127573E91BC37BA70022AA39 /* ParkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
 		1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 		12CF95621BB9B80200CACE61 /* ParkScroll Assets */ = {
 			isa = PBXGroup;
 			children = (
+				126CB6CE1BCA153D002F140A /* table.png */,
+				126CB6CF1BCA153D002F140A /* collection.png */,
 				123AEA411BC0223300E171F2 /* Icon-40.png */,
 				123AEA421BC0223300E171F2 /* Icon-40@2x.png */,
 				123AEA431BC0223300E171F2 /* Icon-40@3x.png */,
@@ -438,8 +444,10 @@
 				12CF953F1BB9B72E00CACE61 /* LaunchScreen.storyboard in Resources */,
 				12CF95A81BB9B80200CACE61 /* Zion03.jpg in Resources */,
 				12CF95991BB9B80200CACE61 /* nps-logo.png in Resources */,
+				126CB6D11BCA153D002F140A /* collection.png in Resources */,
 				12CF95951BB9B80200CACE61 /* Glacier03.jpg in Resources */,
 				12CF95A61BB9B80200CACE61 /* Zion01.jpg in Resources */,
+				126CB6D01BCA153D002F140A /* table.png in Resources */,
 				12CF95981BB9B80200CACE61 /* GrandTeton02.jpg in Resources */,
 				123AEA4C1BC0223300E171F2 /* Icon-40@2x.png in Resources */,
 				12CF958F1BB9B80200CACE61 /* Carlsbad03.jpg in Resources */,

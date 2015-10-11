@@ -24,6 +24,10 @@ class ParkCollectionViewController: UICollectionViewController {
     
     var isZooming = false
 
+    var zoomedCellPath : NSIndexPath?
+    
+    var isAnimating = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -101,25 +105,31 @@ class ParkCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if !isZooming {
-            print("Selected Cell")
-            
+        if !isZooming {            
             let image = parkModel.imageAtIndexPath(indexPath)
             zoomScrollView!.frame = view.bounds
+            
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ParkCollectionViewCell
+            zoomedCellPath = indexPath
+            
             let imageToZoom = UIImageView(image: image)
             imageToZoom.contentMode = .ScaleAspectFit
-            imageToZoom.frame = zoomScrollView!.frame
+            imageToZoom.frame = startingFrameForZoomAnimation(cell.parkImage, cellOrigin: cell.frame.origin)
             
-            zoomScrollView!.contentSize = imageToZoom.frame.size
-            zoomScrollView!.addSubview(imageToZoom)
-            
-            let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
-            
-            imageToZoom.frame = newImageFrame
-            
-            view.addSubview(zoomScrollView!)
-
-            zoomScrollView!.frame.origin = view.bounds.origin
+            UIView.animateWithDuration(1.1, animations: {() -> Void in
+                
+                imageToZoom.frame = self.zoomScrollView!.frame
+                
+                self.zoomScrollView!.contentSize = imageToZoom.frame.size
+                self.zoomScrollView!.addSubview(imageToZoom)
+                
+                let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
+                imageToZoom.frame = newImageFrame
+                
+                self.view.addSubview(self.zoomScrollView!)
+                
+                self.zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: 0.0)
+            })
             
             view.bringSubviewToFront(zoomScrollView!)
             zoomImageView = imageToZoom
@@ -131,6 +141,13 @@ class ParkCollectionViewController: UICollectionViewController {
         
     }
     
+    func startingFrameForZoomAnimation(startingView: UIImageView, cellOrigin: CGPoint) -> CGRect {
+        var imageFrameInView = view.convertPoint(startingView.frame.origin, toView: view)
+        imageFrameInView.y += cellOrigin.y - collectionView!.contentOffset.y
+        imageFrameInView.x += cellOrigin.x
+        return CGRect(origin: imageFrameInView, size: startingView.frame.size)
+    }
+    
     override func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return zoomImageView
     }
@@ -138,15 +155,23 @@ class ParkCollectionViewController: UICollectionViewController {
     func zoomImageTapped(recognizer: UITapGestureRecognizer) {
         
         let scrollView = recognizer.view as! UIScrollView
-        if scrollView.zoomScale == 1.0 {
-            print("TAAAAP")
-            
-            zoomImageView!.removeFromSuperview()
-            zoomScrollView!.removeFromSuperview()
-            
-            zoomImageView = nil
-            
-            isZooming = false
+        if scrollView.zoomScale <= 1.0 && !isAnimating {
+            UIView.animateWithDuration(1.1, animations: {() -> Void in
+                self.isAnimating = true
+                let cell = self.collectionView!.cellForItemAtIndexPath(self.zoomedCellPath!) as! ParkCollectionViewCell
+                self.zoomImageView!.frame = self.startingFrameForZoomAnimation(cell.parkImage, cellOrigin: cell.frame.origin)
+                
+                }, completion: { finished in
+                    
+                    self.zoomImageView!.removeFromSuperview()
+                    self.zoomScrollView!.removeFromSuperview()
+                    
+                    self.zoomImageView = nil
+                    self.isZooming = false
+                    
+                    self.isAnimating = false
+            })
+        
         }
     }
     

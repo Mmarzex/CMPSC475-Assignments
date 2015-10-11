@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Table-->
         <scene sceneID="pJK-Bj-kmo">
             <objects>
                 <tableViewController id="aav-06-NR7" customClass="ParkTableViewController" customModule="ParkScroll" customModuleProvider="target" sceneMemberID="viewController">
@@ -13,6 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.64571836029999996" green="0.9938919879" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ParkCell" rowHeight="113" id="GEL-6t-3o1" customClass="ParkTableViewCell" customModule="ParkScroll" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="113"/>
@@ -43,6 +44,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.64571836029999996" green="0.9938919879" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="BbB-TI-vj6" firstAttribute="top" secondItem="5En-d8-nRO" secondAttribute="topMargin" constant="-8" id="2qq-NJ-juf"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="BbB-TI-vj6" secondAttribute="bottom" constant="-0.5" id="GrL-Mf-TzK"/>
@@ -66,46 +68,19 @@
                                     <outlet property="parkCellImage" destination="BbB-TI-vj6" id="s88-qZ-LiG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ParkHeader" id="QzC-6y-FqB" customClass="ParkTableHeaderCell" customModule="ParkScroll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="141" width="600" height="113"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QzC-6y-FqB" id="Idp-nN-jPC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="112.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xg3-CZ-EjL">
-                                            <rect key="frame" x="8" y="8" width="584" height="96.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <state key="normal" title="Button"/>
-                                            <connections>
-                                                <action selector="headButtonAction:" destination="QzC-6y-FqB" eventType="touchUpInside" id="8GY-3v-yiU"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Xg3-CZ-EjL" firstAttribute="trailing" secondItem="Idp-nN-jPC" secondAttribute="trailingMargin" id="OtW-2D-1pO"/>
-                                        <constraint firstItem="Xg3-CZ-EjL" firstAttribute="bottom" secondItem="Idp-nN-jPC" secondAttribute="bottomMargin" id="SUt-EZ-p1h"/>
-                                        <constraint firstItem="Xg3-CZ-EjL" firstAttribute="leading" secondItem="Idp-nN-jPC" secondAttribute="leadingMargin" id="ZRZ-HQ-upX"/>
-                                        <constraint firstItem="Xg3-CZ-EjL" firstAttribute="top" secondItem="Idp-nN-jPC" secondAttribute="topMargin" id="y9X-29-DG2"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="headerButton" destination="Xg3-CZ-EjL" id="NF0-PM-XrX"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="aav-06-NR7" id="aDt-KX-Uft"/>
                             <outlet property="delegate" destination="aav-06-NR7" id="c6U-El-hF2"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="kjr-ax-QLe"/>
+                    <tabBarItem key="tabBarItem" title="Table" image="table.png" id="kjr-ax-QLe"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5EM-JT-5Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1328" y="199"/>
         </scene>
-        <!--Item-->
+        <!--Collection-->
         <scene sceneID="Go3-EA-F2v">
             <objects>
                 <collectionViewController id="iZ7-Gg-IZu" customClass="ParkCollectionViewController" customModule="ParkScroll" customModuleProvider="target" sceneMemberID="viewController">
@@ -167,7 +142,7 @@
                             <outlet property="delegate" destination="iZ7-Gg-IZu" id="UDT-k1-n40"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="oe2-5b-LYo"/>
+                    <tabBarItem key="tabBarItem" title="Collection" image="collection.png" selectedImage="collection.png" id="oe2-5b-LYo"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNV-Ru-ymT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,4 +167,8 @@
             <point key="canvasLocation" x="508" y="535"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collection.png" width="30" height="30"/>
+        <image name="table.png" width="30" height="30"/>
+    </resources>
 </document>

@@ -24,6 +24,8 @@ class ParkTableViewController: UITableViewController {
     
     var isZooming = false
     
+    var isAnimating = false
+    
     var zoomedCellPath : NSIndexPath?
     
     override func viewDidLoad() {
@@ -129,11 +131,10 @@ class ParkTableViewController: UITableViewController {
     func zoomImageTapped(recognizer: UITapGestureRecognizer) {
         
         let scrollView = recognizer.view as! UIScrollView
-        if scrollView.zoomScale <= 1.0 {
-            print("TAAAAAP")
+        if scrollView.zoomScale <= 1.0 && !isAnimating {
             
             UIView.animateWithDuration(1.1, animations: {() -> Void in
-                
+                self.isAnimating = true
                 let cell = self.tableView.cellForRowAtIndexPath(self.zoomedCellPath!) as! ParkTableViewCell
                 self.zoomImageView!.frame = self.startingFrameForZoomAnimation(cell.parkCellImage, cellOrigin: cell.frame.origin)
                 }, completion: { finished in
@@ -145,6 +146,7 @@ class ParkTableViewController: UITableViewController {
                     self.isZooming = false
                     
                     self.tableView.scrollEnabled = true
+                    self.isAnimating = false
             })
         }
     }
@@ -152,7 +154,6 @@ class ParkTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !isZooming {
             tableView.scrollEnabled = false
-            print("Section : \(indexPath.section), row: \(indexPath.row) tapped")
             
             zoomScrollView!.frame = view.bounds
             
@@ -179,17 +180,6 @@ class ParkTableViewController: UITableViewController {
                 self.zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: tableView.contentOffset.y)
             })
             
-            
-//            imageToZoom.frame = zoomScrollView!.frame
-            
-//            zoomScrollView!.contentSize = imageToZoom.frame.size
-//            zoomScrollView!.addSubview(imageToZoom)
-            
-//            let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
-//            imageToZoom.frame = newImageFrame
-            
-//            view.addSubview(zoomScrollView!)
-//            zoomScrollView!.frame.origin = CGPoint(x: self.tableView.bounds.origin.x, y: self.tableView.bounds.origin.y)
             view.bringSubviewToFront(zoomScrollView!)
             zoomImageView = imageToZoom
             
