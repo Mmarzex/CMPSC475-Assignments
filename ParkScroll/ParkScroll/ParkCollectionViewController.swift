@@ -105,7 +105,7 @@ class ParkCollectionViewController: UICollectionViewController {
             print("Selected Cell")
             
             let image = parkModel.imageAtIndexPath(indexPath)
-            
+            zoomScrollView!.frame = view.bounds
             let imageToZoom = UIImageView(image: image)
             imageToZoom.contentMode = .ScaleAspectFit
             imageToZoom.frame = zoomScrollView!.frame
@@ -118,7 +118,8 @@ class ParkCollectionViewController: UICollectionViewController {
             imageToZoom.frame = newImageFrame
             
             view.addSubview(zoomScrollView!)
-            zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: 0.0)
+
+            zoomScrollView!.frame.origin = view.bounds.origin
             
             view.bringSubviewToFront(zoomScrollView!)
             zoomImageView = imageToZoom
