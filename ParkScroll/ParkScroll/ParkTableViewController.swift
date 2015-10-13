@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol ParkSelectionDelegate : class {
+    func parkSelected(indexPath : NSIndexPath)
+}
+
 class ParkTableViewController: UITableViewController {
 
+    weak var delegate: ParkSelectionDelegate?
+    
     let parkModel = ParkModel.sharedInstance
     
     let maxScale : CGFloat = 10.0
@@ -36,7 +42,9 @@ class ParkTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.tableView.contentInset = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 0.0, right: 0.0)
+        
+        // MARK: This is for assignment 6 so top section is under status bar
+        //self.tableView.contentInset = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 0.0, right: 0.0)
         
         for _ in 0...parkModel.numberOfSections() - 1 {
             sectionIsCollapsed.append(false)
@@ -52,6 +60,17 @@ class ParkTableViewController: UITableViewController {
         let zoomScrollTapGesture = UITapGestureRecognizer (target: self, action:"zoomImageTapped:")
         zoomScrollView!.addGestureRecognizer(zoomScrollTapGesture)
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if isZooming {
+            zoomScrollView!.frame = view.bounds
+            zoomImageView!.frame = zoomScrollView!.frame
+            let newImageFrame = CGRect(x: 0.0, y: 0.0, width: zoomImageView!.frame.size.width, height: zoomImageView!.frame.size.height)
+            zoomImageView!.frame = newImageFrame
+            
+            zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: tableView.contentOffset.y)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -152,43 +171,59 @@ class ParkTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if !isZooming {
-            tableView.scrollEnabled = false
-            
-            zoomScrollView!.frame = view.bounds
-            
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! ParkTableViewCell
-            zoomedCellPath = indexPath
-            
-            let image = parkModel.imageAtIndexPath(indexPath)
-            let imageToZoom = UIImageView(image: image)
-            imageToZoom.contentMode = .ScaleAspectFit
-            
-            imageToZoom.frame = startingFrameForZoomAnimation(cell.parkCellImage, cellOrigin: cell.frame.origin)
-            
-            UIView.animateWithDuration(1.1, animations: {() -> Void in
-                
-                imageToZoom.frame = self.zoomScrollView!.frame
-                self.zoomScrollView!.contentSize = imageToZoom.frame.size
-                self.zoomScrollView!.addSubview(imageToZoom)
-                
-                let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
-                imageToZoom.frame = newImageFrame
-                
-                self.view.addSubview(self.zoomScrollView!)
-                
-                self.zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: tableView.contentOffset.y)
-            })
-            
-            view.bringSubviewToFront(zoomScrollView!)
-            zoomImageView = imageToZoom
-            
-            isZooming = true
+        // MARK: Assignment 6 code
+//        if !isZooming {
+//            zoomForIndexPath(tableView, indexPath: indexPath)
+//        }
+        
+        
+        if let detailViewController = delegate as? DetailViewController {
+            if let splitView = splitViewController {
+                delegate!.parkSelected(indexPath)
+                splitView.showDetailViewController(detailViewController, sender: nil)
+            }
+//            splitViewController?.showDetailViewController(detailViewController.navigationController!, sender: nil)
         }
+        
     }
     
     override func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return zoomImageView
+    }
+    
+    func zoomForIndexPath(tableView: UITableView, indexPath: NSIndexPath) {
+        tableView.scrollEnabled = false
+        
+        zoomScrollView!.frame = view.bounds
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ParkTableViewCell
+        zoomedCellPath = indexPath
+        
+        let image = parkModel.imageAtIndexPath(indexPath)
+        let imageToZoom = UIImageView(image: image)
+        imageToZoom.contentMode = .ScaleAspectFit
+        
+        imageToZoom.frame = startingFrameForZoomAnimation(cell.parkCellImage, cellOrigin: cell.frame.origin)
+        
+        UIView.animateWithDuration(1.1, animations: {() -> Void in
+        
+            imageToZoom.frame = self.zoomScrollView!.frame
+            self.zoomScrollView!.contentSize = imageToZoom.frame.size
+            self.zoomScrollView!.addSubview(imageToZoom)
+        
+            let newImageFrame = CGRect(x: 0.0, y: 0.0, width: imageToZoom.frame.size.width, height: imageToZoom.frame.size.height)
+            imageToZoom.frame = newImageFrame
+        
+            self.view.addSubview(self.zoomScrollView!)
+        
+            self.zoomScrollView!.frame.origin = CGPoint(x: 0.0, y: tableView.contentOffset.y)
+        })
+        
+        view.bringSubviewToFront(zoomScrollView!)
+        zoomImageView = imageToZoom
+        
+        isZooming = true
+
     }
     
     func startingFrameForZoomAnimation(startingView : UIImageView, cellOrigin: CGPoint) -> CGRect {

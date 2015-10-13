@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let splitView = window!.rootViewController as! UISplitViewController
+        
+        let leftView = splitView.viewControllers.first as! UINavigationController
+        let parkTableController = leftView.topViewController as! ParkTableViewController
+        
+        let rightView = splitView.viewControllers.last as! DetailViewController
+//        let detailViewController = rightView.topViewController as! DetailViewController
+        
+        parkTableController.delegate = rightView
+        // SET FIRST PARK HERE, WILL NEED PARK MODEL
+        
         return true
     }
 

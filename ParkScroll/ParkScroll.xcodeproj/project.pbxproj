@@ -26,6 +26,7 @@
 		127573E61BC3712C0022AA39 /* tabBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127573E41BC3712C0022AA39 /* tabBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127573E91BC37BA70022AA39 /* ParkTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1278F0791BC464C0002BFAF0 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		12BFBDBF1BCCAAF200444770 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFBDBE1BCCAAF200444770 /* DetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95341BB9B72E00CACE61 /* AppDelegate.swift */; };
 		12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95361BB9B72E00CACE61 /* ViewController.swift */; };
 		12CF953A1BB9B72E00CACE61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95381BB9B72E00CACE61 /* Main.storyboard */; };
@@ -109,6 +110,7 @@
 		127573E51BC3712C0022AA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/tabBoard.storyboard; sourceTree = "<group>"; };
 		127573E91BC37BA70022AA39 /* ParkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
 		1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
+		12BFBDBE1BCCAAF200444770 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		12CF95311BB9B72E00CACE61 /* ParkScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CF95341BB9B72E00CACE61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CF95361BB9B72E00CACE61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				12CF95361BB9B72E00CACE61 /* ViewController.swift */,
 				127573E91BC37BA70022AA39 /* ParkTableViewController.swift */,
 				12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */,
+				12BFBDBE1BCCAAF200444770 /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12BFBDBF1BCCAAF200444770 /* DetailViewController.swift in Sources */,
 				12446E5C1BC9671D00B0EA31 /* ParkCollectionReusableView.swift in Sources */,
 				127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */,
 				12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */,
