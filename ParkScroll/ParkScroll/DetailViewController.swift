@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController, ParkSelectionDelegate {
 
     let parkModel = ParkModel.sharedInstance
+    let captionLabel = UILabel()
     
     @IBOutlet var detailImage: UIImageView!
     override func viewDidLoad() {
@@ -26,6 +27,14 @@ class DetailViewController: UIViewController, ParkSelectionDelegate {
     
     func parkSelected(indexPath: NSIndexPath) {
         detailImage.image = parkModel.imageAtIndexPath(indexPath)
+        
+        
+        captionLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        captionLabel.text = parkModel.captionAtIndexPath(indexPath)
+        captionLabel.sizeToFit()
+        captionLabel.textColor = UIColor.whiteColor()
+        captionLabel.center = CGPoint(x: (view.frame.width / 2.0), y: view.frame.height - (captionLabel.frame.height * 1.5))
+        view.addSubview(captionLabel)
     }
     
     /*
