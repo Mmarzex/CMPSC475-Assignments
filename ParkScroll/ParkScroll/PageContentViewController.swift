@@ -14,17 +14,21 @@ class PageContentViewController: UIViewController {
 
     @IBOutlet var dismissButton: UIButton!
     
+    @IBOutlet var walkthroughImageView: UIImageView!
     private var nameText:String?
+    private var walkthroughImage:UIImage?
     var walkthroughIndex:Int?
     
-    func configure(name : String, index: Int) {
-        nameText = name
+    func configure(description : String, index: Int, image : UIImage) {
+        nameText = description
         walkthroughIndex = index
+        walkthroughImage = image
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = nameText!
+        walkthroughImageView.image = walkthroughImage!
         if walkthroughIndex! != WalkthroughModel.numberOfPages - 1 {
             dismissButton.hidden = true
         } else {

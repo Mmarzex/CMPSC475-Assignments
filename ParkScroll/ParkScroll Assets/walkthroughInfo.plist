@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+    <dict>
+        <key>imageName</key>
+        <string>walkthroughOne</string>
+        <key>text</key>
+        <string>You can collapse headers</string>
+    </dict>
+    <dict>
+        <key>imageName</key>
+        <string>walkthroughTwo</string>
+        <key>text</key>
+        <string>You can tap cells to display images</string>
+    </dict>
+    <dict>
+        <key>imageName</key>
+        <string>walkthroughThree</string>
+        <key>text</key>
+        <string>You can see full screen images with captions</string>
+    </dict>
+</array>
+</plist>

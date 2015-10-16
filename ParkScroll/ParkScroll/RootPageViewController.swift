@@ -38,7 +38,7 @@ class RootPageViewController: UIViewController, UIPageViewControllerDataSource {
     
     func viewControllerAtIndex(index:Int) -> UIViewController {
         let contentViewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageContent") as! PageContentViewController
-        contentViewController.configure(walkthroughModel.nameAtIndex(index), index: index)
+        contentViewController.configure(walkthroughModel.descriptionAtIndex(index), index: index, image: walkthroughModel.imageAtIndex(index))
 //        contentViewController.nameLabel.text = walkthroughModel.nameAtIndex(index)
         
         return contentViewController

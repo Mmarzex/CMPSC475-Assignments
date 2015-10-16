@@ -18,18 +18,36 @@ public class WalkthroughModel {
     struct PageContent {
         let name : String
         let description : String
-//        let image : UIImage
+        let image : UIImage?
     }
     let pages : [PageContent]
     
+    enum DeviceType : String {
+        case phone = "Phone"
+        case pad = "Pad"
+    }
+    
+    private var currentDeviceType : DeviceType
+    
     private init() {
     
-        let one = PageContent(name: "One", description: "ONE ONE ONE")
-        let two = PageContent(name: "TWO", description: "TWO TWO TWO")
-        let three = PageContent(name: "THREE", description: "THREE THREE THREE")
+        var _pages = [PageContent]()
         
-        pages = [one, two, three]
+        let filePath = NSBundle.mainBundle().pathForResource("walkthroughInfo", ofType: "plist")
+        if let rawData = NSArray(contentsOfFile: filePath!) as? Array<AnyObject> {
+            for (index, x) in rawData.enumerate() {
+                let name = x["imageName"]! as! String
+                let description = x["text"]! as! String
+                currentDeviceType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .pad : .phone
+                let imageName = name + currentDeviceType.rawValue
+                let image = UIImage(named: imageName)
+                _pages.append(PageContent(name: name, description: description, image: image))
+            }
+            
+        }
         
+        pages = _pages
+        currentDeviceType = .phone
     }
 
     public func nameAtIndex(index: Int) -> String {
@@ -38,5 +56,13 @@ public class WalkthroughModel {
     
     public func descriptionAtIndex(index: Int) -> String {
         return pages[index].description
+    }
+    
+    public func imageAtIndex(index: Int) -> UIImage {
+        return pages[index].image!
+    }
+    
+    public func currentDevice() -> UIUserInterfaceIdiom {
+        return UIDevice.currentDevice().userInterfaceIdiom
     }
 }

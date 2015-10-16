@@ -49,18 +49,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8z-Nr-5UJ">
-                                <rect key="frame" x="279" y="289" width="42" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dZd-GX-h8R">
+                                <rect key="frame" x="150" y="57" width="301" height="375"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DF-vN-QpV">
+                                <rect key="frame" x="279" y="482" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9H5-0p-nUg">
-                                <rect key="frame" x="279" y="460" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="CZc-0i-VyH"/>
-                                    <constraint firstAttribute="width" constant="46" id="fjq-WM-C6a"/>
-                                </constraints>
+                                <rect key="frame" x="277" y="543" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="dismissButtonAction:" destination="6fO-LZ-PWk" eventType="touchUpInside" id="u7g-xA-b3d"/>
@@ -69,16 +68,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9H5-0p-nUg" firstAttribute="leading" secondItem="h8z-Nr-5UJ" secondAttribute="leading" id="9G2-to-Ho5"/>
-                            <constraint firstItem="9lo-fL-jMY" firstAttribute="top" secondItem="9H5-0p-nUg" secondAttribute="bottom" constant="110" id="Ai7-Z7-YNY"/>
-                            <constraint firstItem="h8z-Nr-5UJ" firstAttribute="centerX" secondItem="385-Bv-68I" secondAttribute="centerX" id="Pj4-dQ-Vfp"/>
-                            <constraint firstItem="9H5-0p-nUg" firstAttribute="top" secondItem="h8z-Nr-5UJ" secondAttribute="bottom" constant="150" id="bLq-3F-E5W"/>
-                            <constraint firstItem="h8z-Nr-5UJ" firstAttribute="centerY" secondItem="385-Bv-68I" secondAttribute="centerY" id="k98-Zh-PdK"/>
+                            <constraint firstItem="dZd-GX-h8R" firstAttribute="centerX" secondItem="385-Bv-68I" secondAttribute="centerX" id="4Ol-fM-9W6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dZd-GX-h8R" secondAttribute="trailing" constant="129" id="G4Z-Hu-I3C"/>
+                            <constraint firstItem="9lo-fL-jMY" firstAttribute="top" secondItem="9H5-0p-nUg" secondAttribute="bottom" constant="27" id="LXW-al-zag"/>
+                            <constraint firstItem="dZd-GX-h8R" firstAttribute="top" secondItem="gC4-dC-F83" secondAttribute="bottom" constant="37" id="RJS-RV-Odl"/>
+                            <constraint firstItem="dZd-GX-h8R" firstAttribute="leading" secondItem="385-Bv-68I" secondAttribute="leadingMargin" constant="130" id="YR6-vV-q3o"/>
+                            <constraint firstItem="9H5-0p-nUg" firstAttribute="top" secondItem="0DF-vN-QpV" secondAttribute="bottom" constant="40" id="eKz-U8-eSi"/>
+                            <constraint firstItem="9H5-0p-nUg" firstAttribute="centerX" secondItem="385-Bv-68I" secondAttribute="centerX" id="fhZ-MC-Wjd"/>
+                            <constraint firstItem="0DF-vN-QpV" firstAttribute="top" secondItem="dZd-GX-h8R" secondAttribute="bottom" constant="50" id="rqm-nC-QRV"/>
+                            <constraint firstItem="0DF-vN-QpV" firstAttribute="centerX" secondItem="385-Bv-68I" secondAttribute="centerX" id="uGK-zW-byh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dismissButton" destination="9H5-0p-nUg" id="CY2-LJ-E2a"/>
-                        <outlet property="nameLabel" destination="h8z-Nr-5UJ" id="nhz-el-CQ3"/>
+                        <outlet property="nameLabel" destination="0DF-vN-QpV" id="2m2-Hh-HTK"/>
+                        <outlet property="walkthroughImageView" destination="dZd-GX-h8R" id="2Vl-Bk-5YG"/>
                         <segue destination="BMP-ag-fBZ" kind="show" identifier="mainSegue" id="biR-gb-bu0"/>
                     </connections>
                 </viewController>

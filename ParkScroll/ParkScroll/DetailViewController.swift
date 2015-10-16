@@ -35,10 +35,8 @@ class DetailViewController: UIViewController, ParkSelectionDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        //        let window = UIApplication.sharedApplication().keyWindow
         if !isInitialized {
             let splitView = self.splitViewController!
-            let vcs = splitView.viewControllers
             let leftView = splitView.viewControllers.first as! UINavigationController
             let parkTableController = leftView.topViewController as! ParkTableViewController
             
@@ -47,15 +45,6 @@ class DetailViewController: UIViewController, ParkSelectionDelegate {
             
             isInitialized = true
         }
-                //        let splitView = window!.rootViewController as! UISplitViewController
-        
-        //        let leftView = splitView.viewControllers.first as! UINavigationController
-        //        let parkTableController = leftView.topViewController as! ParkTableViewController
-        
-        //        let rightView = splitView.viewControllers.last as! DetailViewController
-        //        let detailViewController = rightView.topViewController as! DetailViewController
-        
-        //        parkTableController.delegate = rightView
         // SET FIRST PARK HERE, WILL NEED PARK MODEL
     }
     
@@ -65,29 +54,10 @@ class DetailViewController: UIViewController, ParkSelectionDelegate {
         
         let textFont: UIFont = UIFont(name: "Helvetica Bold", size: 20)!
         
-//        UIGraphicsBeginImageContext(originalImage.size)
-//        
-//        let textFontAttributes = [
-//            NSFontAttributeName: textFont,
-//            NSForegroundColorAttributeName: textColor,
-//        ]
-//        
-//        originalImage.drawInRect(CGRect(x: 0, y: 0, width: originalImage.size.width, height: originalImage.size.height))
-//        
-//        let rect : CGRect = CGRect(x: 15, y: originalImage.size.height / 2.0, width: originalImage.size.width, height: originalImage.size.height)
-//        caption.drawInRect(rect, withAttributes: textFontAttributes)
-//        
-//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//        
-//        UIGraphicsEndImageContext()
-//        
-//        detailImage.image = newImage
-        
         detailImage.image = image
         
         captionLabel.textColor = UIColor.whiteColor()
         captionLabel.font = textFont
-//        captionLabel.textColor = UIColor(red:0.65, green:0.99, blue:1.00, alpha:1.0)
         captionLabel.text = parkModel.captionAtIndexPath(indexPath)
         captionLabel.sizeToFit()
         
