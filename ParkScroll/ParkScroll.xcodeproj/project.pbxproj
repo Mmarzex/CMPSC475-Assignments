@@ -69,6 +69,9 @@
 		12CF95A71BB9B80200CACE61 /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95841BB9B80200CACE61 /* Zion02.jpg */; settings = {ASSET_TAGS = (); }; };
 		12CF95A81BB9B80200CACE61 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95851BB9B80200CACE61 /* Zion03.jpg */; settings = {ASSET_TAGS = (); }; };
 		12CF95AA1BB9B84C00CACE61 /* ParkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95A91BB9B84C00CACE61 /* ParkModel.swift */; settings = {ASSET_TAGS = (); }; };
+		12E7A7E71BD054620017FD02 /* RootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7A7E61BD054620017FD02 /* RootPageViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		12E7A7E91BD056C20017FD02 /* WalkthroughModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7A7E81BD056C20017FD02 /* WalkthroughModel.swift */; settings = {ASSET_TAGS = (); }; };
+		12E7A7ED1BD066EA0017FD02 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7A7EC1BD066EA0017FD02 /* PageContentViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		12EB927F1BC0D848009BCBCF /* ParkScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EB927E1BC0D848009BCBCF /* ParkScrollUITests.swift */; settings = {ASSET_TAGS = (); }; };
 		12F955211BC0D5B700BCA8D2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F9551F1BC0D5B700BCA8D2 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -158,6 +161,9 @@
 		12CF95841BB9B80200CACE61 /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
 		12CF95851BB9B80200CACE61 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
 		12CF95A91BB9B84C00CACE61 /* ParkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkModel.swift; sourceTree = "<group>"; };
+		12E7A7E61BD054620017FD02 /* RootPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootPageViewController.swift; sourceTree = "<group>"; };
+		12E7A7E81BD056C20017FD02 /* WalkthroughModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughModel.swift; sourceTree = "<group>"; };
+		12E7A7EC1BD066EA0017FD02 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		12EB927E1BC0D848009BCBCF /* ParkScrollUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkScrollUITests.swift; sourceTree = "<group>"; };
 		12EB92801BC0D9F6009BCBCF /* ParkScrollUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParkScrollUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		12F9551F1BC0D5B700BCA8D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,6 +210,8 @@
 				127573E91BC37BA70022AA39 /* ParkTableViewController.swift */,
 				12446E591BC965F300B0EA31 /* ParkCollectionViewController.swift */,
 				12BFBDBE1BCCAAF200444770 /* DetailViewController.swift */,
+				12E7A7E61BD054620017FD02 /* RootPageViewController.swift */,
+				12E7A7EC1BD066EA0017FD02 /* PageContentViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -260,6 +268,7 @@
 				12CF953B1BB9B72E00CACE61 /* Assets.xcassets */,
 				12CF95341BB9B72E00CACE61 /* AppDelegate.swift */,
 				12CF95A91BB9B84C00CACE61 /* ParkModel.swift */,
+				12E7A7E81BD056C20017FD02 /* WalkthroughModel.swift */,
 				12CF95401BB9B72E00CACE61 /* Info.plist */,
 			);
 			path = ParkScroll;
@@ -521,10 +530,13 @@
 				12BFBDBF1BCCAAF200444770 /* DetailViewController.swift in Sources */,
 				12446E5C1BC9671D00B0EA31 /* ParkCollectionReusableView.swift in Sources */,
 				127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */,
+				12E7A7E91BD056C20017FD02 /* WalkthroughModel.swift in Sources */,
 				12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */,
 				1278F0791BC464C0002BFAF0 /* ParkTableViewCell.swift in Sources */,
 				12446E581BC965CE00B0EA31 /* ParkCollectionViewCell.swift in Sources */,
 				12CF95AA1BB9B84C00CACE61 /* ParkModel.swift in Sources */,
+				12E7A7E71BD054620017FD02 /* RootPageViewController.swift in Sources */,
+				12E7A7ED1BD066EA0017FD02 /* PageContentViewController.swift in Sources */,
 				12446E5A1BC965F300B0EA31 /* ParkCollectionViewController.swift in Sources */,
 				12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */,
 			);

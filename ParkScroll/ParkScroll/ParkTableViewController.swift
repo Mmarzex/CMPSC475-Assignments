@@ -62,6 +62,29 @@ class ParkTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+////        let window = UIApplication.sharedApplication().keyWindow
+//        let splitView = self.splitViewController!
+//        let vcs = splitView.viewControllers
+////        let leftView = splitView.viewControllers.first as! UINavigationController
+////        let parkTableController = leftView.topViewController as! ParkTableViewController
+//        
+//        let rightView = splitView.viewControllers.last as! UINavigationController
+//        let top = rightView.topViewController as! DetailViewController
+//        self.delegate = top
+////        let splitView = window!.rootViewController as! UISplitViewController
+//        
+////        let leftView = splitView.viewControllers.first as! UINavigationController
+////        let parkTableController = leftView.topViewController as! ParkTableViewController
+//        
+////        let rightView = splitView.viewControllers.last as! DetailViewController
+//        //        let detailViewController = rightView.topViewController as! DetailViewController
+//        
+////        parkTableController.delegate = rightView
+//        // SET FIRST PARK HERE, WILL NEED PARK MODEL
+    }
+    
     override func viewDidLayoutSubviews() {
         if isZooming {
             zoomScrollView!.frame = view.bounds
