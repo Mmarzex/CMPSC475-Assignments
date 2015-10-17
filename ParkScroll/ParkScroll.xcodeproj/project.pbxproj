@@ -26,14 +26,14 @@
 		127573E61BC3712C0022AA39 /* tabBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127573E41BC3712C0022AA39 /* tabBoard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		127573EA1BC37BA70022AA39 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127573E91BC37BA70022AA39 /* ParkTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1278F0791BC464C0002BFAF0 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		128A099D1BD2F829006F5807 /* walkthroughThreePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 128A09971BD2F829006F5807 /* walkthroughThreePad.png */; settings = {ASSET_TAGS = (); }; };
+		128A099E1BD2F829006F5807 /* walkthroughTwoPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 128A09981BD2F829006F5807 /* walkthroughTwoPad.png */; settings = {ASSET_TAGS = (); }; };
+		128A099F1BD2F829006F5807 /* walkthroughOnePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 128A09991BD2F829006F5807 /* walkthroughOnePad.png */; settings = {ASSET_TAGS = (); }; };
+		128A09A01BD2F829006F5807 /* walkthroughThreePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 128A099A1BD2F829006F5807 /* walkthroughThreePhone.png */; settings = {ASSET_TAGS = (); }; };
+		128A09A11BD2F829006F5807 /* walkthroughTwoPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 128A099B1BD2F829006F5807 /* walkthroughTwoPhone.png */; settings = {ASSET_TAGS = (); }; };
+		128A09A21BD2F829006F5807 /* walkthroughOnePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 128A099C1BD2F829006F5807 /* walkthroughOnePhone.png */; settings = {ASSET_TAGS = (); }; };
 		129B91BF1BD13D7700DA3A6C /* walkthroughInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 129B91BE1BD13D7700DA3A6C /* walkthroughInfo.plist */; settings = {ASSET_TAGS = (); }; };
 		12BFBDBF1BCCAAF200444770 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFBDBE1BCCAAF200444770 /* DetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		12C0BA021BD14D0800EDF8A1 /* walkthroughThreePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C0B9FC1BD14D0800EDF8A1 /* walkthroughThreePad.png */; settings = {ASSET_TAGS = (); }; };
-		12C0BA031BD14D0800EDF8A1 /* walkthroughTwoPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C0B9FD1BD14D0800EDF8A1 /* walkthroughTwoPad.png */; settings = {ASSET_TAGS = (); }; };
-		12C0BA041BD14D0800EDF8A1 /* walkthroughOnePad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C0B9FE1BD14D0800EDF8A1 /* walkthroughOnePad.png */; settings = {ASSET_TAGS = (); }; };
-		12C0BA051BD14D0800EDF8A1 /* walkthroughThreePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C0B9FF1BD14D0800EDF8A1 /* walkthroughThreePhone.png */; settings = {ASSET_TAGS = (); }; };
-		12C0BA061BD14D0800EDF8A1 /* walkthroughTwoPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C0BA001BD14D0800EDF8A1 /* walkthroughTwoPhone.png */; settings = {ASSET_TAGS = (); }; };
-		12C0BA071BD14D0800EDF8A1 /* walkthroughOnePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C0BA011BD14D0800EDF8A1 /* walkthroughOnePhone.png */; settings = {ASSET_TAGS = (); }; };
 		12CF95351BB9B72E00CACE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95341BB9B72E00CACE61 /* AppDelegate.swift */; };
 		12CF95371BB9B72E00CACE61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF95361BB9B72E00CACE61 /* ViewController.swift */; };
 		12CF953A1BB9B72E00CACE61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CF95381BB9B72E00CACE61 /* Main.storyboard */; };
@@ -120,14 +120,14 @@
 		127573E51BC3712C0022AA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/tabBoard.storyboard; sourceTree = "<group>"; };
 		127573E91BC37BA70022AA39 /* ParkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
 		1278F0781BC464C0002BFAF0 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
+		128A09971BD2F829006F5807 /* walkthroughThreePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughThreePad.png; sourceTree = "<group>"; };
+		128A09981BD2F829006F5807 /* walkthroughTwoPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughTwoPad.png; sourceTree = "<group>"; };
+		128A09991BD2F829006F5807 /* walkthroughOnePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughOnePad.png; sourceTree = "<group>"; };
+		128A099A1BD2F829006F5807 /* walkthroughThreePhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughThreePhone.png; sourceTree = "<group>"; };
+		128A099B1BD2F829006F5807 /* walkthroughTwoPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughTwoPhone.png; sourceTree = "<group>"; };
+		128A099C1BD2F829006F5807 /* walkthroughOnePhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughOnePhone.png; sourceTree = "<group>"; };
 		129B91BE1BD13D7700DA3A6C /* walkthroughInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = walkthroughInfo.plist; sourceTree = "<group>"; };
 		12BFBDBE1BCCAAF200444770 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		12C0B9FC1BD14D0800EDF8A1 /* walkthroughThreePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughThreePad.png; sourceTree = "<group>"; };
-		12C0B9FD1BD14D0800EDF8A1 /* walkthroughTwoPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughTwoPad.png; sourceTree = "<group>"; };
-		12C0B9FE1BD14D0800EDF8A1 /* walkthroughOnePad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughOnePad.png; sourceTree = "<group>"; };
-		12C0B9FF1BD14D0800EDF8A1 /* walkthroughThreePhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughThreePhone.png; sourceTree = "<group>"; };
-		12C0BA001BD14D0800EDF8A1 /* walkthroughTwoPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughTwoPhone.png; sourceTree = "<group>"; };
-		12C0BA011BD14D0800EDF8A1 /* walkthroughOnePhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkthroughOnePhone.png; sourceTree = "<group>"; };
 		12CF95311BB9B72E00CACE61 /* ParkScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CF95341BB9B72E00CACE61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CF95361BB9B72E00CACE61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +300,12 @@
 		12CF95621BB9B80200CACE61 /* ParkScroll Assets */ = {
 			isa = PBXGroup;
 			children = (
+				128A09971BD2F829006F5807 /* walkthroughThreePad.png */,
+				128A09981BD2F829006F5807 /* walkthroughTwoPad.png */,
+				128A09991BD2F829006F5807 /* walkthroughOnePad.png */,
+				128A099A1BD2F829006F5807 /* walkthroughThreePhone.png */,
+				128A099B1BD2F829006F5807 /* walkthroughTwoPhone.png */,
+				128A099C1BD2F829006F5807 /* walkthroughOnePhone.png */,
 				126CB6CE1BCA153D002F140A /* table.png */,
 				126CB6CF1BCA153D002F140A /* collection.png */,
 				123AEA411BC0223300E171F2 /* Icon-40.png */,
@@ -308,12 +314,6 @@
 				123AEA441BC0223300E171F2 /* Icon-60@2x.png */,
 				123AEA451BC0223300E171F2 /* Icon-60@3x.png */,
 				123AEA461BC0223300E171F2 /* Icon-76.png */,
-				12C0B9FC1BD14D0800EDF8A1 /* walkthroughThreePad.png */,
-				12C0B9FD1BD14D0800EDF8A1 /* walkthroughTwoPad.png */,
-				12C0B9FE1BD14D0800EDF8A1 /* walkthroughOnePad.png */,
-				12C0B9FF1BD14D0800EDF8A1 /* walkthroughThreePhone.png */,
-				12C0BA001BD14D0800EDF8A1 /* walkthroughTwoPhone.png */,
-				12C0BA011BD14D0800EDF8A1 /* walkthroughOnePhone.png */,
 				123AEA471BC0223300E171F2 /* Icon-76@2x.png */,
 				123AEA481BC0223300E171F2 /* Icon-Small.png */,
 				123AEA491BC0223300E171F2 /* Icon-Small@2x.png */,
@@ -485,7 +485,7 @@
 				123AEA4C1BC0223300E171F2 /* Icon-40@2x.png in Resources */,
 				12CF958F1BB9B80200CACE61 /* Carlsbad03.jpg in Resources */,
 				12CF95921BB9B80200CACE61 /* Everglades02.jpg in Resources */,
-				12C0BA061BD14D0800EDF8A1 /* walkthroughTwoPhone.png in Resources */,
+				128A09A11BD2F829006F5807 /* walkthroughTwoPhone.png in Resources */,
 				123AEA541BC0223300E171F2 /* Icon-Small@3x.png in Resources */,
 				12CF958C1BB9B80200CACE61 /* BryceCanyon03.jpg in Resources */,
 				12CF95931BB9B80200CACE61 /* Glacier01.jpg in Resources */,
@@ -497,23 +497,23 @@
 				12CF95A21BB9B80200CACE61 /* Yosemite03.jpg in Resources */,
 				123AEA4E1BC0223300E171F2 /* Icon-60@2x.png in Resources */,
 				123AEA521BC0223300E171F2 /* Icon-Small.png in Resources */,
-				12C0BA021BD14D0800EDF8A1 /* walkthroughThreePad.png in Resources */,
+				128A099D1BD2F829006F5807 /* walkthroughThreePad.png in Resources */,
 				12CF958B1BB9B80200CACE61 /* BryceCanyon02.jpg in Resources */,
 				12CF95901BB9B80200CACE61 /* Carlsbad04.jpg in Resources */,
-				12C0BA051BD14D0800EDF8A1 /* walkthroughThreePhone.png in Resources */,
+				128A09A01BD2F829006F5807 /* walkthroughThreePhone.png in Resources */,
 				123AEA361BC0218F00E171F2 /* Contents.json in Resources */,
 				12CF95961BB9B80200CACE61 /* Glacier04.jpg in Resources */,
 				12CF95A71BB9B80200CACE61 /* Zion02.jpg in Resources */,
-				12C0BA031BD14D0800EDF8A1 /* walkthroughTwoPad.png in Resources */,
+				128A099E1BD2F829006F5807 /* walkthroughTwoPad.png in Resources */,
 				12CF959E1BB9B80200CACE61 /* Yellowstone03.jpg in Resources */,
 				123AEA4B1BC0223300E171F2 /* Icon-40.png in Resources */,
 				12CF959F1BB9B80200CACE61 /* Yellowstone04.jpg in Resources */,
 				12CF959A1BB9B80200CACE61 /* NPSbw.png in Resources */,
-				12C0BA041BD14D0800EDF8A1 /* walkthroughOnePad.png in Resources */,
+				128A099F1BD2F829006F5807 /* walkthroughOnePad.png in Resources */,
 				12CF958D1BB9B80200CACE61 /* Carlsbad01.jpg in Resources */,
 				129B91BF1BD13D7700DA3A6C /* walkthroughInfo.plist in Resources */,
 				12CF959D1BB9B80200CACE61 /* Yellowstone02.jpg in Resources */,
-				12C0BA071BD14D0800EDF8A1 /* walkthroughOnePhone.png in Resources */,
+				128A09A21BD2F829006F5807 /* walkthroughOnePhone.png in Resources */,
 				12CF95941BB9B80200CACE61 /* Glacier02.jpg in Resources */,
 				123AEA4F1BC0223300E171F2 /* Icon-60@3x.png in Resources */,
 				12CF95A41BB9B80200CACE61 /* Yosemite05.jpg in Resources */,

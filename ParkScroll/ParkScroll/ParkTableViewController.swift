@@ -46,6 +46,10 @@ class ParkTableViewController: UITableViewController {
         // MARK: This is for assignment 6 so top section is under status bar
         //self.tableView.contentInset = UIEdgeInsets(top: 20.0, left: 0.0, bottom: 0.0, right: 0.0)
         
+        let selectView = UIView()
+        selectView.backgroundColor = UIColor(red:0.42, green:0.59, blue:0.18, alpha:1.0)
+        UITableViewCell.appearance().selectedBackgroundView = selectView
+        
         for _ in 0...parkModel.numberOfSections() - 1 {
             sectionIsCollapsed.append(false)
         }
@@ -142,7 +146,7 @@ class ParkTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 60))
-        headerView.backgroundColor = UIColor.grayColor()
+        headerView.backgroundColor = UIColor(red:0.12, green:0.42, blue:0.20, alpha:1.0)
         headerView.tag = section
         
         let headerString = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width-10, height: 30)) as UILabel
