@@ -52,12 +52,11 @@ class DetailViewController: UIViewController, ParkSelectionDelegate {
         
         let image = parkModel.imageAtIndexPath(indexPath)
         
-        let textFont: UIFont = UIFont(name: "Helvetica Bold", size: 20)!
-        
         detailImage.image = image
         
         captionLabel.textColor = UIColor.whiteColor()
-        captionLabel.font = textFont
+        captionLabel.font = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? UIFont(name: "Helvetica Bold", size: 36)! : UIFont(name: "Helvetica Bold", size: 20)!
+//        captionLabel.font = textFont
         captionLabel.text = parkModel.captionAtIndexPath(indexPath)
         captionLabel.sizeToFit()
         

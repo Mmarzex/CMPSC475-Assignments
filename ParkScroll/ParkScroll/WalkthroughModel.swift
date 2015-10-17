@@ -35,7 +35,7 @@ public class WalkthroughModel {
         
         let filePath = NSBundle.mainBundle().pathForResource("walkthroughInfo", ofType: "plist")
         if let rawData = NSArray(contentsOfFile: filePath!) as? Array<AnyObject> {
-            for (index, x) in rawData.enumerate() {
+            for x in rawData {
                 let name = x["imageName"]! as! String
                 let description = x["text"]! as! String
                 currentDeviceType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .pad : .phone

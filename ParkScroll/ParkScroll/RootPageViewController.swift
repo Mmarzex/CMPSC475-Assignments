@@ -29,11 +29,20 @@ class RootPageViewController: UIViewController, UIPageViewControllerDataSource {
         self.addChildViewController(pageViewController!)
         pageViewController!.didMoveToParentViewController(self)
         self.view.addSubview(pageViewController!.view)
+        
+        setupPageControl()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func setupPageControl() {
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.grayColor()
+        appearance.currentPageIndicatorTintColor = UIColor.whiteColor()
+        appearance.backgroundColor = UIColor.darkGrayColor()
     }
     
     func viewControllerAtIndex(index:Int) -> UIViewController {
@@ -66,7 +75,13 @@ class RootPageViewController: UIViewController, UIPageViewControllerDataSource {
         return viewControllerAtIndex(index)
     }
     
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return WalkthroughModel.numberOfPages
+    }
     
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
     
     /*
     // MARK: - Navigation
