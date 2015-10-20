@@ -47,4 +47,29 @@ class SearchTableViewController: UITableViewController {
             self.mainViewController!.plotPlaceAtIndex(indexPath)
         })
     }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+//        let more = UITableViewRowAction(style: .Normal, title: "More") { action, index in
+//            print("more button tapped")
+//        }
+//        more.backgroundColor = UIColor.lightGrayColor()
+        
+        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            print("favorite button tapped")
+            self.model.addFavorite(indexPath.section, row: indexPath.row)
+            
+        }
+        favorite.backgroundColor = UIColor.blueColor()
+        
+//        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
+//            print("share button tapped")
+//        }
+//        share.backgroundColor = UIColor.blueColor()
+        
+        return [favorite]
+    }
+    
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        print(editingStyle)
+//    }
 }

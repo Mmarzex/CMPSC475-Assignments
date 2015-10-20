@@ -55,6 +55,10 @@ class BuildingModel {
     
     private var placesOnMap = [Place]()
     
+    private var favorites = [Place]()
+    private var favoritesDictionary = [String:[Place]]()
+    private var favoritesKeys = [String]()
+    
     private init() {
         let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
         let rawFile = NSArray(contentsOfFile: path!) as! [[String:AnyObject]]
@@ -123,10 +127,6 @@ class BuildingModel {
         return placesDictionary[letterInSection]![row]
     }
     
-//    func placesToPlot() -> [Place] {
-//        return places
-//    }
-    
     func addPlaceToPlot(section:Int, row:Int) {
         let letterInSection = letterForSection(section)
         placesOnMap.append(placesDictionary[letterInSection]![row])
@@ -135,6 +135,65 @@ class BuildingModel {
     func placesToPlot() -> [Place] {
         return placesOnMap
     }
+    
+    func addFavorite(section:Int, row:Int) {
+        let letterInSection = letterForSection(section)
+        favorites.append(placesDictionary[letterInSection]![row])
+        if let _ = favoritesDictionary[letterInSection] {
+            favoritesDictionary[letterInSection]!.append(placesDictionary[letterInSection]![row])
+        } else {
+            favoritesDictionary[letterInSection] = [placesDictionary[letterInSection]![row]]
+            favoritesKeys.append(letterInSection)
+            favoritesKeys.sortInPlace()
+        }
+    }
+    
+    func favoritesToPlot() -> [Place] {
+        return favorites
+    }
+    
+    func favoritesCountForSection(section:Int) -> Int {
+        let letterInSection = letterForFavoritesSection(section)
+        return favoritesDictionary[letterInSection]!.count
+    }
+    
+    func letterForFavoritesSection(section:Int) -> String {
+        return favoritesKeys[section]
+    }
+    
+    func numberOfFavoritesSections() -> Int {
+        return favoritesKeys.count
+    }
+    
+    func favoritesSectionKeys() -> [String] {
+        return favoritesKeys
+    }
+    
+    func nameForFavoriteInSection(section:Int, row:Int) -> String {
+        let letterInSection = letterForFavoritesSection(section)
+        return favoritesDictionary[letterInSection]![row].title!
+    }
+    
+    func descriptionForFavoriteInSection(section:Int, row:Int) -> String {
+        let letterInSection = letterForFavoritesSection(section)
+        return favoritesDictionary[letterInSection]![row].subtitle!
+    }
+    
+    func coordinateForFavoriteInSection(section:Int, row:Int) -> CLLocationCoordinate2D {
+        let letterInSection = letterForFavoritesSection(section)
+        return favoritesDictionary[letterInSection]![row].coordinate
+    }
+    
+    func photoNameForFavoriteInSection(section:Int, row:Int) -> String {
+        let letterInSection = letterForFavoritesSection(section)
+        return favoritesDictionary[letterInSection]![row].photoName!
+    }
+    
+    func favoriteInSection(section:Int, row:Int) -> Place {
+        let letterInSection = letterForFavoritesSection(section)
+        return favoritesDictionary[letterInSection]![row]
+    }
+    
 //    func favoritePlacesToPlot() -> [Place] {
 //        return favoritePlaces
 //    }

@@ -49,6 +49,7 @@
 		125369321BD5C6AF00156E93 /* buildings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 125369121BD5C6AF00156E93 /* buildings.plist */; settings = {ASSET_TAGS = (); }; };
 		125369341BD5CD7800156E93 /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125369331BD5CD7800156E93 /* BuildingModel.swift */; settings = {ASSET_TAGS = (); }; };
 		125369381BD5D9FE00156E93 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125369371BD5D9FE00156E93 /* SearchTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		12D315EF1BD6B4C400F1E346 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D315EE1BD6B4C400F1E346 /* FavoritesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		125369121BD5C6AF00156E93 /* buildings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = buildings.plist; sourceTree = "<group>"; };
 		125369331BD5CD7800156E93 /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		125369371BD5D9FE00156E93 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		12D315EE1BD6B4C400F1E346 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,14 +172,13 @@
 		125368C01BD5BCFF00156E93 /* CampusWalk */ = {
 			isa = PBXGroup;
 			children = (
+				12D315EC1BD6AE4600F1E346 /* Models */,
+				12D315ED1BD6AE4B00F1E346 /* Views */,
+				12D315EB1BD6AE2C00F1E346 /* Controllers */,
 				125368C11BD5BCFF00156E93 /* AppDelegate.swift */,
-				125368C31BD5BCFF00156E93 /* ViewController.swift */,
-				125368C51BD5BCFF00156E93 /* Main.storyboard */,
 				125368C81BD5BCFF00156E93 /* Assets.xcassets */,
 				125368CA1BD5BCFF00156E93 /* LaunchScreen.storyboard */,
 				125368CD1BD5BCFF00156E93 /* Info.plist */,
-				125369331BD5CD7800156E93 /* BuildingModel.swift */,
-				125369371BD5D9FE00156E93 /* SearchTableViewController.swift */,
 			);
 			path = CampusWalk;
 			sourceTree = "<group>";
@@ -245,6 +246,32 @@
 				125369111BD5C6AF00156E93 /* smeal.jpg */,
 			);
 			path = buildings;
+			sourceTree = "<group>";
+		};
+		12D315EB1BD6AE2C00F1E346 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				125369371BD5D9FE00156E93 /* SearchTableViewController.swift */,
+				125368C31BD5BCFF00156E93 /* ViewController.swift */,
+				12D315EE1BD6B4C400F1E346 /* FavoritesTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		12D315EC1BD6AE4600F1E346 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				125369331BD5CD7800156E93 /* BuildingModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		12D315ED1BD6AE4B00F1E346 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				125368C51BD5BCFF00156E93 /* Main.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,6 +439,7 @@
 				125368C41BD5BCFF00156E93 /* ViewController.swift in Sources */,
 				125369341BD5CD7800156E93 /* BuildingModel.swift in Sources */,
 				125368C21BD5BCFF00156E93 /* AppDelegate.swift in Sources */,
+				12D315EF1BD6B4C400F1E346 /* FavoritesTableViewController.swift in Sources */,
 				125369381BD5D9FE00156E93 /* SearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +667,7 @@
 				125368E81BD5BCFF00156E93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		125368E91BD5BCFF00156E93 /* Build configuration list for PBXNativeTarget "CampusWalkTests" */ = {
 			isa = XCConfigurationList;
@@ -647,6 +676,7 @@
 				125368EB1BD5BCFF00156E93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		125368EC1BD5BCFF00156E93 /* Build configuration list for PBXNativeTarget "CampusWalkUITests" */ = {
 			isa = XCConfigurationList;
@@ -655,6 +685,7 @@
 				125368EE1BD5BCFF00156E93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

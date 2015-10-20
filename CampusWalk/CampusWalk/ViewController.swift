@@ -14,6 +14,7 @@ import CoreLocation
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let model = BuildingModel.sharedInstance
+    let locationManager = CLLocationManager()
     
     @IBOutlet var mapView: MKMapView!
     
@@ -25,6 +26,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         centerMapOnLocation(initialLocation)
         
         mapView.delegate = self
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        self.navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if CLLocationManager.locationServicesEnabled() {
+            if CLLocationManager.authorizationStatus() == .NotDetermined {
+                locationManager.requestWhenInUseAuthorization()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +63,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
+        
     func plotPlaceAtIndex(indexPath : NSIndexPath) {
         mapView.addAnnotations(model.placesToPlot())
     }
