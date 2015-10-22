@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SearchTableViewController: UITableViewController {
 
@@ -43,6 +44,7 @@ class SearchTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         model.addPlaceToPlot(indexPath.section, row: indexPath.row)
+        
         dismissViewControllerAnimated(true, completion: {() -> Void in
             self.mainViewController!.plotPlaceAtIndex(indexPath)
         })
@@ -53,20 +55,28 @@ class SearchTableViewController: UITableViewController {
 //            print("more button tapped")
 //        }
 //        more.backgroundColor = UIColor.lightGrayColor()
-        
-        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
-            print("favorite button tapped")
-            self.model.addFavorite(indexPath.section, row: indexPath.row)
-            
+        if model.isPlaceFavorite(indexPath.section, row: indexPath.row) {
+            let favorite = UITableViewRowAction(style: .Normal, title: "Added") { action, index in
+                print("Already Added")
+            }
+            favorite.backgroundColor = UIColor.purpleColor()
+            return [favorite]
+        } else {
+            let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+                print("favorite button tapped")
+                self.model.addFavorite(indexPath.section, row: indexPath.row)
+                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
+                
+            }
+            favorite.backgroundColor = UIColor.blueColor()
+            return [favorite]
         }
-        favorite.backgroundColor = UIColor.blueColor()
+        
         
 //        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
 //            print("share button tapped")
 //        }
 //        share.backgroundColor = UIColor.blueColor()
-        
-        return [favorite]
     }
     
 //    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

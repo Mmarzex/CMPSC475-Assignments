@@ -12,6 +12,8 @@ class FavoritesTableViewController: UITableViewController {
 
     let model = BuildingModel.sharedInstance
     
+    var mainViewController : ViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +29,7 @@ class FavoritesTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARKx: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -38,7 +40,14 @@ class FavoritesTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return model.favoritesCountForSection(section)
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return model.letterForFavoritesSection(section)
+    }
 
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return model.favoritesSectionKeys()
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("favoriteCell", forIndexPath: indexPath)
@@ -48,7 +57,80 @@ class FavoritesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
 
+        let delete = UITableViewRowAction(style: .Destructive, title: "Delete") { action, index in
+            let response = self.model.removeFavorite(indexPath.section, row: indexPath.row)
+            if response.0 {
+                if self.model.numberOfFavoritesSections() > 0 {
+                    if response.1 == -1 {
+                        tableView.reloadData()
+                    } else {
+                        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                    }
+                    
+                    //                    tableView.reloadSections(NSIndexSet(index: response.1), withRowAnimation: UITableViewRowAnimation.Fade)
+                } else {
+                    self.dismissViewControllerAnimated(true) { () -> Void in
+                        if let mainVC = self.mainViewController {
+                            mainVC.refreshPins()
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        if model.isFavoriteHidden(indexPath.section, row: indexPath.row) {
+            let hide = UITableViewRowAction(style: .Normal, title: "Unhide") { action, index in
+                print("asdfas")
+                self.model.showFavorite(indexPath.section, row: indexPath.row)
+                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+            }
+            hide.backgroundColor = UIColor.purpleColor()
+            return [delete, hide]
+        } else {
+            let hide = UITableViewRowAction(style: .Normal, title: "Hide") { action, index in
+                self.model.hideFavorite(indexPath.section, row: indexPath.row)
+                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+            }
+            hide.backgroundColor = UIColor.blueColor()
+            return [delete, hide]
+        }
+    }
+
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        print(editingStyle)
+//        if editingStyle == .Delete {
+//            let response = model.removeFavorite(indexPath.section, row: indexPath.row)
+//            if response.0 {
+//                if model.numberOfFavoritesSections() > 0 {
+//                    if response.1 == -1 {
+//                        tableView.reloadData()
+//                    } else {
+//                        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+//                    }
+//                    
+////                    tableView.reloadSections(NSIndexSet(index: response.1), withRowAnimation: UITableViewRowAnimation.Fade)
+//                } else {
+//                    dismissViewControllerAnimated(true) { () -> Void in
+//                        if let mainVC = self.mainViewController {
+//                            mainVC.refreshPins()
+//                        }
+//                    }
+//                }
+//                
+//            }
+//        }
+//    }
+
+    @IBAction func dismissFavoritesView(sender: AnyObject) {
+        dismissViewControllerAnimated(true) { () -> Void in
+            if let mainVC = self.mainViewController {
+                mainVC.refreshPins()
+            }
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

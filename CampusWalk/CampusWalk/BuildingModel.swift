@@ -9,12 +9,6 @@
 import Foundation
 import MapKit
 
-extension String {
-    func firstLetter() -> String? {
-        return (self.isEmpty ? nil : self.substringToIndex(self.startIndex.successor()))
-    }
-}
-
 class BuildingModel {
     
     class Place: NSObject, MKAnnotation {
@@ -27,12 +21,14 @@ class BuildingModel {
         let yearConstructed : Int?
         let photoName : String?
         
+        var addressString : String?
+        
         init(title: String, coordinate: CLLocationCoordinate2D, buildingCode: Int, yearConstructed: Int, photoName: String) {
             self.title = title
             self.coordinate = coordinate
             self.buildingCode = buildingCode
             self.yearConstructed = yearConstructed
-            self.photoName = photoName
+            self.photoName = photoName + ".jpg"
             self.subtitle = nil
             
             super.init()
@@ -44,6 +40,44 @@ class BuildingModel {
             mapItem.name = title
             
             return mapItem
+        }
+        
+        func findAddress() {
+            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+                var addressString = ""
+                if let unwrappedPlacemarks = placemarks {
+                    print(unwrappedPlacemarks.count)
+                    for x in unwrappedPlacemarks {
+                        //                        var addressString = ""
+                        if x.subThoroughfare != nil {
+                            addressString = x.subThoroughfare! + " "
+                        }
+                        if x.thoroughfare != nil {
+                            addressString = addressString + x.thoroughfare! + ", "
+                        }
+                        if x.postalCode != nil {
+                            addressString = addressString + x.postalCode! + " "
+                        }
+                        if x.locality != nil {
+                            addressString = addressString + x.locality! + ", "
+                        }
+                        if x.administrativeArea != nil {
+                            addressString = addressString + x.administrativeArea! + " "
+                        }
+                        if x.country != nil {
+                            addressString = addressString + x.country!
+                        }
+                        self.addressString = addressString
+//                        print(addressString)
+                    }
+                }
+                
+//                if self.addressString == "" {
+//                    self.addressString = nil
+//                    print("No address")
+//                }
+            }
         }
     }
     
@@ -59,6 +93,9 @@ class BuildingModel {
     private var favoritesDictionary = [String:[Place]]()
     private var favoritesKeys = [String]()
     
+    private var deletedFavorites = [Place]()
+    private var hiddenFavorites = [Place]()
+    
     private init() {
         let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
         let rawFile = NSArray(contentsOfFile: path!) as! [[String:AnyObject]]
@@ -68,7 +105,7 @@ class BuildingModel {
         
         for dictionary in rawFile {
             let place = Place(title: dictionary["name"]! as! String, coordinate: CLLocationCoordinate2DMake(dictionary["latitude"]! as! CLLocationDegrees, dictionary["longitude"]! as! CLLocationDegrees), buildingCode: dictionary["opp_bldg_code"]! as! Int, yearConstructed: dictionary["year_constructed"]! as! Int, photoName: dictionary["photo"]! as! String)
-            
+//            place.findAddress()
             _places.append(place)
             
             let firstLetter = place.title!.firstLetter()!
@@ -136,6 +173,31 @@ class BuildingModel {
         return placesOnMap
     }
     
+    func isPlaceFavorite(section:Int, row:Int) -> Bool {
+        let letterInSection = letterForSection(section)
+        return favorites.contains(placesDictionary[letterInSection]![row])
+    }
+    
+    func isPlaceFavorite(place:Place) -> Bool {
+        return favorites.contains(place)
+    }
+    
+    func isFavoriteHidden(section:Int, row:Int) -> Bool {
+        let letterInSection = letterForFavoritesSection(section)
+        return hiddenFavorites.contains(favoritesDictionary[letterInSection]![row])
+    }
+    
+    func hideFavorite(section:Int, row:Int) {
+        let letterInSection = letterForFavoritesSection(section)
+        let x = favoritesDictionary[letterInSection]![row]
+        hiddenFavorites.append(x)
+    }
+    
+    func showFavorite(section:Int, row:Int) {
+        let letterInSection = letterForFavoritesSection(section)
+        hiddenFavorites.remove(favoritesDictionary[letterInSection]![row])
+    }
+    
     func addFavorite(section:Int, row:Int) {
         let letterInSection = letterForSection(section)
         favorites.append(placesDictionary[letterInSection]![row])
@@ -148,8 +210,43 @@ class BuildingModel {
         }
     }
     
+    func removeFavorite(section:Int, row:Int) -> (Bool, Int) {
+        let letterInSection = letterForFavoritesSection(section)
+        let favoriteToRemove = favoritesDictionary[letterInSection]![row]
+        if !favorites.remove(favoriteToRemove) {
+            print("NOT DELETED")
+            return (false, -1)
+        }
+        
+        deletedFavorites.append(favoritesDictionary[letterInSection]![row])
+        
+        favoritesDictionary[letterInSection]!.removeAtIndex(row)
+        
+        hiddenFavorites.remove(favoriteToRemove)
+        
+        if favoritesDictionary[letterInSection]!.isEmpty {
+            favoritesDictionary[letterInSection] = nil
+            favoritesKeys.removeAtIndex(section)
+            return (true, -1)
+        }
+        
+        return (true, allKeys.indexOf(letterInSection)!)
+    }
+    
     func favoritesToPlot() -> [Place] {
         return favorites
+    }
+    
+    func favoritesToHide() -> [Place] {
+        return hiddenFavorites
+    }
+    
+    func favoritesToDeleteFromMap() -> [Place] {
+        return deletedFavorites
+    }
+    
+    func clearFavoritesToDelete() {
+        deletedFavorites.removeAll()
     }
     
     func favoritesCountForSection(section:Int) -> Int {
@@ -193,12 +290,4 @@ class BuildingModel {
         let letterInSection = letterForFavoritesSection(section)
         return favoritesDictionary[letterInSection]![row]
     }
-    
-//    func favoritePlacesToPlot() -> [Place] {
-//        return favoritePlaces
-//    }
-//    
-//    func addFavorite(place:Place) {
-//        favoritePlaces.append(place)
-//    }
 }
