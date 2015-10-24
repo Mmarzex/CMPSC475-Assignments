@@ -13,8 +13,17 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
 
     let model = BuildingModel.sharedInstance
     var mainViewController : ViewController?
+    
+    
+    
     override func viewDidLoad() {
-        
+        if let mainVC = mainViewController {
+            if mainVC.firstLoad {
+                let rootWalkthroughVC = self.storyboard?.instantiateViewControllerWithIdentifier("walkthroughRoot") as! RootWalkthroughViewController
+                self.presentViewController(rootWalkthroughVC, animated: true, completion: nil)
+                mainVC.firstLoad = false
+            }
+        }
     }
     
     //MARK: UITableViewController DataSource

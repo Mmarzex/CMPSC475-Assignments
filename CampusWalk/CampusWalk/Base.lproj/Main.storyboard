@@ -211,7 +211,7 @@
                             </barButtonItem>
                             <barButtonItem title="Help" id="Paz-kW-AD4">
                                 <connections>
-                                    <segue destination="mpm-WR-fI7" kind="presentation" id="6JR-dl-4nt"/>
+                                    <segue destination="mpm-WR-fI7" kind="presentation" identifier="walkthroughSegue" id="6JR-dl-4nt"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -247,7 +247,7 @@
         <!--Page View Controller-->
         <scene sceneID="Kka-N2-xvR">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="h42-fA-jqS" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="h42-fA-jqS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jo3-8s-vmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3230" y="1194"/>
@@ -264,8 +264,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-k3-m9S">
+                                <rect key="frame" x="100" y="104" width="400" height="190.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-J3-6Fz">
+                                <rect key="frame" x="0.0" y="468" width="600" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csI-p6-fLB">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Walkthrough" id="hcI-9s-6Py">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="EiF-nQ-9fe">
@@ -276,28 +285,19 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-k3-m9S">
-                                <rect key="frame" x="100" y="104" width="400" height="190.5"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-J3-6Fz">
-                                <rect key="frame" x="0.0" y="394.5" width="600" height="27.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="sf9-SD-xBq" firstAttribute="top" secondItem="hUk-J3-6Fz" secondAttribute="bottom" constant="104.5" id="2Tk-3D-SmA"/>
+                            <constraint firstItem="sf9-SD-xBq" firstAttribute="top" secondItem="K9p-k3-m9S" secondAttribute="bottom" constant="305.5" id="BeU-Pr-EFr"/>
                             <constraint firstItem="csI-p6-fLB" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="HG5-mH-x89"/>
+                            <constraint firstItem="csI-p6-fLB" firstAttribute="top" secondItem="v7K-Ni-zxT" secondAttribute="bottom" constant="8" id="Pdo-Do-VUF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="csI-p6-fLB" secondAttribute="trailing" constant="-20" id="QLe-S3-c9U"/>
-                            <constraint firstItem="csI-p6-fLB" firstAttribute="top" secondItem="Jvj-Uk-IG6" secondAttribute="topMargin" id="U3d-Hw-Go6"/>
-                            <constraint firstItem="hUk-J3-6Fz" firstAttribute="top" secondItem="K9p-k3-m9S" secondAttribute="bottom" constant="100" id="iw2-ps-6ES"/>
+                            <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="csI-p6-fLB" secondAttribute="bottom" constant="32" id="f86-j2-4UF"/>
                             <constraint firstItem="hUk-J3-6Fz" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="j3F-pq-YZ4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hUk-J3-6Fz" secondAttribute="trailing" constant="-20" id="lKK-vM-QW5"/>
-                            <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="csI-p6-fLB" secondAttribute="bottom" constant="60" id="oc2-1t-MwJ"/>
                             <constraint firstItem="K9p-k3-m9S" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="80" id="ufb-Eo-QQb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K9p-k3-m9S" secondAttribute="trailing" constant="80" id="vcK-Dz-hhD"/>
-                            <constraint firstItem="sf9-SD-xBq" firstAttribute="top" secondItem="hUk-J3-6Fz" secondAttribute="bottom" constant="178" id="x7z-en-Ql3"/>
                         </constraints>
                     </view>
                     <connections>

@@ -18,6 +18,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var favoritesCount = 0
     
+    var firstLoad = true
+    
     @IBOutlet var mapView: MKMapView!
     
     

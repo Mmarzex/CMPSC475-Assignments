@@ -39,7 +39,7 @@ public class WalkthroughModel {
                 let name = x["imageName"]! as! String
                 let description = x["text"]! as! String
                 currentDeviceType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .pad : .phone
-                let imageName = name + currentDeviceType.rawValue
+                let imageName = name + ".png"
                 let image = UIImage(named: imageName)
                 _pages.append(PageContent(name: name, description: description, image: image))
             }

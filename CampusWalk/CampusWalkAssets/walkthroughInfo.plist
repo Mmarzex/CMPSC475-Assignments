@@ -16,7 +16,7 @@
 	</dict>
 	<dict>
 		<key>imageName</key>
-		<string>favoriteSwipe</string>
+		<string>tap</string>
 		<key>text</key>
 		<string>Tap on a Cell To Add To Map</string>
 	</dict>
