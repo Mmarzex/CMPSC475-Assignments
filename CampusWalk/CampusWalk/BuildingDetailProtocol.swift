@@ -11,4 +11,5 @@ import Foundation
 protocol BuildingDetailProtocol {
     func dismissBuildingDetailController()
     func deletePlaceFromMap(place : BuildingModel.Place)
+    func plotOnMap(place: BuildingModel.Place)
 }

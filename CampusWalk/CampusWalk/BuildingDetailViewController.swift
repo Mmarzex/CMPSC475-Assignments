@@ -22,8 +22,24 @@ class BuildingDetailViewController: UIViewController {
     
     @IBOutlet var favoriteActionButton: UIButton!
     
+    @IBOutlet var addToMapActionButton: UIButton!
+    
     var delegate : BuildingDetailProtocol?
     var placeToDisplay : BuildingModel.Place?
+    
+    enum ButtonType : Int {
+        case addFavorite
+        case hideFavorite
+        case removeFavorite
+        case showFavorite
+        case delete
+    }
+    
+    let hideFavoriteText = "Hide On Map"
+    let showFavoriteText = "Show on Map"
+    let removeFavoriteText = "Remove From Favorites"
+    let deleteText = "Delete"
+    let addFavoriteText = "Add Favorite"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,17 +53,26 @@ class BuildingDetailViewController: UIViewController {
                 }
             }
             
-//            if let y = place.addressString {
-//                print(y)
-//                locationLabel.text = y
-//            } else {
-//                locationLabel.text = "No address"
-//            }
-            
             if model.isPlaceFavorite(place) {
-                favoriteActionButton.hidden = true
-                detailActionButton.setTitle("Hide On Map", forState: .Normal)
-                detailActionButton.backgroundColor = UIColor.blueColor()
+                if model.isFavoriteHidden(place) {
+                    favoriteActionButton.setTitle(showFavoriteText, forState: .Normal)
+                    favoriteActionButton.backgroundColor = UIColor.blueColor()
+                    favoriteActionButton.tag = ButtonType.showFavorite.rawValue
+                } else {
+                    favoriteActionButton.setTitle(hideFavoriteText, forState: .Normal)
+                    favoriteActionButton.backgroundColor = UIColor.blueColor()
+                    favoriteActionButton.tag = ButtonType.hideFavorite.rawValue
+                }
+                
+                detailActionButton.setTitle(removeFavoriteText, forState: .Normal)
+                detailActionButton.tag = ButtonType.removeFavorite.rawValue
+            } else {
+                favoriteActionButton.tag = ButtonType.addFavorite.rawValue
+                detailActionButton.tag = ButtonType.delete.rawValue
+            }
+            
+            if model.isPlacePlotted(place) {
+                addToMapActionButton.hidden = true
             }
             
             let coordinate = place.coordinate
@@ -57,7 +82,6 @@ class BuildingDetailViewController: UIViewController {
                 if let unwrappedPlacemarks = placemarks {
                     print(unwrappedPlacemarks.count)
                     for x in unwrappedPlacemarks {
-                        //                        var addressString = ""
                         if x.subThoroughfare != nil {
                             addressString = x.subThoroughfare! + " "
                         }
@@ -73,11 +97,6 @@ class BuildingDetailViewController: UIViewController {
                         if x.administrativeArea != nil {
                             addressString = addressString + x.administrativeArea! + " "
                         }
-//                        if x.country != nil {
-//                            addressString = addressString + x.country!
-//                        }
-                        
-                        //                        print(addressString)
                     }
                     print(addressString)
                     self.locationLabel.text = addressString
@@ -85,7 +104,6 @@ class BuildingDetailViewController: UIViewController {
                 }
             }
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,14 +112,60 @@ class BuildingDetailViewController: UIViewController {
     }
     
     @IBAction func favoriteButtonAction(sender: AnyObject) {
+        if ButtonType(rawValue: sender.tag) == .addFavorite {
+            model.addFavorite(placeToDisplay!)
+            favoriteActionButton.setTitle(hideFavoriteText, forState: .Normal)
+            favoriteActionButton.tag = ButtonType.hideFavorite.rawValue
+            
+            detailActionButton.setTitle(removeFavoriteText, forState: .Normal)
+            detailActionButton.tag = ButtonType.removeFavorite.rawValue
+            
+            if let del = delegate {
+                del.deletePlaceFromMap(placeToDisplay!)
+            }
+            
+        } else if ButtonType(rawValue: sender.tag) == .hideFavorite {
+            model.hideFavorite(placeToDisplay!)
+            favoriteActionButton.setTitle(showFavoriteText, forState: .Normal)
+            favoriteActionButton.tag = ButtonType.showFavorite.rawValue
+            
+        } else if ButtonType(rawValue: sender.tag) == .showFavorite {
+            model.showFavorite(placeToDisplay!)
+            favoriteActionButton.setTitle(hideFavoriteText, forState: .Normal)
+            favoriteActionButton.tag = ButtonType.hideFavorite.rawValue
+            
+        }
     }
+    
     @IBAction func detailButtonAction(sender: AnyObject) {
+        if ButtonType(rawValue: sender.tag) == .delete {
+            print("delete")
+            if let del = delegate {
+                del.deletePlaceFromMap(placeToDisplay!)
+                del.dismissBuildingDetailController()
+            }
+        } else if ButtonType(rawValue: sender.tag) == .removeFavorite {
+            print("remove")
+            model.removeFavorite(placeToDisplay!)
+            if let del = delegate {
+                del.dismissBuildingDetailController()
+            }
+        }
+        
+    }
+    
+    @IBAction func addToMapAction(sender: AnyObject) {
         if let del = delegate {
-            del.deletePlaceFromMap(placeToDisplay!)
+            del.plotOnMap(placeToDisplay!)
             del.dismissBuildingDetailController()
         }
     }
 
+    @IBAction func doneButtonAction(sender: AnyObject) {
+        if let del = delegate {
+            del.dismissBuildingDetailController()
+        }
+    }
     /*
     // MARK: - Navigation
 

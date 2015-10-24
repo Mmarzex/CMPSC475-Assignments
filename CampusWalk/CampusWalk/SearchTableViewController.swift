@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
 
     let model = BuildingModel.sharedInstance
     var mainViewController : ViewController?
@@ -51,35 +51,52 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-//        let more = UITableViewRowAction(style: .Normal, title: "More") { action, index in
-//            print("more button tapped")
-//        }
-//        more.backgroundColor = UIColor.lightGrayColor()
+        
+        let more = UITableViewRowAction(style: .Normal, title: "More Info") { action, index in
+            let detailNavVC = self.storyboard?.instantiateViewControllerWithIdentifier("detailNavController") as! UINavigationController
+            let buildingDetailVC = self.storyboard?.instantiateViewControllerWithIdentifier("buildingDetailVC") as! BuildingDetailViewController
+            detailNavVC.setViewControllers([buildingDetailVC], animated: true)
+            buildingDetailVC.placeToDisplay = self.model.placeInSection(indexPath.section, row: indexPath.row)
+            buildingDetailVC.delegate = self
+            self.presentViewController(detailNavVC, animated: true, completion: nil)
+
+        }
+        more.backgroundColor = UIColor.grayColor()
         if model.isPlaceFavorite(indexPath.section, row: indexPath.row) {
             let favorite = UITableViewRowAction(style: .Normal, title: "Added") { action, index in
-                print("Already Added")
             }
             favorite.backgroundColor = UIColor.purpleColor()
-            return [favorite]
+            return [favorite, more]
         } else {
             let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
-                print("favorite button tapped")
                 self.model.addFavorite(indexPath.section, row: indexPath.row)
                 tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
                 
             }
             favorite.backgroundColor = UIColor.blueColor()
-            return [favorite]
+            return [favorite, more]
         }
         
-        
-//        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
-//            print("share button tapped")
-//        }
-//        share.backgroundColor = UIColor.blueColor()
     }
     
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        print(editingStyle)
-//    }
+    func dismissBuildingDetailController() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func deletePlaceFromMap(place: BuildingModel.Place) {
+        if let mainVC = mainViewController {
+            mainVC.deletePlaceFromMap(place)
+        }
+    }
+    
+    func plotOnMap(place: BuildingModel.Place) {
+        if let mainVC = mainViewController {
+            mainVC.plotOnMap(place)
+        }
+    }
+    
+    @IBAction func doneAction(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
 }

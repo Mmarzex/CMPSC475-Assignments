@@ -26,7 +26,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Do any additional setup after loading the view, typically from a nib.
         
         let initialLocation = CLLocation(latitude: 40.7982173, longitude: -77.8620971)
-        centerMapOnLocation(initialLocation)
+        centerMapOnCoordinate(initialLocation.coordinate)
         
         mapView.delegate = self
         
@@ -38,11 +38,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewDidLayoutSubviews() {
         refreshPins()
-//        if favoritesCount != model.favoritesToPlot().count {
-//            print("here")
-//            favoritesCount = model.favoritesToPlot().count
-//            mapView.addAnnotations(model.favoritesToPlot())
-//        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -60,19 +55,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             UIView.animateWithDuration(1.1) { self.mapView.removeAnnotations(favoritesToDelete) }
             model.clearFavoritesToDelete()
         }
-//        let favoriteAnnotations = mapView.annotations.filter {
-//            if $0 is BuildingModel.Place {
-//                print("In filter")
-//                return true
-//            }
-////            if let x = $0 as? MKPinAnnotationView {
-////                print("In filter")
-////                if x.reuseIdentifier == "favoritePin" {
-////                    return true
-////                }
-////            }
-//            return false
-//        }
         
         mapView.addAnnotations(model.favoritesToPlot())
         
@@ -98,8 +80,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
 
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpanMake(0.01, 0.01))
+    func centerMapOnCoordinate(location: CLLocationCoordinate2D) {
+        let coordinateRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(0.01, 0.01))
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.regionThatFits(coordinateRegion)
     }
@@ -145,23 +127,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let detailNavVC = self.storyboard?.instantiateViewControllerWithIdentifier("detailNavController") as! UINavigationController
         let buildingDetailVC = self.storyboard?.instantiateViewControllerWithIdentifier("buildingDetailVC") as! BuildingDetailViewController
+        detailNavVC.setViewControllers([buildingDetailVC], animated: true)
         buildingDetailVC.delegate = self
         buildingDetailVC.placeToDisplay = view.annotation as? BuildingModel.Place
         
-        self.presentViewController(buildingDetailVC, animated: true, completion: nil)
+        self.presentViewController(detailNavVC, animated: true, completion: nil)
     }
-    
-//    func pinButtonTap(sender:AnyObject) {
-//        print("PIN PRESS")
-//    }
 
     func dismissBuildingDetailController() {
         dismissViewControllerAnimated(true, completion: nil)
+        refreshPins()
     }
     
     func deletePlaceFromMap(place: BuildingModel.Place) {
         mapView.removeAnnotation(place)
+    }
+    
+    func plotOnMap(place: BuildingModel.Place) {
+        mapView.addAnnotation(place)
+        centerMapOnCoordinate(place.coordinate)
+        refreshPins()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -198,7 +185,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
         
     func plotPlaceAtIndex(indexPath : NSIndexPath) {
-        mapView.addAnnotations(model.placesToPlot())
+        mapView.addAnnotation(model.placeInSection(indexPath.section, row: indexPath.row))
+        centerMapOnCoordinate(model.coordinateForPlaceInSection(indexPath.section, row: indexPath.row))
+        refreshPins()
     }
 
 }
