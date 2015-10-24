@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>imageName</key>
+		<string>beginSwipe</string>
+		<key>text</key>
+		<string>All You Need To Do Is Swipe</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>swipe</string>
+		<key>text</key>
+		<string>To Add A Favorite or See More Info</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>favoriteSwipe</string>
+		<key>text</key>
+		<string>Tap on a Cell To Add To Map</string>
+	</dict>
+</array>
+</plist>

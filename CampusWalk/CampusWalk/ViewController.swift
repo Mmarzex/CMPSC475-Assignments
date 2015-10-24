@@ -86,15 +86,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.regionThatFits(coordinateRegion)
     }
     
-//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-//        if status == .AuthorizedWhenInUse {
-//            mapView.showsUserLocation = true
-//            locationManager.startUpdatingLocation()
-//        } else {
-//            mapView.showsUserLocation = false
-//            locationManager.stopUpdatingLocation()
-//        }
-//    }
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedWhenInUse {
+            mapView.showsUserLocation = true
+            locationManager.startUpdatingLocation()
+        } else {
+            mapView.showsUserLocation = false
+            locationManager.stopUpdatingLocation()
+        }
+    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {

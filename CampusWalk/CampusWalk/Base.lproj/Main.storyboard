@@ -209,7 +209,11 @@
                                     <action selector="doneAction:" destination="B2H-H9-cMc" id="Zwd-aW-GJj"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Help" id="Paz-kW-AD4"/>
+                            <barButtonItem title="Help" id="Paz-kW-AD4">
+                                <connections>
+                                    <segue destination="mpm-WR-fI7" kind="presentation" id="6JR-dl-4nt"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" image="Star-44.png" id="8As-9x-OZc">
                             <connections>
@@ -221,6 +225,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aqq-b8-mNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1858" y="1180"/>
+        </scene>
+        <!--Root Walkthrough View Controller-->
+        <scene sceneID="3Nk-se-owi">
+            <objects>
+                <viewController storyboardIdentifier="walkthroughRoot" id="mpm-WR-fI7" customClass="RootWalkthroughViewController" customModule="CampusWalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6f1-uz-9i9"/>
+                        <viewControllerLayoutGuide type="bottom" id="2za-lj-oii"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DX7-JL-Gcl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5yU-eQ-NQL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2594" y="1194"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="Kka-N2-xvR">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="h42-fA-jqS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jo3-8s-vmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3230" y="1194"/>
+        </scene>
+        <!--Page Walkthrough View Controller-->
+        <scene sceneID="MO4-fP-gDD">
+            <objects>
+                <viewController storyboardIdentifier="pageContent" id="md0-2U-CG9" customClass="PageWalkthroughViewController" customModule="CampusWalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v7K-Ni-zxT"/>
+                        <viewControllerLayoutGuide type="bottom" id="sf9-SD-xBq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jvj-Uk-IG6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csI-p6-fLB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Walkthrough" id="hcI-9s-6Py">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="EiF-nQ-9fe">
+                                            <connections>
+                                                <action selector="dismissButtonAction:" destination="md0-2U-CG9" id="HJt-Ch-1DT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K9p-k3-m9S">
+                                <rect key="frame" x="100" y="104" width="400" height="190.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-J3-6Fz">
+                                <rect key="frame" x="0.0" y="394.5" width="600" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="csI-p6-fLB" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="HG5-mH-x89"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="csI-p6-fLB" secondAttribute="trailing" constant="-20" id="QLe-S3-c9U"/>
+                            <constraint firstItem="csI-p6-fLB" firstAttribute="top" secondItem="Jvj-Uk-IG6" secondAttribute="topMargin" id="U3d-Hw-Go6"/>
+                            <constraint firstItem="hUk-J3-6Fz" firstAttribute="top" secondItem="K9p-k3-m9S" secondAttribute="bottom" constant="100" id="iw2-ps-6ES"/>
+                            <constraint firstItem="hUk-J3-6Fz" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="j3F-pq-YZ4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hUk-J3-6Fz" secondAttribute="trailing" constant="-20" id="lKK-vM-QW5"/>
+                            <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="csI-p6-fLB" secondAttribute="bottom" constant="60" id="oc2-1t-MwJ"/>
+                            <constraint firstItem="K9p-k3-m9S" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="80" id="ufb-Eo-QQb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="K9p-k3-m9S" secondAttribute="trailing" constant="80" id="vcK-Dz-hhD"/>
+                            <constraint firstItem="sf9-SD-xBq" firstAttribute="top" secondItem="hUk-J3-6Fz" secondAttribute="bottom" constant="178" id="x7z-en-Ql3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="walkthroughImageView" destination="K9p-k3-m9S" id="Dqc-S4-1de"/>
+                        <outlet property="walkthroughLabel" destination="hUk-J3-6Fz" id="LaZ-Bd-reb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AIT-po-dpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3903" y="1194"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V38-my-gy0">
@@ -258,7 +345,7 @@
             </objects>
             <point key="canvasLocation" x="760" y="1238"/>
         </scene>
-        <!--Favorites Table View Controller-->
+        <!--Favorites-->
         <scene sceneID="2pP-oF-Uiu">
             <objects>
                 <tableViewController id="Hho-QR-W8T" customClass="FavoritesTableViewController" customModule="CampusWalk" customModuleProvider="target" sceneMemberID="viewController">
@@ -281,7 +368,7 @@
                             <outlet property="delegate" destination="Hho-QR-W8T" id="jRB-ND-zZB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lYB-c0-its">
+                    <navigationItem key="navigationItem" title="Favorites" id="lYB-c0-its">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="aqY-DK-H2i">
                             <connections>
                                 <action selector="dismissFavoritesView:" destination="Hho-QR-W8T" id="AM3-2a-ozh"/>

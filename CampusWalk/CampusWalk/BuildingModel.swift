@@ -77,8 +77,14 @@ class BuildingModel {
         }
         
         places = _places
+        allKeys = Array(_placesDictionary.keys).sort()
+        
+        for key in allKeys {
+            _placesDictionary[key] = _placesDictionary[key]!.sort() { $0.title < $1.title }
+        }
+        
         placesDictionary = _placesDictionary
-        allKeys = Array(placesDictionary.keys).sort()
+
     }
     
     func placesCountForSection(section:Int) -> Int {
@@ -178,6 +184,7 @@ class BuildingModel {
         favorites.append(placesDictionary[letterInSection]![row])
         if let _ = favoritesDictionary[letterInSection] {
             favoritesDictionary[letterInSection]!.append(placesDictionary[letterInSection]![row])
+            favoritesDictionary[letterInSection]!.sortInPlace() { $0.title < $1.title }
         } else {
             favoritesDictionary[letterInSection] = [placesDictionary[letterInSection]![row]]
             favoritesKeys.append(letterInSection)
@@ -190,6 +197,7 @@ class BuildingModel {
         favorites.append(place)
         if let _ = favoritesDictionary[firstLetter] {
             favoritesDictionary[firstLetter]!.append(place)
+            favoritesDictionary[firstLetter]!.sortInPlace() { $0.title < $1.title }
         } else {
             favoritesDictionary[firstLetter] = [place]
             favoritesKeys.append(firstLetter)
