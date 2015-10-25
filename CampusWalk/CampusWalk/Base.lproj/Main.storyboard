@@ -131,31 +131,41 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="MnO-Hb-hAL" firstAttribute="top" secondItem="Gdl-Ye-Nwg" secondAttribute="bottom" constant="23" id="10v-Ms-qhk"/>
                             <constraint firstItem="MnO-Hb-hAL" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" constant="113" id="31E-8w-mdI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6XW-Xa-drw" secondAttribute="trailing" id="6cS-mO-qoa"/>
                             <constraint firstItem="cTM-1b-K4A" firstAttribute="top" secondItem="BZj-vl-bMY" secondAttribute="bottom" constant="8" id="6uC-fF-w1i"/>
                             <constraint firstItem="6XW-Xa-drw" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" id="7ve-yC-Iq0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cTM-1b-K4A" secondAttribute="trailing" constant="-20" id="Aed-bD-3aK"/>
-                            <constraint firstItem="2HY-pr-R08" firstAttribute="top" secondItem="6XW-Xa-drw" secondAttribute="bottom" constant="8" id="BfV-Vx-vJX"/>
                             <constraint firstItem="iU4-y0-4VO" firstAttribute="top" secondItem="pjZ-bi-bGC" secondAttribute="bottom" constant="20" id="EQS-Aa-P3c"/>
                             <constraint firstItem="pjZ-bi-bGC" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" id="Gpz-LY-h5V"/>
+                            <constraint firstItem="2HY-pr-R08" firstAttribute="top" secondItem="6XW-Xa-drw" secondAttribute="bottom" constant="43" id="Kk9-EL-OpS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MnO-Hb-hAL" secondAttribute="trailing" constant="112" id="PP5-L2-cVo"/>
                             <constraint firstItem="pjZ-bi-bGC" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" constant="-20" id="T8i-Pc-kzC"/>
                             <constraint firstItem="cTM-1b-K4A" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" constant="-20" id="Vlt-Cm-8ac"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2HY-pr-R08" secondAttribute="trailing" id="WNz-8C-ouJ"/>
                             <constraint firstItem="BZj-vl-bMY" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" constant="-20" id="X0h-jJ-uzY"/>
-                            <constraint firstItem="2HY-pr-R08" firstAttribute="top" secondItem="MnO-Hb-hAL" secondAttribute="bottom" constant="40" id="YBe-fB-g13"/>
+                            <constraint firstItem="BZj-vl-bMY" firstAttribute="top" secondItem="2HY-pr-R08" secondAttribute="bottom" constant="52" id="aN0-SO-fWd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pjZ-bi-bGC" secondAttribute="trailing" id="eQL-9p-JXs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pjZ-bi-bGC" secondAttribute="trailing" constant="-20" id="fZ7-Pf-fsc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BZj-vl-bMY" secondAttribute="trailing" constant="-20" id="lgV-cH-dba"/>
                             <constraint firstItem="pjZ-bi-bGC" firstAttribute="top" secondItem="cTM-1b-K4A" secondAttribute="bottom" constant="8" id="n7F-v4-RBq"/>
                             <constraint firstItem="2HY-pr-R08" firstAttribute="leading" secondItem="hHJ-ZH-GX6" secondAttribute="leadingMargin" id="sRp-IU-HF3"/>
-                            <constraint firstItem="MnO-Hb-hAL" firstAttribute="top" secondItem="Gdl-Ye-Nwg" secondAttribute="bottom" id="yFn-ZN-Q8T"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="10v-Ms-qhk"/>
+                                <exclude reference="Kk9-EL-OpS"/>
+                                <exclude reference="aN0-SO-fWd"/>
                                 <exclude reference="Gpz-LY-h5V"/>
                                 <exclude reference="eQL-9p-JXs"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="10v-Ms-qhk"/>
+                                <include reference="Kk9-EL-OpS"/>
+                                <include reference="aN0-SO-fWd"/>
                             </mask>
                         </variation>
                     </view>
@@ -275,6 +285,9 @@
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csI-p6-fLB">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ob3-of-mDK"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Walkthrough" id="hcI-9s-6Py">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="EiF-nQ-9fe">
@@ -284,21 +297,43 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ob3-of-mDK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="Ob3-of-mDK"/>
+                                    </mask>
+                                </variation>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="sf9-SD-xBq" firstAttribute="top" secondItem="hUk-J3-6Fz" secondAttribute="bottom" constant="104.5" id="2Tk-3D-SmA"/>
                             <constraint firstItem="sf9-SD-xBq" firstAttribute="top" secondItem="K9p-k3-m9S" secondAttribute="bottom" constant="305.5" id="BeU-Pr-EFr"/>
+                            <constraint firstItem="csI-p6-fLB" firstAttribute="top" secondItem="v7K-Ni-zxT" secondAttribute="bottom" id="EXz-aQ-ARG"/>
                             <constraint firstItem="csI-p6-fLB" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="HG5-mH-x89"/>
-                            <constraint firstItem="csI-p6-fLB" firstAttribute="top" secondItem="v7K-Ni-zxT" secondAttribute="bottom" constant="8" id="Pdo-Do-VUF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="csI-p6-fLB" secondAttribute="trailing" constant="-20" id="QLe-S3-c9U"/>
-                            <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="csI-p6-fLB" secondAttribute="bottom" constant="32" id="f86-j2-4UF"/>
+                            <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="v7K-Ni-zxT" secondAttribute="bottom" constant="84" id="fjc-PB-RD3"/>
                             <constraint firstItem="hUk-J3-6Fz" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="j3F-pq-YZ4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hUk-J3-6Fz" secondAttribute="trailing" constant="-20" id="lKK-vM-QW5"/>
                             <constraint firstItem="K9p-k3-m9S" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="80" id="ufb-Eo-QQb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K9p-k3-m9S" secondAttribute="trailing" constant="80" id="vcK-Dz-hhD"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EXz-aQ-ARG"/>
+                                <exclude reference="fjc-PB-RD3"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="EXz-aQ-ARG"/>
+                                <include reference="fjc-PB-RD3"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="walkthroughImageView" destination="K9p-k3-m9S" id="Dqc-S4-1de"/>
