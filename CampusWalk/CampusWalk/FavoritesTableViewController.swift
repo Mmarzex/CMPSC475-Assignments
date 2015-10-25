@@ -32,12 +32,10 @@ class FavoritesTableViewController: UITableViewController {
     // MARKx: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return model.numberOfFavoritesSections()
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return model.favoritesCountForSection(section)
     }
     
@@ -68,8 +66,6 @@ class FavoritesTableViewController: UITableViewController {
                     } else {
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                     }
-                    
-                    //                    tableView.reloadSections(NSIndexSet(index: response.1), withRowAnimation: UITableViewRowAnimation.Fade)
                 } else {
                     self.dismissViewControllerAnimated(true) { () -> Void in
                         if let mainVC = self.mainViewController {
@@ -83,7 +79,6 @@ class FavoritesTableViewController: UITableViewController {
         
         if model.isFavoriteHidden(indexPath.section, row: indexPath.row) {
             let hide = UITableViewRowAction(style: .Normal, title: "Unhide") { action, index in
-                print("asdfas")
                 self.model.showFavorite(indexPath.section, row: indexPath.row)
                 tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
             }
@@ -98,31 +93,6 @@ class FavoritesTableViewController: UITableViewController {
             return [delete, hide]
         }
     }
-
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        print(editingStyle)
-//        if editingStyle == .Delete {
-//            let response = model.removeFavorite(indexPath.section, row: indexPath.row)
-//            if response.0 {
-//                if model.numberOfFavoritesSections() > 0 {
-//                    if response.1 == -1 {
-//                        tableView.reloadData()
-//                    } else {
-//                        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-//                    }
-//                    
-////                    tableView.reloadSections(NSIndexSet(index: response.1), withRowAnimation: UITableViewRowAnimation.Fade)
-//                } else {
-//                    dismissViewControllerAnimated(true) { () -> Void in
-//                        if let mainVC = self.mainViewController {
-//                            mainVC.refreshPins()
-//                        }
-//                    }
-//                }
-//                
-//            }
-//        }
-//    }
 
     @IBAction func dismissFavoritesView(sender: AnyObject) {
         dismissViewControllerAnimated(true) { () -> Void in

@@ -156,8 +156,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case "searchSegue":
-                let searchTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! SearchTableViewController
-                searchTableVC.mainViewController = self
+            let searchTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! SearchTableViewController
+            searchTableVC.mainViewController = self
         case "favoriteSegueFromMap":
             let favoritesTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! FavoritesTableViewController
             favoritesTableVC.mainViewController = self

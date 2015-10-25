@@ -101,6 +101,9 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
     func plotOnMap(place: BuildingModel.Place) {
         if let mainVC = mainViewController {
             mainVC.plotOnMap(place)
+            dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }
     }
     

@@ -48,7 +48,6 @@ class RootWalkthroughViewController: UIViewController, UIPageViewControllerDataS
     func viewControllerAtIndex(index:Int) -> UIViewController {
         let contentViewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageContent") as! PageWalkthroughViewController
         contentViewController.configure(walkthroughModel.descriptionAtIndex(index), index: index, image: walkthroughModel.imageAtIndex(index))
-        //        contentViewController.nameLabel.text = walkthroughModel.nameAtIndex(index)
         
         return contentViewController
     }

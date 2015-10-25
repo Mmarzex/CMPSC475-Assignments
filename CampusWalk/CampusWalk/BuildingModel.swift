@@ -209,7 +209,6 @@ class BuildingModel {
         let letterInSection = letterForFavoritesSection(section)
         let favoriteToRemove = favoritesDictionary[letterInSection]![row]
         if !favorites.remove(favoriteToRemove) {
-            print("NOT DELETED")
             return (false, -1)
         }
         
@@ -231,7 +230,6 @@ class BuildingModel {
     func removeFavorite(place: Place) -> (Bool, Int) {
         let letterInSection = place.title!.firstLetter()!
         if !favorites.remove(place) {
-            print("NOT DELETED")
             return (false, -1)
         }
         

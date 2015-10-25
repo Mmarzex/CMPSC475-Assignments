@@ -179,7 +179,7 @@
             </objects>
             <point key="canvasLocation" x="3045" y="419"/>
         </scene>
-        <!--Search Table View Controller-->
+        <!--Buildings-->
         <scene sceneID="nVY-Iw-YX6">
             <objects>
                 <tableViewController id="B2H-H9-cMc" customClass="SearchTableViewController" customModule="CampusWalk" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,7 +202,7 @@
                             <outlet property="delegate" destination="B2H-H9-cMc" id="YAl-JH-Lex"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="57F-8d-rUn">
+                    <navigationItem key="navigationItem" title="Buildings" id="57F-8d-rUn">
                         <leftBarButtonItems>
                             <barButtonItem systemItem="done" id="07M-IK-dlz">
                                 <connections>

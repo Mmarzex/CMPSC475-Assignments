@@ -47,7 +47,6 @@ class BuildingDetailViewController: UIViewController {
         if let place = placeToDisplay {
             nameLabel.text = place.title
             if let x = place.photoName {
-                print(x)
                 if x != "" {
                     imageView.image = UIImage(named: x)
                 }
@@ -80,7 +79,6 @@ class BuildingDetailViewController: UIViewController {
             CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
                 var addressString = ""
                 if let unwrappedPlacemarks = placemarks {
-                    print(unwrappedPlacemarks.count)
                     for x in unwrappedPlacemarks {
                         if x.subThoroughfare != nil {
                             addressString = x.subThoroughfare! + " "
@@ -98,7 +96,6 @@ class BuildingDetailViewController: UIViewController {
                             addressString = addressString + x.administrativeArea! + " "
                         }
                     }
-                    print(addressString)
                     self.locationLabel.text = addressString
                     self.locationLabel.sizeToFit()
                 }
@@ -139,13 +136,11 @@ class BuildingDetailViewController: UIViewController {
     
     @IBAction func detailButtonAction(sender: AnyObject) {
         if ButtonType(rawValue: sender.tag) == .delete {
-            print("delete")
             if let del = delegate {
                 del.deletePlaceFromMap(placeToDisplay!)
                 del.dismissBuildingDetailController()
             }
         } else if ButtonType(rawValue: sender.tag) == .removeFavorite {
-            print("remove")
             model.removeFavorite(placeToDisplay!)
             if let del = delegate {
                 del.dismissBuildingDetailController()
@@ -157,7 +152,6 @@ class BuildingDetailViewController: UIViewController {
     @IBAction func addToMapAction(sender: AnyObject) {
         if let del = delegate {
             del.plotOnMap(placeToDisplay!)
-            del.dismissBuildingDetailController()
         }
     }
 
