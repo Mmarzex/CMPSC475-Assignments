@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import UIKit
 
 class BuildingModel {
     
@@ -20,6 +21,8 @@ class BuildingModel {
         let buildingCode : Int?
         let yearConstructed : Int?
         let photoName : String?
+        
+        var photoFromUserSelection : UIImage?
         
         init(title: String, coordinate: CLLocationCoordinate2D, buildingCode: Int, yearConstructed: Int, photoName: String) {
             self.title = title
@@ -39,6 +42,17 @@ class BuildingModel {
             
             return mapItem
         }
+        
+        func buildingImage() -> UIImage? {
+            
+            /// Need to include something here for the no-image image
+            
+            if let userSelectedImage = photoFromUserSelection {
+                return userSelectedImage
+            }
+            return UIImage(named: photoName!)
+        }
+        
     }
     
     static let sharedInstance = BuildingModel()
@@ -304,5 +318,9 @@ class BuildingModel {
     func favoriteInSection(section:Int, row:Int) -> Place {
         let letterInSection = letterForFavoritesSection(section)
         return favoritesDictionary[letterInSection]![row]
+    }
+    
+    func setUserSelectedImageForPlace(place:Place, image:UIImage) {
+        place.photoFromUserSelection = image
     }
 }

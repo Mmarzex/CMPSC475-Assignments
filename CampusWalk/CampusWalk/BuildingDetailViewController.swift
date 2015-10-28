@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class BuildingDetailViewController: UIViewController {
+class BuildingDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let model = BuildingModel.sharedInstance
     
@@ -26,6 +26,8 @@ class BuildingDetailViewController: UIViewController {
     
     var delegate : BuildingDetailProtocol?
     var placeToDisplay : BuildingModel.Place?
+    
+    let imagePicker = UIImagePickerController()
     
     enum ButtonType : Int {
         case addFavorite
@@ -46,10 +48,8 @@ class BuildingDetailViewController: UIViewController {
 
         if let place = placeToDisplay {
             nameLabel.text = place.title
-            if let x = place.photoName {
-                if x != "" {
-                    imageView.image = UIImage(named: x)
-                }
+            if let x = place.buildingImage() {
+                imageView.image = x
             }
             
             if model.isPlaceFavorite(place) {
@@ -101,11 +101,52 @@ class BuildingDetailViewController: UIViewController {
                 }
             }
         }
+        
+        imageView.userInteractionEnabled = true
+        
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: Selector("imageTapped:"))
+        imageView.addGestureRecognizer(imageTapGesture)
+        
+        imagePicker.delegate = self
+        
+        imagePicker.allowsEditing = false
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func imageTapped(recognizer : UIGestureRecognizer) {
+        print("ImageTapped")
+        
+        let imagePickerSelectionAlert = UIAlertController(title: nil, message: "Select Image Source", preferredStyle: .ActionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (action) in
+            self.imagePicker.sourceType = .Camera
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        imagePickerSelectionAlert.addAction(cameraAction)
+        
+        let photoImageAction = UIAlertAction(title: "Photo Library", style: .Default) { (action) in
+            self.imagePicker.sourceType = .PhotoLibrary
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        imagePickerSelectionAlert.addAction(photoImageAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
+            //            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        imagePickerSelectionAlert.addAction(cancelAction)
+
+        imagePickerSelectionAlert.popoverPresentationController?.sourceView = self.view
+        imagePickerSelectionAlert.popoverPresentationController?.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        presentViewController(imagePickerSelectionAlert, animated: true, completion: nil)
     }
     
     @IBAction func favoriteButtonAction(sender: AnyObject) {
@@ -160,6 +201,14 @@ class BuildingDetailViewController: UIViewController {
             del.dismissBuildingDetailController()
         }
     }
+    
+    // MARK: UIImagePickerControllerDelegate Functions
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.imageView.image = image
+        model.setUserSelectedImageForPlace(placeToDisplay!, image: image)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
