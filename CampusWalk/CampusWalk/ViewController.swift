@@ -11,7 +11,7 @@ import Foundation
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BuildingDetailProtocol {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BuildingDetailProtocol, WalkDirectionsOverlayProtocol {
 
     let model = BuildingModel.sharedInstance
     let locationManager = CLLocationManager()
@@ -22,6 +22,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet var mapView: MKMapView!
     
+    @IBOutlet weak var directionsMainView: UIView!
+    @IBOutlet weak var directionsNextButton: UIButton!
+    @IBOutlet weak var directionPreviousButton: UIButton!
+    @IBOutlet weak var directionsLabel: UILabel!
+    @IBOutlet weak var directionsCancelButton: UIButton!
+    
+    var stepByStepDirections : [MKRouteStep]?
+    var directionCount:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +44,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         self.navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+        
+        directionsMainView.hidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -137,6 +147,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.presentViewController(detailNavVC, animated: true, completion: nil)
     }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.greenColor()
+            polylineRenderer.lineWidth = 4.0
+            
+            return polylineRenderer
+        }
+        
+        return MKOverlayRenderer(overlay: overlay)
+    }
 
     func dismissBuildingDetailController() {
         dismissViewControllerAnimated(true, completion: nil)
@@ -153,11 +175,39 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         refreshPins()
     }
     
+    func directionsFound(response: MKDirectionsResponse?, source: BuildingModel.Place, destination: BuildingModel.Place) {
+        
+        mapView.addAnnotation(source)
+        mapView.addAnnotation(destination)
+        
+        for route in (response?.routes)! {
+            mapView.addOverlay(route.polyline)
+            
+            stepByStepDirections = route.steps
+            
+            directionCount = 0
+            directionsLabel.text = stepByStepDirections![directionCount].instructions
+            
+            directionsMainView.hidden = false
+            directionPreviousButton.hidden = true
+            if directionCount + 1 == stepByStepDirections?.count {
+                directionsNextButton.hidden = true
+            }
+        }
+        
+        let region = MKCoordinateRegionMakeWithDistance((response?.source.placemark.location?.coordinate)!, 2000, 2000)
+        mapView.setRegion(region, animated: true)
+        mapView.selectAnnotation(source, animated: true)
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case "searchSegue":
             let searchTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! SearchTableViewController
             searchTableVC.mainViewController = self
+            searchTableVC.delegate = self
         case "favoriteSegueFromMap":
             let favoritesTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! FavoritesTableViewController
             favoritesTableVC.mainViewController = self
@@ -186,6 +236,35 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
         
+    @IBAction func cancelDirectionsButtonPressed(sender: UIButton) {
+        directionsMainView.hidden = true
+        mapView.removeOverlays(mapView.overlays)
+    }
+
+    @IBAction func directionButtonPressed(sender: UIButton) {
+        if sender.tag == 0 {
+            directionCount++
+            
+            directionPreviousButton.hidden = false
+            
+            directionsLabel.text = stepByStepDirections![directionCount].instructions
+            
+            if directionCount+1 == stepByStepDirections!.count {
+                directionsNextButton.hidden = true
+            }
+        } else if sender.tag == 1 {
+            directionCount--
+            
+            directionsNextButton.hidden = false
+            
+            directionsLabel.text = stepByStepDirections![directionCount].instructions
+            
+            if directionCount-1 < 0 {
+                directionPreviousButton.hidden = true
+            }
+        }
+    }
+    
     func plotPlaceAtIndex(indexPath : NSIndexPath) {
         mapView.addAnnotation(model.placeInSection(indexPath.section, row: indexPath.row))
         centerMapOnCoordinate(model.coordinateForPlaceInSection(indexPath.section, row: indexPath.row))

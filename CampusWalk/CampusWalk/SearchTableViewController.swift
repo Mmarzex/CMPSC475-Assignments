@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import MapKit
 import CoreLocation
 
-class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
+class SearchTableViewController: UITableViewController, BuildingDetailProtocol, GetDirectionsProtocol, UISearchResultsUpdating {
 
+    var delegate: WalkDirectionsOverlayProtocol?
+    
     let model = BuildingModel.sharedInstance
     var mainViewController : ViewController?
     
+    var finalSource:BuildingModel.Place?
+    var finalDest:BuildingModel.Place?
     
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         if let mainVC = mainViewController {
@@ -24,6 +30,16 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
                 mainVC.firstLoad = false
             }
         }
+        
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        self.tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    deinit {
+        searchController.view!.removeFromSuperview()
     }
     
     //MARK: UITableViewController DataSource
@@ -53,10 +69,11 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         model.addPlaceToPlot(indexPath.section, row: indexPath.row)
-        
-        dismissViewControllerAnimated(true, completion: {() -> Void in
-            self.mainViewController!.plotPlaceAtIndex(indexPath)
-        })
+//        model.resetSearch()
+        plotOnMap(model.placeInSection(indexPath.section, row: indexPath.row))
+//        dismissViewControllerAnimated(true, completion: {() -> Void in
+//            self.mainViewController!.plotOnMap(self.model.placeInSection(indexPath.section, row: indexPath.row))
+//        })
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -88,6 +105,11 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
         
     }
     
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        model.searchPlaces(searchController.searchBar.text!)
+        tableView.reloadData()
+    }
+    
     func dismissBuildingDetailController() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -102,13 +124,65 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol {
         if let mainVC = mainViewController {
             mainVC.plotOnMap(place)
             dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.model.resetSearch()
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         }
     }
     
-    @IBAction func doneAction(sender: AnyObject) {
+    func getDirections() {
+        let walkingRouteRequest = MKDirectionsRequest()
+        
+        walkingRouteRequest.transportType = .Walking
+        walkingRouteRequest.source = finalSource?.mapItem()
+        walkingRouteRequest.destination = finalDest?.mapItem()
+        
+        walkingRouteRequest.requestsAlternateRoutes = false
+        
+        let directions = MKDirections(request: walkingRouteRequest)
+        
+        directions.calculateDirectionsWithCompletionHandler { (response, error) -> Void in
+            if error != nil {
+                
+            } else {
+                self.delegate?.directionsFound(response, source: self.finalSource!, destination: self.finalDest!)
+            }
+        }
+    }
+    
+    func cancelChildViewController() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func buildingSourceAndDestinationSelected(source: MKAnnotation?, destination: MKAnnotation?) {
+        
+        finalSource = source as? BuildingModel.Place
+        finalDest = destination as? BuildingModel.Place
+        getDirections()
+        
+    }
+    
+//    @IBAction func directionsAction(sender: AnyObject) {
+//        let directionNavVC = self.storyboard?.instantiateViewControllerWithIdentifier("directionNavController") as! UINavigationController
+//        
+//        let directionsVC = directionNavVC.topViewController as! DirectionsViewController
+//        directionsVC.delegate = self
+//        
+//        presentViewController(directionsVC, animated: true, completion: nil)
+//    }
+    
+    @IBAction func doneAction(sender: AnyObject) {
+        self.model.resetSearch()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier! == "directionSegue" {
+            print("Direction segue")
+            
+            let directionsVC = (segue.destinationViewController as! UINavigationController).topViewController as! DirectionsViewController
+            directionsVC.delegate = self
+        }
     }
 
 }

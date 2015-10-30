@@ -58,8 +58,14 @@ class BuildingModel {
     static let sharedInstance = BuildingModel()
     
     private let places : [Place]
-    private let placesDictionary : [String:[Place]]
-    private let allKeys : [String]
+    private let allPlacesDictionary : [String:[Place]]
+    private let allKeysConstant : [String]
+    
+    private var placesDictionary : [String:[Place]]
+    private var allKeys : [String]
+    
+    private var searchPlacesDictionary = [String:[Place]]()
+    private var searchKeys = [String]()
     
     private var placesOnMap = [Place]()
     
@@ -97,6 +103,8 @@ class BuildingModel {
             _placesDictionary[key] = _placesDictionary[key]!.sort() { $0.title < $1.title }
         }
         
+        allKeysConstant = allKeys
+        allPlacesDictionary = _placesDictionary
         placesDictionary = _placesDictionary
 
     }
@@ -145,7 +153,8 @@ class BuildingModel {
     
     func addPlaceToPlot(section:Int, row:Int) {
         let letterInSection = letterForSection(section)
-        placesOnMap.append(placesDictionary[letterInSection]![row])
+        let place = placesDictionary[letterInSection]![row]
+        placesOnMap.append(place)
     }
     
     func placesToPlot() -> [Place] {
@@ -322,5 +331,36 @@ class BuildingModel {
     
     func setUserSelectedImageForPlace(place:Place, image:UIImage) {
         place.photoFromUserSelection = image
+    }
+    
+    func searchPlaces(searchStr: String) {
+        if searchStr.isEmpty {
+            resetSearch()
+        } else {
+            let searchString = searchStr.lowercaseString
+            let results = places.filter({ return $0.title!.lowercaseString.rangeOfString(searchString) != nil})
+            searchPlacesDictionary.removeAll()
+            for (index, place) in results.enumerate() {
+                let firstLetter = place.title!.firstLetter()!
+                
+                if let _ = searchPlacesDictionary[firstLetter] {
+                    searchPlacesDictionary[firstLetter]!.append(results[index])
+                } else {
+                    searchPlacesDictionary[firstLetter] = [results[index]]
+                }
+            }
+            
+            searchKeys = Array(searchPlacesDictionary.keys).sort()
+            
+            placesDictionary = searchPlacesDictionary
+            allKeys = searchKeys
+        }
+        
+        
+    }
+    
+    func resetSearch() {
+        placesDictionary = allPlacesDictionary
+        allKeys = allKeysConstant
     }
 }

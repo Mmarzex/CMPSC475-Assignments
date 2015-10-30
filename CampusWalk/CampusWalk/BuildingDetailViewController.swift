@@ -139,7 +139,6 @@ class BuildingDetailViewController: UIViewController, UIImagePickerControllerDel
         imagePickerSelectionAlert.addAction(photoImageAction)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
-            //            self.dismissViewControllerAnimated(true, completion: nil)
         }
         
         imagePickerSelectionAlert.addAction(cancelAction)
