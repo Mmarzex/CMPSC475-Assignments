@@ -27,6 +27,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var directionPreviousButton: UIButton!
     @IBOutlet weak var directionsLabel: UILabel!
     @IBOutlet weak var directionsCancelButton: UIButton!
+    @IBOutlet weak var etaLabel: UILabel!
     
     var stepByStepDirections : [MKRouteStep]?
     var directionCount:Int = 0
@@ -176,23 +177,32 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func directionsFound(response: MKDirectionsResponse?, source: BuildingModel.Place, destination: BuildingModel.Place) {
-        
-        mapView.addAnnotation(source)
-        mapView.addAnnotation(destination)
+        mapView.removeOverlays(mapView.overlays)
+        if !source.isUserLocation {
+            mapView.addAnnotation(source)
+        }
+        if !destination.isUserLocation {
+            mapView.addAnnotation(destination)
+        }
         
         for route in (response?.routes)! {
             mapView.addOverlay(route.polyline)
             
-            stepByStepDirections = route.steps
+            print(stringFromTimeInterval(route.expectedTravelTime))
             
+            stepByStepDirections = route.steps
             directionCount = 0
             directionsLabel.text = stepByStepDirections![directionCount].instructions
-            
+                        
             directionsMainView.hidden = false
             directionPreviousButton.hidden = true
             if directionCount + 1 == stepByStepDirections?.count {
                 directionsNextButton.hidden = true
+            } else {
+                directionsNextButton.hidden = false
             }
+            
+            etaLabel.text = stringFromTimeInterval(route.expectedTravelTime)
         }
         
         let region = MKCoordinateRegionMakeWithDistance((response?.source.placemark.location?.coordinate)!, 2000, 2000)
@@ -202,16 +212,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+        let interval = Int(interval)
+        let seconds = interval % 60
+        let minutes = (interval / 60) % 60
+        let hours = (interval / 3600)
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case "searchSegue":
             let searchTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! SearchTableViewController
             searchTableVC.mainViewController = self
             searchTableVC.delegate = self
+            model.updateCurrentLocationPlace(mapView.userLocation)
         case "favoriteSegueFromMap":
             let favoritesTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! FavoritesTableViewController
             favoritesTableVC.mainViewController = self
-            
+        case "allDirectionsSegue":
+            let directionsTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! DirectionsTableViewController
+            directionsTableVC.model = DirectionModel(stepByStepDirections: stepByStepDirections!)
         default:
             break
         }

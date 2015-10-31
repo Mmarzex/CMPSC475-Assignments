@@ -72,6 +72,9 @@ class DirectionsViewController: UIViewController, DirectionSearchProtocol {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func doneButtonAction(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

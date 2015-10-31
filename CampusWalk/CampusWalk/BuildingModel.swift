@@ -16,14 +16,14 @@ class BuildingModel {
         
         let title: String?
         let subtitle: String?
-        let coordinate:CLLocationCoordinate2D
+        var coordinate:CLLocationCoordinate2D
         
         let buildingCode : Int?
         let yearConstructed : Int?
         let photoName : String?
         
         var photoFromUserSelection : UIImage?
-        
+        var isUserLocation = false
         init(title: String, coordinate: CLLocationCoordinate2D, buildingCode: Int, yearConstructed: Int, photoName: String) {
             self.title = title
             self.coordinate = coordinate
@@ -64,6 +64,7 @@ class BuildingModel {
     private var placesDictionary : [String:[Place]]
     private var allKeys : [String]
     
+    private var searchPlaces = [Place]()
     private var searchPlacesDictionary = [String:[Place]]()
     private var searchKeys = [String]()
     
@@ -75,6 +76,8 @@ class BuildingModel {
     
     private var deletedFavorites = [Place]()
     private var hiddenFavorites = [Place]()
+    
+    private var userLocation : Place?
     
     private init() {
         let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
@@ -337,8 +340,14 @@ class BuildingModel {
         if searchStr.isEmpty {
             resetSearch()
         } else {
+            
+            searchPlaces = places
+            if let _ = userLocation {
+                searchPlaces.append(userLocation!)
+            }
+            
             let searchString = searchStr.lowercaseString
-            let results = places.filter({ return $0.title!.lowercaseString.rangeOfString(searchString) != nil})
+            let results = searchPlaces.filter({ return $0.title!.lowercaseString.rangeOfString(searchString) != nil})
             searchPlacesDictionary.removeAll()
             for (index, place) in results.enumerate() {
                 let firstLetter = place.title!.firstLetter()!
@@ -357,6 +366,30 @@ class BuildingModel {
         }
         
         
+    }
+    
+    func updateCurrentLocationPlace(currentUserLocation : MKUserLocation) {
+        if let _ = userLocation {
+            userLocation!.coordinate = currentUserLocation.coordinate
+        } else {
+            userLocation = Place(title: "Current Location", coordinate: currentUserLocation.coordinate, buildingCode: -1, yearConstructed: -1, photoName: "")
+            userLocation!.isUserLocation = true
+        }
+//        let title = "Current Location"
+//        let firstLetter = title.firstLetter()!
+//        let userLocationInDictionary = searchPlacesDictionary[firstLetter]?.filter({ return $0.isUserLocation})
+//        if userLocationInDictionary == nil {
+//            let currentLocation = Place(title: title, coordinate: userLocation.coordinate, buildingCode: -1, yearConstructed: -1, photoName: "")
+//            currentLocation.isUserLocation = true
+//            if let _ = searchPlacesDictionary[firstLetter] {
+//                searchPlacesDictionary[firstLetter]?.append(currentLocation)
+//            } else {
+//                searchPlacesDictionary[firstLetter] = [currentLocation]
+//            }
+//        } else {
+//            let indexOfUserLocation = searchPlacesDictionary[firstLetter]!.indexOf(userLocationInDictionary![0])
+//            searchPlacesDictionary[firstLetter]![indexOfUserLocation!].coordinate = userLocation.coordinate
+//        }
     }
     
     func resetSearch() {
