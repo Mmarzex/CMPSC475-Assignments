@@ -188,8 +188,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for route in (response?.routes)! {
             mapView.addOverlay(route.polyline)
             
-            print(stringFromTimeInterval(route.expectedTravelTime))
-            
             stepByStepDirections = route.steps
             directionCount = 0
             directionsLabel.text = stepByStepDirections![directionCount].instructions

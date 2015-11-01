@@ -22,9 +22,6 @@ class DirectionsViewController: UIViewController, DirectionSearchProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ////// Set Place in the favorites for the current location here
-
         // Do any additional setup after loading the view.
     }
 
@@ -44,18 +41,15 @@ class DirectionsViewController: UIViewController, DirectionSearchProtocol {
     }
 
     @IBAction func routeButtonPressed(sender: UIButton) {
-        print("Route Button Pressed")
         if let startPlace = start {
             if let endPlace = end {
                 delegate?.buildingSourceAndDestinationSelected(startPlace, destination: endPlace)
             } else {
-                print("Invalid Destination")
                 let alertController = UIAlertController(title: "Invalid Destination", message: "Please enter a valid destination", preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
                 presentViewController(alertController, animated: true, completion: nil)
             }
         } else {
-            print("Invalid Start")
             let alertController = UIAlertController(title: "Invalid Start Location", message: "Please enter a valid start location", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             presentViewController(alertController, animated: true, completion: nil)

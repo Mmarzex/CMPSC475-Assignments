@@ -44,9 +44,6 @@ class BuildingModel {
         }
         
         func buildingImage() -> UIImage? {
-            
-            /// Need to include something here for the no-image image
-            
             if let userSelectedImage = photoFromUserSelection {
                 return userSelectedImage
             }

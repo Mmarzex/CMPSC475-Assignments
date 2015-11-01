@@ -121,7 +121,6 @@ class BuildingDetailViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imageTapped(recognizer : UIGestureRecognizer) {
-        print("ImageTapped")
         
         let imagePickerSelectionAlert = UIAlertController(title: nil, message: "Select Image Source", preferredStyle: .ActionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (action) in

@@ -162,24 +162,13 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol, 
         
     }
     
-//    @IBAction func directionsAction(sender: AnyObject) {
-//        let directionNavVC = self.storyboard?.instantiateViewControllerWithIdentifier("directionNavController") as! UINavigationController
-//        
-//        let directionsVC = directionNavVC.topViewController as! DirectionsViewController
-//        directionsVC.delegate = self
-//        
-//        presentViewController(directionsVC, animated: true, completion: nil)
-//    }
-    
     @IBAction func doneAction(sender: AnyObject) {
         self.model.resetSearch()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier! == "directionSegue" {
-            print("Direction segue")
-            
+        if segue.identifier! == "directionSegue" {            
             let directionsVC = (segue.destinationViewController as! UINavigationController).topViewController as! DirectionsViewController
             directionsVC.delegate = self
         }
