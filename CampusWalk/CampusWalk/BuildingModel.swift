@@ -375,21 +375,13 @@ class BuildingModel {
             userLocation = Place(title: "Current Location", coordinate: currentUserLocation.coordinate, buildingCode: -1, yearConstructed: -1, photoName: "")
             userLocation!.isUserLocation = true
         }
-//        let title = "Current Location"
-//        let firstLetter = title.firstLetter()!
-//        let userLocationInDictionary = searchPlacesDictionary[firstLetter]?.filter({ return $0.isUserLocation})
-//        if userLocationInDictionary == nil {
-//            let currentLocation = Place(title: title, coordinate: userLocation.coordinate, buildingCode: -1, yearConstructed: -1, photoName: "")
-//            currentLocation.isUserLocation = true
-//            if let _ = searchPlacesDictionary[firstLetter] {
-//                searchPlacesDictionary[firstLetter]?.append(currentLocation)
-//            } else {
-//                searchPlacesDictionary[firstLetter] = [currentLocation]
-//            }
-//        } else {
-//            let indexOfUserLocation = searchPlacesDictionary[firstLetter]!.indexOf(userLocationInDictionary![0])
-//            searchPlacesDictionary[firstLetter]![indexOfUserLocation!].coordinate = userLocation.coordinate
-//        }
+    }
+    
+    func prepareForSearch() {
+        resetSearch()
+        if let _ = userLocation {
+            placesDictionary[userLocation!.title!.firstLetter()!]!.append(userLocation!)
+        }
     }
     
     func resetSearch() {

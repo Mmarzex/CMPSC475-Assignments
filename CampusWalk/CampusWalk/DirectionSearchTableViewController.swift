@@ -23,6 +23,8 @@ class DirectionSearchTableViewController: UITableViewController, UISearchResults
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
+        
+        model.prepareForSearch()
     }
     
     //MARK: UITableViewController DataSource
