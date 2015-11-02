@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		1214C5401BE6E83C0043D536 /* ClimbAppProposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ClimbAppProposal.pdf; sourceTree = "<group>"; };
 		12CC33A61BCF5821001B141A /* AppDefinition.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AppDefinition.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -14,6 +15,7 @@
 		12CC339F1BCF57C9001B141A = {
 			isa = PBXGroup;
 			children = (
+				1214C5401BE6E83C0043D536 /* ClimbAppProposal.pdf */,
 				12CC33A61BCF5821001B141A /* AppDefinition.pdf */,
 			);
 			sourceTree = "<group>";
