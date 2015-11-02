@@ -14,7 +14,7 @@ class SearchTableViewController: UITableViewController, BuildingDetailProtocol, 
 
     var delegate: WalkDirectionsOverlayProtocol?
     
-    let model = BuildingModel.sharedInstance
+    let model = Models.sharedInstance.buildingModel
     var mainViewController : ViewController?
     
     var finalSource:BuildingModel.Place?

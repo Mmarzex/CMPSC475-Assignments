@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesTableViewController: UITableViewController {
 
-    let model = BuildingModel.sharedInstance
+    let model = Models.sharedInstance.buildingModel
     
     var mainViewController : ViewController?
     

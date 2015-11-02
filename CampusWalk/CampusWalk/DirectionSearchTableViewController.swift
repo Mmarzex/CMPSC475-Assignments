@@ -12,7 +12,7 @@ class DirectionSearchTableViewController: UITableViewController, UISearchResults
     
     var delegate : DirectionSearchProtocol?
     
-    let model = BuildingModel.sharedInstance
+    let model = Models.sharedInstance.buildingModel
     
     let searchController = UISearchController(searchResultsController: nil)
     

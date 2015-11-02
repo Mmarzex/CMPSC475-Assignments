@@ -11,7 +11,7 @@ import CoreLocation
 
 class BuildingDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let model = BuildingModel.sharedInstance
+    let model = Models.sharedInstance.buildingModel
     
     @IBOutlet var imageView: UIImageView!
     

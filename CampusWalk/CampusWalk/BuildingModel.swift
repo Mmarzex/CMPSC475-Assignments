@@ -10,9 +10,9 @@ import Foundation
 import MapKit
 import UIKit
 
-class BuildingModel {
+class BuildingModel : NSObject, NSSecureCoding {
     
-    class Place: NSObject, MKAnnotation {
+    class Place: NSObject, MKAnnotation, NSSecureCoding {
         
         let title: String?
         let subtitle: String?
@@ -35,6 +35,32 @@ class BuildingModel {
             super.init()
         }
         
+        required init?(coder aDecoder : NSCoder) {
+            self.title = aDecoder.decodeObjectForKey("title") as? String
+            let latitude = aDecoder.decodeObjectForKey("latitude") as! CLLocationDegrees
+            let longitude = aDecoder.decodeObjectForKey("longitude") as! CLLocationDegrees
+            self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            self.yearConstructed = aDecoder.decodeObjectForKey("yearConstructed") as? Int
+            self.buildingCode = aDecoder.decodeObjectForKey("buildingCode") as? Int
+            self.photoName = aDecoder.decodeObjectForKey("photoName") as? String
+            self.photoFromUserSelection = aDecoder.decodeObjectForKey("userSelectedImage") as? UIImage
+            self.subtitle = nil
+        }
+        
+        func encodeWithCoder(aCoder: NSCoder) {
+            aCoder.encodeObject(self.title, forKey: "title")
+            aCoder.encodeObject(self.coordinate.latitude, forKey: "latitude")
+            aCoder.encodeObject(self.coordinate.longitude, forKey: "longitude")
+            aCoder.encodeObject(self.buildingCode, forKey: "buildingCode")
+            aCoder.encodeObject(self.yearConstructed, forKey: "yearConstructed")
+            aCoder.encodeObject(self.photoName, forKey: "photoName")
+            aCoder.encodeObject(self.photoFromUserSelection, forKey: "userSelectedImage")
+        }
+        
+        class func supportsSecureCoding() -> Bool {
+            return true
+        }
+        
         func mapItem() -> MKMapItem {
             let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
@@ -51,9 +77,7 @@ class BuildingModel {
         }
         
     }
-    
-    static let sharedInstance = BuildingModel()
-    
+        
     private let places : [Place]
     private let allPlacesDictionary : [String:[Place]]
     private let allKeysConstant : [String]
@@ -76,7 +100,8 @@ class BuildingModel {
     
     private var userLocation : Place?
     
-    private init() {
+    override init() {
+        print("building Model Init")
         let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
         let rawFile = NSArray(contentsOfFile: path!) as! [[String:AnyObject]]
         
@@ -108,6 +133,36 @@ class BuildingModel {
         placesDictionary = _placesDictionary
 
     }
+
+    required init?(coder aDecoder : NSCoder) {
+        print("Decoder Initalizer for BuildingModel")
+        places = (aDecoder.decodeObjectForKey("places") as? [Place])!
+        allPlacesDictionary = (aDecoder.decodeObjectForKey("allPlacesDictionary") as? [String:[Place]])!
+        allKeysConstant = (aDecoder.decodeObjectForKey("allKeysConstant") as? [String])!
+        placesDictionary = allPlacesDictionary
+        allKeys = allKeysConstant
+        placesOnMap = (aDecoder.decodeObjectForKey("placesOnMap") as? [Place])!
+        favorites = (aDecoder.decodeObjectForKey("favorites") as? [Place])!
+        favoritesDictionary = (aDecoder.decodeObjectForKey("favoritesDictionary") as? [String:[Place]])!
+        favoritesKeys = (aDecoder.decodeObjectForKey("favoritesKeys") as? [String])!
+        hiddenFavorites = (aDecoder.decodeObjectForKey("hiddenFavorites") as? [Place])!
+    }
+    
+    class func supportsSecureCoding() -> Bool {
+        return true
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(places, forKey: "places")
+        aCoder.encodeObject(allPlacesDictionary, forKey: "allPlacesDictionary")
+        aCoder.encodeObject(allKeysConstant, forKey: "allKeysConstant")
+        aCoder.encodeObject(placesOnMap, forKey: "placesOnMap")
+        aCoder.encodeObject(favorites, forKey: "favorites")
+        aCoder.encodeObject(favoritesDictionary, forKey: "favoritesDictionary")
+        aCoder.encodeObject(favoritesKeys, forKey: "favoritesKeys")
+        aCoder.encodeObject(hiddenFavorites, forKey: "hiddenFavorites")
+    }
+    
     
     func placesCountForSection(section:Int) -> Int {
         let letterInSection = letterForSection(section)

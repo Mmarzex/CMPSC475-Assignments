@@ -93,6 +93,7 @@
 		12D315F11BD6DD7D00F1E346 /* Star-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D315F01BD6DD7D00F1E346 /* Star-50.png */; settings = {ASSET_TAGS = (); }; };
 		12D315F31BD6DE0400F1E346 /* Star-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D315F21BD6DE0400F1E346 /* Star-32.png */; settings = {ASSET_TAGS = (); }; };
 		12D315F51BD6DEA000F1E346 /* Star-44.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D315F41BD6DEA000F1E346 /* Star-44.png */; settings = {ASSET_TAGS = (); }; };
+		12EE62041BE7E7F50014953A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE62031BE7E7F50014953A /* Models.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +206,7 @@
 		12D315F01BD6DD7D00F1E346 /* Star-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star-50.png"; sourceTree = "<group>"; };
 		12D315F21BD6DE0400F1E346 /* Star-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star-32.png"; sourceTree = "<group>"; };
 		12D315F41BD6DEA000F1E346 /* Star-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star-44.png"; sourceTree = "<group>"; };
+		12EE62031BE7E7F50014953A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +425,7 @@
 				125369331BD5CD7800156E93 /* BuildingModel.swift */,
 				123A9FCF1BDBD2650000E948 /* WalkthroughModel.swift */,
 				122E7CEC1BE53F07006D48B2 /* DirectionModel.swift */,
+				12EE62031BE7E7F50014953A /* Models.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				129E897A1BE086E80031E83C /* DirectionsViewController.swift in Sources */,
 				123A9FCC1BDBD2480000E948 /* RootWalkthroughViewController.swift in Sources */,
 				122E7CEB1BE53C9A006D48B2 /* DirectionsTableViewController.swift in Sources */,
+				12EE62041BE7E7F50014953A /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

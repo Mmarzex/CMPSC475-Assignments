@@ -13,7 +13,7 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BuildingDetailProtocol, WalkDirectionsOverlayProtocol {
 
-    let model = BuildingModel.sharedInstance
+    let model = Models.sharedInstance.buildingModel
     let locationManager = CLLocationManager()
     
     var favoritesCount = 0
@@ -70,7 +70,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         mapView.addAnnotations(model.favoritesToPlot())
-        
+        mapView.addAnnotations(model.placesToPlot())
         for x in model.favoritesToPlot() {
             let annotationView = mapView.viewForAnnotation(x)
             if let y = annotationView {
