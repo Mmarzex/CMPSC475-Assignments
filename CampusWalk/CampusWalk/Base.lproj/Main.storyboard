@@ -216,8 +216,8 @@
                                 <rect key="frame" x="0.0" y="544" width="600" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="181" id="4Ml-Ha-ukv"/>
                                     <constraint firstAttribute="height" constant="36" id="GZn-iK-4li"/>
+                                    <constraint firstAttribute="width" constant="250" id="LFa-QF-s2O"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Delete From Map">
@@ -225,13 +225,13 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="4Ml-Ha-ukv"/>
                                         <exclude reference="GZn-iK-4li"/>
+                                        <exclude reference="LFa-QF-s2O"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="4Ml-Ha-ukv"/>
+                                        <include reference="LFa-QF-s2O"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -247,6 +247,7 @@
                                 <rect key="frame" x="0.0" y="456" width="600" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Q5e-vL-ux7"/>
                                     <constraint firstAttribute="width" constant="181" id="upH-C9-V4d"/>
                                     <constraint firstAttribute="height" constant="36" id="yKc-a3-ajb"/>
                                 </constraints>
@@ -256,13 +257,15 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="Q5e-vL-ux7"/>
                                         <exclude reference="upH-C9-V4d"/>
                                         <exclude reference="yKc-a3-ajb"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="upH-C9-V4d"/>
+                                        <include reference="Q5e-vL-ux7"/>
+                                        <exclude reference="upH-C9-V4d"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -334,6 +337,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="0It-dT-bbN"/>
                                     <constraint firstAttribute="width" constant="181" id="1x7-JZ-S90"/>
+                                    <constraint firstAttribute="width" constant="250" id="sqH-6b-HSr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Favorite">
@@ -343,11 +347,13 @@
                                     <mask key="constraints">
                                         <exclude reference="0It-dT-bbN"/>
                                         <exclude reference="1x7-JZ-S90"/>
+                                        <exclude reference="sqH-6b-HSr"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="1x7-JZ-S90"/>
+                                        <exclude reference="1x7-JZ-S90"/>
+                                        <include reference="sqH-6b-HSr"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -592,11 +598,13 @@
                                 <rect key="frame" x="100" y="104" width="400" height="190.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="390.5" id="U3a-59-j0a"/>
+                                    <constraint firstAttribute="height" constant="190.5" id="XCl-bT-4MY"/>
                                     <constraint firstAttribute="height" constant="129" id="y8c-W6-ns3"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="U3a-59-j0a"/>
+                                        <exclude reference="XCl-bT-4MY"/>
                                         <exclude reference="y8c-W6-ns3"/>
                                     </mask>
                                 </variation>
@@ -611,6 +619,11 @@
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="U3a-59-j0a"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="XCl-bT-4MY"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -639,6 +652,7 @@
                             <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="csI-p6-fLB" secondAttribute="bottom" constant="32" id="7p2-nC-ImZ"/>
                             <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="csI-p6-fLB" secondAttribute="bottom" constant="21" id="Azi-Xr-ryO"/>
                             <constraint firstItem="csI-p6-fLB" firstAttribute="leading" secondItem="Jvj-Uk-IG6" secondAttribute="leadingMargin" constant="-20" id="HG5-mH-x89"/>
+                            <constraint firstItem="hUk-J3-6Fz" firstAttribute="top" secondItem="K9p-k3-m9S" secondAttribute="bottom" constant="173.5" id="Lwp-Mv-pu1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="csI-p6-fLB" secondAttribute="trailing" constant="-20" id="QLe-S3-c9U"/>
                             <constraint firstItem="K9p-k3-m9S" firstAttribute="top" secondItem="v7K-Ni-zxT" secondAttribute="bottom" constant="84" id="fjc-PB-RD3"/>
                             <constraint firstItem="csI-p6-fLB" firstAttribute="top" secondItem="v7K-Ni-zxT" secondAttribute="bottom" constant="8" id="hzs-Yb-KCX"/>
@@ -655,6 +669,7 @@
                                 <exclude reference="7p2-nC-ImZ"/>
                                 <exclude reference="Azi-Xr-ryO"/>
                                 <exclude reference="fjc-PB-RD3"/>
+                                <exclude reference="Lwp-Mv-pu1"/>
                                 <exclude reference="lgb-fT-clp"/>
                                 <exclude reference="mXC-vq-e3w"/>
                             </mask>
@@ -676,6 +691,7 @@
                                 <include reference="4qH-VG-Qd6"/>
                                 <exclude reference="hzs-Yb-KCX"/>
                                 <include reference="fjc-PB-RD3"/>
+                                <include reference="Lwp-Mv-pu1"/>
                             </mask>
                         </variation>
                     </view>
