@@ -101,7 +101,6 @@ class BuildingModel : NSObject, NSSecureCoding {
     private var userLocation : Place?
     
     override init() {
-        print("building Model Init")
         let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
         let rawFile = NSArray(contentsOfFile: path!) as! [[String:AnyObject]]
         
@@ -135,7 +134,6 @@ class BuildingModel : NSObject, NSSecureCoding {
     }
 
     required init?(coder aDecoder : NSCoder) {
-        print("Decoder Initalizer for BuildingModel")
         places = (aDecoder.decodeObjectForKey("places") as? [Place])!
         allPlacesDictionary = (aDecoder.decodeObjectForKey("allPlacesDictionary") as? [String:[Place]])!
         allKeysConstant = (aDecoder.decodeObjectForKey("allKeysConstant") as? [String])!

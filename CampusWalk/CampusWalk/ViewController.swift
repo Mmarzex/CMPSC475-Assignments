@@ -14,6 +14,8 @@ import CoreLocation
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BuildingDetailProtocol, WalkDirectionsOverlayProtocol {
 
     let model = Models.sharedInstance.buildingModel
+    let settings = Models.sharedInstance.settingsModel
+    
     let locationManager = CLLocationManager()
     
     var favoritesCount = 0
@@ -21,6 +23,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var firstLoad = true
     
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapViewSegmentedSelector: UISegmentedControl!
     
     @IBOutlet weak var directionsMainView: UIView!
     @IBOutlet weak var directionsNextButton: UIButton!
@@ -28,6 +31,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var directionsLabel: UILabel!
     @IBOutlet weak var directionsCancelButton: UIButton!
     @IBOutlet weak var etaLabel: UILabel!
+    @IBOutlet var settingsButton: UIBarButtonItem!
     
     var stepByStepDirections : [MKRouteStep]?
     var directionCount:Int = 0
@@ -47,6 +51,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
         
         directionsMainView.hidden = true
+        
+        let mapType = settings.getDefaultMapType()
+        setMapType(mapType)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,6 +101,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
 
+    func setMapType(mapType: MapType) {
+        switch (mapType) {
+        case .Standard:
+            mapView.mapType = MKMapType.Standard
+        case .Hybrid:
+            mapView.mapType = MKMapType.Hybrid
+        case .Satellite:
+            mapView.mapType = MKMapType.Satellite
+        }
+
+        mapViewSegmentedSelector.selectedSegmentIndex = mapType.rawValue
+        mapViewSegmentedSelector.selected = true
+    }
+    
     func centerMapOnCoordinate(location: CLLocationCoordinate2D) {
         let coordinateRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(0.01, 0.01))
         mapView.setRegion(coordinateRegion, animated: true)
@@ -232,15 +254,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         case "allDirectionsSegue":
             let directionsTableVC = (segue.destinationViewController as! UINavigationController).topViewController as! DirectionsTableViewController
             directionsTableVC.model = DirectionModel(stepByStepDirections: stepByStepDirections!)
+        case "settingsSegue":
+            let settingsVC = (segue.destinationViewController as! UINavigationController).topViewController as! SettingsViewController
+            settingsVC.dismissCompletitionBlock = {
+                self.setMapType(self.settings.getDefaultMapType())
+            }
         default:
             break
         }
-    }
-    
-    enum MapType : Int {
-        case Standard = 0;
-        case Hybrid = 1;
-        case Satellite = 2;
     }
     
     @IBAction func changeMapType(sender: AnyObject) {

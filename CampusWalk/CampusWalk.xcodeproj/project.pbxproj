@@ -11,6 +11,9 @@
 		120774F71BE298050025C6BB /* DirectionSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120774F61BE298050025C6BB /* DirectionSearchProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		120774F91BE2DEF70025C6BB /* GetDirectionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120774F81BE2DEF70025C6BB /* GetDirectionsProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		120774FB1BE302730025C6BB /* WalkDirectionsOverlayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120774FA1BE302730025C6BB /* WalkDirectionsOverlayProtocol.swift */; settings = {ASSET_TAGS = (); }; };
+		120B8E2C1BE9377000CC0F85 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B8E2B1BE9377000CC0F85 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		120B8E2E1BE937A700CC0F85 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B8E2D1BE937A700CC0F85 /* SettingsModel.swift */; settings = {ASSET_TAGS = (); }; };
+		120B8E311BE9397200CC0F85 /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B8E301BE9397200CC0F85 /* MapType.swift */; settings = {ASSET_TAGS = (); }; };
 		122E7CE91BE41311006D48B2 /* nophoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 122E7CE81BE41311006D48B2 /* nophoto.png */; settings = {ASSET_TAGS = (); }; };
 		122E7CEB1BE53C9A006D48B2 /* DirectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E7CEA1BE53C9A006D48B2 /* DirectionsTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		122E7CED1BE53F07006D48B2 /* DirectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E7CEC1BE53F07006D48B2 /* DirectionModel.swift */; settings = {ASSET_TAGS = (); }; };
@@ -118,6 +121,9 @@
 		120774F61BE298050025C6BB /* DirectionSearchProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionSearchProtocol.swift; sourceTree = "<group>"; };
 		120774F81BE2DEF70025C6BB /* GetDirectionsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDirectionsProtocol.swift; sourceTree = "<group>"; };
 		120774FA1BE302730025C6BB /* WalkDirectionsOverlayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkDirectionsOverlayProtocol.swift; sourceTree = "<group>"; };
+		120B8E2B1BE9377000CC0F85 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		120B8E2D1BE937A700CC0F85 /* SettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		120B8E301BE9397200CC0F85 /* MapType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapType.swift; sourceTree = "<group>"; };
 		122E7CE81BE41311006D48B2 /* nophoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nophoto.png; sourceTree = "<group>"; };
 		122E7CEA1BE53C9A006D48B2 /* DirectionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsTableViewController.swift; sourceTree = "<group>"; };
 		122E7CEC1BE53F07006D48B2 /* DirectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionModel.swift; sourceTree = "<group>"; };
@@ -235,6 +241,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		120B8E2F1BE9395100CC0F85 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				120B8E301BE9397200CC0F85 /* MapType.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
 		123A9FC41BDBCEA60000E948 /* walkthrough */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +285,7 @@
 		125368C01BD5BCFF00156E93 /* CampusWalk */ = {
 			isa = PBXGroup;
 			children = (
+				120B8E2F1BE9395100CC0F85 /* Enums */,
 				126586491BD9557C00F9616A /* Protocols */,
 				126586441BD954EC00F9616A /* Extensions */,
 				12D315EC1BD6AE4600F1E346 /* Models */,
@@ -415,6 +430,7 @@
 				129E89791BE086E80031E83C /* DirectionsViewController.swift */,
 				120774F41BE296F70025C6BB /* DirectionSearchTableViewController.swift */,
 				122E7CEA1BE53C9A006D48B2 /* DirectionsTableViewController.swift */,
+				120B8E2B1BE9377000CC0F85 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -426,6 +442,7 @@
 				123A9FCF1BDBD2650000E948 /* WalkthroughModel.swift */,
 				122E7CEC1BE53F07006D48B2 /* DirectionModel.swift */,
 				12EE62031BE7E7F50014953A /* Models.swift */,
+				120B8E2D1BE937A700CC0F85 /* SettingsModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -631,6 +648,8 @@
 			files = (
 				126586461BD9554600F9616A /* StringExtensions.swift in Sources */,
 				120774F51BE296F70025C6BB /* DirectionSearchTableViewController.swift in Sources */,
+				120B8E2E1BE937A700CC0F85 /* SettingsModel.swift in Sources */,
+				120B8E2C1BE9377000CC0F85 /* SettingsViewController.swift in Sources */,
 				125368C41BD5BCFF00156E93 /* ViewController.swift in Sources */,
 				1265864B1BD9558F00F9616A /* BuildingDetailProtocol.swift in Sources */,
 				120774F71BE298050025C6BB /* DirectionSearchProtocol.swift in Sources */,
@@ -643,6 +662,7 @@
 				12D315EF1BD6B4C400F1E346 /* FavoritesTableViewController.swift in Sources */,
 				123A9FCE1BDBD2550000E948 /* PageWalkthroughViewController.swift in Sources */,
 				1265864D1BD95C4F00F9616A /* BuildingDetailViewController.swift in Sources */,
+				120B8E311BE9397200CC0F85 /* MapType.swift in Sources */,
 				120774F91BE2DEF70025C6BB /* GetDirectionsProtocol.swift in Sources */,
 				125369381BD5D9FE00156E93 /* SearchTableViewController.swift in Sources */,
 				129E897A1BE086E80031E83C /* DirectionsViewController.swift in Sources */,

@@ -14,21 +14,30 @@ class Models {
     static let sharedInstance = Models()
     
     let buildingModel : BuildingModel
+    let settingsModel : SettingsModel
     
-    private let archiveFile = "buildingModelArchive"
+    private let buildingModelArchive = "buildingModelArchive"
+    private let settingsModelArchive = "settingsModelArchive"
     
     private init() {
-        if let unarchivedModel = NSUserDefaults.standardUserDefaults().objectForKey(archiveFile) as? NSData {
-            print("Unarchive")
+        if let unarchivedModel = NSUserDefaults.standardUserDefaults().objectForKey(buildingModelArchive) as? NSData {
             buildingModel = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedModel) as! BuildingModel
         } else {
             buildingModel = BuildingModel()
         }
+        
+        if let unarchivedModel = NSUserDefaults.standardUserDefaults().objectForKey(settingsModelArchive) as? NSData {
+            settingsModel = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedModel) as! SettingsModel
+        } else {
+            settingsModel = SettingsModel()
+        }
     }
     
     func saveModels() {
-        print("archive")
-        let data = NSKeyedArchiver.archivedDataWithRootObject(buildingModel)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: archiveFile)
+        let buildingModeldata = NSKeyedArchiver.archivedDataWithRootObject(buildingModel)
+        NSUserDefaults.standardUserDefaults().setObject(buildingModeldata, forKey: buildingModelArchive)
+        
+        let settingsModelData = NSKeyedArchiver.archivedDataWithRootObject(settingsModel)
+        NSUserDefaults.standardUserDefaults().setObject(settingsModelData, forKey: settingsModelArchive)
     }
 }
