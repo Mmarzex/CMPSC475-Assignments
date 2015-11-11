@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Mapbox iOS SDK 2.1.2 Reference</title>
+		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 963)" />
+		
 	</head>
 	<body>
 		<header id="top_header">
@@ -15,7 +15,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">Mapbox iOS SDK 2.1.2 Reference</h1>
+				<h1 class="hideInXcode"></h1>
 			</div>
 			<ul id="headerButtons" role="toolbar"></ul>
 		</header>
@@ -26,7 +26,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">Mapbox iOS SDK 2.1.2 Reference</h1>
+						<h1 class="title title-header"></h1>
 					</div>		
 				</div>
 				<div id="container">
@@ -38,11 +38,30 @@
 
 <p>An open source OpenGL-based vector map solution for iOS with full styling capabilities and Cocoa bindings.</p>
 
-<p>For more information, check out <a href="https://www.mapbox.com/mapbox-gl-ios/">our online overview</a>.</p>
+<p>For more information, check out <a href="https://www.mapbox.com/ios-sdk/">our online overview</a>.</p>
 
 <p><a href=""><img src="https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/ios/screenshot.png" alt="" /></a></p>
 
 <h2>Changelog</h2>
+
+<h2>iOS master</h2>
+
+<ul>
+<li>The <code>styleID</code> property has been removed from <a href="Classes/MGLMapView.html">MGLMapView</a>. Instead, set the <code>styleURL</code> property to an NSURL in the form <code>mapbox://styles/STYLE_ID</code>. If you previously set the style ID in Interface Builder’s Attributes inspector, delete the <code>styleID</code> entry from the User Defined Runtime Attributes section of the Identity inspector, then set the new “Style URL” inspectable to a value in the form <code>mapbox://styles/STYLE_ID</code>. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2632">#2632</a>)</li>
+<li>Default styles such as Streets are no longer bundled with the SDK; instead, they are loaded at runtime from the style API on mapbox.com. As always, you can use these default styles with any valid access token, and Streets continues to be <a href="Classes/MGLMapView.html"><code>MGLMapView</code></a>’s initial style. The <code>bundledStyleURLs</code> property on <a href="Classes/MGLMapView.html"><code>MGLMapView</code></a> has been deprecated in favor of several class methods on <a href="Classes/MGLStyle.html"><code>MGLStyle</code></a> that provide direct access to the default styles. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2746">#2746</a>)</li>
+<li>The SDK now builds with Bitcode enabled. (<a href="https://github.com/mapbox/mapbox-gl-native/issues/2332">#2332</a>)</li>
+<li>The double-tap-drag gesture for zooming in and out is now consistent with the Google Maps SDK. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2153">#2153</a>)</li>
+<li>A new <code></code>MGLAnnotationImage<code>.enabled</code> property allows you to disable touch events on individual annotations. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2501">#2501</a>)</li>
+<li>Fixed a rendering issue that caused one-way arrows along tile boundaries to point due east instead of in the direction of travel. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2530">#2530</a>)</li>
+<li>Fixed a rendering issue with styles that use the <code>background-pattern</code> property. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2531">#2531</a>)</li>
+<li>Labels can now line wrap on hyphens and other punctuation. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2598">#2598</a>)</li>
+<li>A new delegate callback was added for observing taps to annotation callout views. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2596">#2596</a>)</li>
+<li><code>-mapViewRegionIsChanging:</code> is now sent to the map view’s delegate during gestures. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2700">#2700</a>)</li>
+<li>Improved gesture recognition while the map is tilted. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2770">#2770</a>)</li>
+<li>Removed CoreTelephony.framework dependency. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2581">#2581</a>)</li>
+<li>Improved user location annotation responsiveness. (<a href="https://github.com/mapbox/mapbox-gl-native/pull/2643">#2643</a>)</li>
+</ul>
+
 
 <h2>iOS 2.1.2</h2>
 
@@ -191,10 +210,12 @@
 					
 					
 					<div class="index-column">
-						<h2 class="index-title">Class References</h2>
+						<h2 class="index-title"></h2>
 						<ul>
 							
 							<li><a href="Classes/MGLAccountManager.html">MGLAccountManager</a></li>
+							
+							<li><a href="Classes/MGLAnnotationImage.html">MGLAnnotationImage</a></li>
 							
 							<li><a href="Classes/MGLMapCamera.html">MGLMapCamera</a></li>
 							
@@ -210,6 +231,8 @@
 							
 							<li><a href="Classes/MGLShape.html">MGLShape</a></li>
 							
+							<li><a href="Classes/MGLStyle.html">MGLStyle</a></li>
+							
 							<li><a href="Classes/MGLUserLocation.html">MGLUserLocation</a></li>
 							
 						</ul>
@@ -219,7 +242,7 @@
 						
 					<div class="index-column">
 						
-						<h2 class="index-title">Protocol References</h2>
+						<h2 class="index-title"></h2>
 						<ul>
 							
 							<li><a href="Protocols/MGLAnnotation.html">MGLAnnotation</a></li>
@@ -231,7 +254,7 @@
 						</ul>
 						
                         
-						<h2 class="index-title">Constant References</h2>
+						<h2 class="index-title"></h2>
 						<ul>
                         
                         <li><a href="Constants/MGLUserTrackingMode.html">MGLUserTrackingMode</a></li>
@@ -248,9 +271,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 Mapbox. All rights reserved. (Last updated: 2015-09-15)</span><br />
-						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						<p><span class="copyright">&copy; 2015 Mapbox. All rights reserved. (Last updated: 2015-11-02)</span><br />
 						
 	
 					</div>

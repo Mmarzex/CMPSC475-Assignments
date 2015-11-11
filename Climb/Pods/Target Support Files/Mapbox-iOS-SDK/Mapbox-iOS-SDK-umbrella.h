@@ -14,6 +14,7 @@
 #import "MGLPolygon.h"
 #import "MGLPolyline.h"
 #import "MGLShape.h"
+#import "MGLStyle.h"
 #import "MGLTypes.h"
 #import "MGLUserLocation.h"
 
