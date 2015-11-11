@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08B17153661E32BDF37A4CDF /* Pods_Climb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EB85007C40A0CF28F59FA2 /* Pods_Climb.framework */; };
+		128FC8671BF390AE00A0D13B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC8661BF390AE00A0D13B /* AppDelegate.swift */; };
+		128FC8691BF390AE00A0D13B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC8681BF390AE00A0D13B /* ViewController.swift */; };
+		128FC86C1BF390AE00A0D13B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128FC86A1BF390AE00A0D13B /* Main.storyboard */; };
+		128FC86E1BF390AE00A0D13B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128FC86D1BF390AE00A0D13B /* Assets.xcassets */; };
+		128FC8711BF390AE00A0D13B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128FC86F1BF390AE00A0D13B /* LaunchScreen.storyboard */; };
+		128FC87C1BF390AF00A0D13B /* ClimbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC87B1BF390AF00A0D13B /* ClimbTests.swift */; };
+		128FC8871BF390AF00A0D13B /* ClimbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC8861BF390AF00A0D13B /* ClimbUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		128FC8781BF390AF00A0D13B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 128FC85B1BF390AE00A0D13B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 128FC8621BF390AE00A0D13B;
+			remoteInfo = Climb;
+		};
+		128FC8831BF390AF00A0D13B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 128FC85B1BF390AE00A0D13B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 128FC8621BF390AE00A0D13B;
+			remoteInfo = Climb;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		128FC8631BF390AE00A0D13B /* Climb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Climb.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		128FC8661BF390AE00A0D13B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		128FC8681BF390AE00A0D13B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		128FC86B1BF390AE00A0D13B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		128FC86D1BF390AE00A0D13B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		128FC8701BF390AE00A0D13B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		128FC8721BF390AE00A0D13B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		128FC8771BF390AF00A0D13B /* ClimbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClimbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		128FC87B1BF390AF00A0D13B /* ClimbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimbTests.swift; sourceTree = "<group>"; };
+		128FC87D1BF390AF00A0D13B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		128FC8821BF390AF00A0D13B /* ClimbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClimbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		128FC8861BF390AF00A0D13B /* ClimbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimbUITests.swift; sourceTree = "<group>"; };
+		128FC8881BF390AF00A0D13B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4200EB573E30825C02B8D566 /* Pods-Climb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Climb.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Climb/Pods-Climb.debug.xcconfig"; sourceTree = "<group>"; };
+		45E795F34815804C2C4EEB29 /* Pods-Climb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Climb.release.xcconfig"; path = "Pods/Target Support Files/Pods-Climb/Pods-Climb.release.xcconfig"; sourceTree = "<group>"; };
+		72EB85007C40A0CF28F59FA2 /* Pods_Climb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Climb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		128FC8601BF390AE00A0D13B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08B17153661E32BDF37A4CDF /* Pods_Climb.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128FC8741BF390AF00A0D13B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128FC87F1BF390AF00A0D13B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		128FC85A1BF390AE00A0D13B = {
+			isa = PBXGroup;
+			children = (
+				128FC8651BF390AE00A0D13B /* Climb */,
+				128FC87A1BF390AF00A0D13B /* ClimbTests */,
+				128FC8851BF390AF00A0D13B /* ClimbUITests */,
+				128FC8641BF390AE00A0D13B /* Products */,
+				8E773F42C88B128B8162B951 /* Pods */,
+				DED89264637734DDA937E990 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		128FC8641BF390AE00A0D13B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				128FC8631BF390AE00A0D13B /* Climb.app */,
+				128FC8771BF390AF00A0D13B /* ClimbTests.xctest */,
+				128FC8821BF390AF00A0D13B /* ClimbUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		128FC8651BF390AE00A0D13B /* Climb */ = {
+			isa = PBXGroup;
+			children = (
+				128FC8661BF390AE00A0D13B /* AppDelegate.swift */,
+				128FC8681BF390AE00A0D13B /* ViewController.swift */,
+				128FC86A1BF390AE00A0D13B /* Main.storyboard */,
+				128FC86D1BF390AE00A0D13B /* Assets.xcassets */,
+				128FC86F1BF390AE00A0D13B /* LaunchScreen.storyboard */,
+				128FC8721BF390AE00A0D13B /* Info.plist */,
+			);
+			path = Climb;
+			sourceTree = "<group>";
+		};
+		128FC87A1BF390AF00A0D13B /* ClimbTests */ = {
+			isa = PBXGroup;
+			children = (
+				128FC87B1BF390AF00A0D13B /* ClimbTests.swift */,
+				128FC87D1BF390AF00A0D13B /* Info.plist */,
+			);
+			path = ClimbTests;
+			sourceTree = "<group>";
+		};
+		128FC8851BF390AF00A0D13B /* ClimbUITests */ = {
+			isa = PBXGroup;
+			children = (
+				128FC8861BF390AF00A0D13B /* ClimbUITests.swift */,
+				128FC8881BF390AF00A0D13B /* Info.plist */,
+			);
+			path = ClimbUITests;
+			sourceTree = "<group>";
+		};
+		8E773F42C88B128B8162B951 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4200EB573E30825C02B8D566 /* Pods-Climb.debug.xcconfig */,
+				45E795F34815804C2C4EEB29 /* Pods-Climb.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DED89264637734DDA937E990 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72EB85007C40A0CF28F59FA2 /* Pods_Climb.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		128FC8621BF390AE00A0D13B /* Climb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 128FC88B1BF390AF00A0D13B /* Build configuration list for PBXNativeTarget "Climb" */;
+			buildPhases = (
+				A864DC4D92721DEAA50CCAC7 /* Check Pods Manifest.lock */,
+				128FC85F1BF390AE00A0D13B /* Sources */,
+				128FC8601BF390AE00A0D13B /* Frameworks */,
+				128FC8611BF390AE00A0D13B /* Resources */,
+				74FC7840A40BE88E3300442B /* Embed Pods Frameworks */,
+				AE6D9A85AE3231BBE5416BCA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Climb;
+			productName = Climb;
+			productReference = 128FC8631BF390AE00A0D13B /* Climb.app */;
+			productType = "com.apple.product-type.application";
+		};
+		128FC8761BF390AF00A0D13B /* ClimbTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 128FC88E1BF390AF00A0D13B /* Build configuration list for PBXNativeTarget "ClimbTests" */;
+			buildPhases = (
+				128FC8731BF390AF00A0D13B /* Sources */,
+				128FC8741BF390AF00A0D13B /* Frameworks */,
+				128FC8751BF390AF00A0D13B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				128FC8791BF390AF00A0D13B /* PBXTargetDependency */,
+			);
+			name = ClimbTests;
+			productName = ClimbTests;
+			productReference = 128FC8771BF390AF00A0D13B /* ClimbTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		128FC8811BF390AF00A0D13B /* ClimbUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 128FC8911BF390AF00A0D13B /* Build configuration list for PBXNativeTarget "ClimbUITests" */;
+			buildPhases = (
+				128FC87E1BF390AF00A0D13B /* Sources */,
+				128FC87F1BF390AF00A0D13B /* Frameworks */,
+				128FC8801BF390AF00A0D13B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				128FC8841BF390AF00A0D13B /* PBXTargetDependency */,
+			);
+			name = ClimbUITests;
+			productName = ClimbUITests;
+			productReference = 128FC8821BF390AF00A0D13B /* ClimbUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		128FC85B1BF390AE00A0D13B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Max Marze";
+				TargetAttributes = {
+					128FC8621BF390AE00A0D13B = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					128FC8761BF390AF00A0D13B = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 128FC8621BF390AE00A0D13B;
+					};
+					128FC8811BF390AF00A0D13B = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 128FC8621BF390AE00A0D13B;
+					};
+				};
+			};
+			buildConfigurationList = 128FC85E1BF390AE00A0D13B /* Build configuration list for PBXProject "Climb" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 128FC85A1BF390AE00A0D13B;
+			productRefGroup = 128FC8641BF390AE00A0D13B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				128FC8621BF390AE00A0D13B /* Climb */,
+				128FC8761BF390AF00A0D13B /* ClimbTests */,
+				128FC8811BF390AF00A0D13B /* ClimbUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		128FC8611BF390AE00A0D13B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128FC8711BF390AE00A0D13B /* LaunchScreen.storyboard in Resources */,
+				128FC86E1BF390AE00A0D13B /* Assets.xcassets in Resources */,
+				128FC86C1BF390AE00A0D13B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128FC8751BF390AF00A0D13B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128FC8801BF390AF00A0D13B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		74FC7840A40BE88E3300442B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Climb/Pods-Climb-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A864DC4D92721DEAA50CCAC7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE6D9A85AE3231BBE5416BCA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Climb/Pods-Climb-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		128FC85F1BF390AE00A0D13B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128FC8691BF390AE00A0D13B /* ViewController.swift in Sources */,
+				128FC8671BF390AE00A0D13B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128FC8731BF390AF00A0D13B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128FC87C1BF390AF00A0D13B /* ClimbTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128FC87E1BF390AF00A0D13B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128FC8871BF390AF00A0D13B /* ClimbUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		128FC8791BF390AF00A0D13B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 128FC8621BF390AE00A0D13B /* Climb */;
+			targetProxy = 128FC8781BF390AF00A0D13B /* PBXContainerItemProxy */;
+		};
+		128FC8841BF390AF00A0D13B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 128FC8621BF390AE00A0D13B /* Climb */;
+			targetProxy = 128FC8831BF390AF00A0D13B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		128FC86A1BF390AE00A0D13B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				128FC86B1BF390AE00A0D13B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		128FC86F1BF390AE00A0D13B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				128FC8701BF390AE00A0D13B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		128FC8891BF390AF00A0D13B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		128FC88A1BF390AF00A0D13B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		128FC88C1BF390AF00A0D13B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4200EB573E30825C02B8D566 /* Pods-Climb.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Climb/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.marze.Climb;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		128FC88D1BF390AF00A0D13B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45E795F34815804C2C4EEB29 /* Pods-Climb.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Climb/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.marze.Climb;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		128FC88F1BF390AF00A0D13B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ClimbTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.marze.ClimbTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Climb.app/Climb";
+			};
+			name = Debug;
+		};
+		128FC8901BF390AF00A0D13B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ClimbTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.marze.ClimbTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Climb.app/Climb";
+			};
+			name = Release;
+		};
+		128FC8921BF390AF00A0D13B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ClimbUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.marze.ClimbUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Climb;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		128FC8931BF390AF00A0D13B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ClimbUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.marze.ClimbUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Climb;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		128FC85E1BF390AE00A0D13B /* Build configuration list for PBXProject "Climb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128FC8891BF390AF00A0D13B /* Debug */,
+				128FC88A1BF390AF00A0D13B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		128FC88B1BF390AF00A0D13B /* Build configuration list for PBXNativeTarget "Climb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128FC88C1BF390AF00A0D13B /* Debug */,
+				128FC88D1BF390AF00A0D13B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		128FC88E1BF390AF00A0D13B /* Build configuration list for PBXNativeTarget "ClimbTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128FC88F1BF390AF00A0D13B /* Debug */,
+				128FC8901BF390AF00A0D13B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		128FC8911BF390AF00A0D13B /* Build configuration list for PBXNativeTarget "ClimbUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128FC8921BF390AF00A0D13B /* Debug */,
+				128FC8931BF390AF00A0D13B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 128FC85B1BF390AE00A0D13B /* Project object */;
+}
