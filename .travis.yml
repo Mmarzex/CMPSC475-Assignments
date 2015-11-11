@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: Climb/Climb.xcworkspace
+xcode_scheme: Climb
