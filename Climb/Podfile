@@ -6,7 +6,8 @@ use_frameworks!
 target 'Climb' do
     pod 'Charts'
     pod 'Mapbox-iOS-SDK'
-    pod 'Parse'
+    pod 'Mapbox-iOS-SDK', :podspec => 'https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.0.0-pre.4/ios/Mapbox-iOS-SDK.podspec'
+    #pod 'Parse'
     #disable bitcode
 	#post_install do |installer|
     #	installer.pods_project.targets.each do |target|
